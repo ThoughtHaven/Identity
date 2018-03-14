@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Thought Haven, Brendan Ridenour</Authors>
+    <Company>Thought Haven</Company>
+    <Product>Thought Haven AspNetCore Identity</Product>
+    <Description>An alternative identity framework for AspNetCore apps.</Description>
+    <Copyright>© Thought Haven. All rights reserved.</Copyright>
+    <Version>0.100.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.1" />
+    <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.100.0" />
+    <PackageReference Include="ThoughtHaven.Reflection" Version="0.100.0" />
+    <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.100.0" />
+    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.100.1" />
+  </ItemGroup>
+
+</Project>
