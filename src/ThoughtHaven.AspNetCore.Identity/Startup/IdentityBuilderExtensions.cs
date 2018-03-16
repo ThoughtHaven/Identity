@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
+using ThoughtHaven;
 
-namespace ThoughtHaven.AspNetCore.Identity.Startup
+namespace Microsoft.AspNetCore.Builder
 {
     public static class IdentityBuilderExtensions
     {
-        public static IApplicationBuilder UseThoughtHavenIdentity(
-            this IApplicationBuilder app)
+        public static IApplicationBuilder UseThoughtHavenIdentity(this IApplicationBuilder app)
         {
             Guard.Null(nameof(app), app);
 
