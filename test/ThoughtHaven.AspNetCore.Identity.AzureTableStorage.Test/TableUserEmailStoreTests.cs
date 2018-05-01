@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
-using ThoughtHaven.AspNetCore.Identity.Stores.Fakes;
+using ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes;
 using Xunit;
 
-namespace ThoughtHaven.AspNetCore.Identity.Stores
+namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 {
     public class TableUserEmailStoreTests
     {
@@ -14,38 +12,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Stores
             public class PrimaryOverload
             {
                 [Fact]
-                public void NullAccount_Throws()
+                public void NullOptions_Throws()
                 {
-                    Assert.Throws<ArgumentNullException>("account", () =>
+                    Assert.Throws<ArgumentNullException>("options", () =>
                     {
-                        new TableUserEmailStore<User>(
-                            account: null,
-                            requestOptions: RequestOptions(),
-                            storeOptions: StoreOptions());
-                    });
-                }
-
-                [Fact]
-                public void NullRequestOptions_Throws()
-                {
-                    Assert.Throws<ArgumentNullException>("requestOptions", () =>
-                    {
-                        new TableUserEmailStore<User>(
-                            account: Account(),
-                            requestOptions: null,
-                            storeOptions: StoreOptions());
-                    });
-                }
-
-                [Fact]
-                public void NullStoreOptions_Throws()
-                {
-                    Assert.Throws<ArgumentNullException>("storeOptions", () =>
-                    {
-                        new TableUserEmailStore<User>(
-                            account: Account(),
-                            requestOptions: RequestOptions(),
-                            storeOptions: null);
+                        new TableUserEmailStore<User>(options: null);
                     });
                 }
             }
@@ -140,11 +111,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Stores
                 }
             }
         }
-
-        private static CloudStorageAccount Account() =>
-            CloudStorageAccount.DevelopmentStorageAccount;
-        private static TableRequestOptions RequestOptions() => new TableRequestOptions();
-        private static TableStoreOptions StoreOptions() => new TableStoreOptions();
+        
+        private static TableStoreOptions Options() =>
+            new TableStoreOptions("UseDevelopmentStorage=true;");
         private static FakeTableUserEmailStore Store() =>
             new FakeTableUserEmailStore(new FakeTableEntityStore());
     }

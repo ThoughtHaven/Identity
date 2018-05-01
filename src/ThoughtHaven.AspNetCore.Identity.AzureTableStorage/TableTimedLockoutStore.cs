@@ -1,25 +1,24 @@
 ﻿using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
 using System.Threading.Tasks;
 using ThoughtHaven.AspNetCore.Identity.Lockouts;
 using ThoughtHaven.Azure.Storage.Table;
 using ThoughtHaven.Data;
 
-namespace ThoughtHaven.AspNetCore.Identity.Stores
+namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 {
     public class TableTimedLockoutStore : ICrudStore<string, TimedLockout>
     {
         protected readonly TableCrudStore<string, TimedLockoutModel> ModelStore;
 
-        public TableTimedLockoutStore(CloudStorageAccount account,
-            TableRequestOptions requestOptions, TableStoreOptions storeOptions)
+        public TableTimedLockoutStore(TableStoreOptions options)
             : this(new TableCrudStore<string, TimedLockoutModel>(
-                entityStore: BuildEntityStore(account, requestOptions, storeOptions),
+                entityStore: BuildEntityStore(options),
                 dataKeyToEntityKeys: key => CreateEntityKeys(key),
                 dataToEntityKeys: model => CreateEntityKeys(model.Key)))
         { }
 
-        protected TableTimedLockoutStore(TableCrudStore<string, TimedLockoutModel> modelStore)
+        protected TableTimedLockoutStore(
+            TableCrudStore<string, TimedLockoutModel> modelStore)
         {
             this.ModelStore = Guard.Null(nameof(modelStore), modelStore);
         }
@@ -75,17 +74,15 @@ namespace ThoughtHaven.AspNetCore.Identity.Stores
             return new TableEntityKeys(key, "Lockout");
         }
 
-        protected static TableEntityStore BuildEntityStore(CloudStorageAccount account,
-            TableRequestOptions requestOptions, TableStoreOptions storeOptions)
+        protected static TableEntityStore BuildEntityStore(TableStoreOptions options)
         {
-            Guard.Null(nameof(account), account);
-            Guard.Null(nameof(requestOptions), requestOptions);
-            Guard.Null(nameof(storeOptions), storeOptions);
+            Guard.Null(nameof(options), options);
 
             return new TableEntityStore(
-                table: account.CreateCloudTableClient().GetTableReference(
-                    storeOptions.TimedLockoutStoreTableName),
-                options: requestOptions);
+                table: CloudStorageAccount.Parse(options.StorageAccountConnectionString)
+                    .CreateCloudTableClient().GetTableReference(
+                        options.TimedLockoutStoreTableName),
+                options: options.TableRequest);
         }
     }
 }

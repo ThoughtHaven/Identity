@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using ThoughtHaven.AspNetCore.Identity.Emails;
 using ThoughtHaven.AspNetCore.Identity.Keys;
@@ -9,16 +8,13 @@ using System.Linq;
 using ThoughtHaven.Messages.Emails;
 using System;
 
-namespace ThoughtHaven.AspNetCore.Identity.Stores
+namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 {
     public class TableUserEmailStore<TUser>
         : TableUserStore<TUser>, IRetrieveOperation<EmailAddress, TUser>
         where TUser : class, IUserKey, IUserEmail, new()
     {
-        public TableUserEmailStore(CloudStorageAccount account,
-            TableRequestOptions requestOptions, TableStoreOptions storeOptions)
-            : base(account, requestOptions, storeOptions)
-        { }
+        public TableUserEmailStore(TableStoreOptions options) : base(options) { }
 
         protected TableUserEmailStore(TableEntityStore entityStore) : base(entityStore) { }
 

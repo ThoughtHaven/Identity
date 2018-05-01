@@ -1,6 +1,6 @@
 ﻿using ThoughtHaven.Data;
 
-namespace ThoughtHaven.AspNetCore.Identity.Stores.Fakes
+namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
 {
     public class FakeTableTimedLockoutStore : TableTimedLockoutStore
     {

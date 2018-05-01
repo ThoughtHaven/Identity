@@ -1,9 +1,11 @@
-﻿namespace ThoughtHaven.AspNetCore.Identity.Stores.Fakes
+﻿namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
 {
     public class FakeTableUserEmailStore : TableUserEmailStore<User>
     {
-        new public FakeTableEntityStore EntityStore => (FakeTableEntityStore)base.EntityStore;
+        new public FakeTableEntityStore EntityStore =>
+            (FakeTableEntityStore)base.EntityStore;
 
-        public FakeTableUserEmailStore(FakeTableEntityStore entityStore) : base(entityStore) { }
+        public FakeTableUserEmailStore(FakeTableEntityStore entityStore)
+            : base(entityStore) { }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 using ThoughtHaven.Azure.Storage.Table;
 using ThoughtHaven.Data;
 
-namespace ThoughtHaven.AspNetCore.Identity.Stores.Fakes
+namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
 {
     public class FakeTimedLockoutCrudStore : TableCrudStore<string, TimedLockoutModel>
     {

@@ -1,19 +1,16 @@
 ﻿using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using ThoughtHaven.AspNetCore.Identity.Keys;
 using ThoughtHaven.Azure.Storage.Table;
 using ThoughtHaven.Data;
 
-namespace ThoughtHaven.AspNetCore.Identity.Stores
+namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 {
     public class TableUserStore<TUser> : TableCrudStore<UserKey, TUser>
         where TUser : class, IUserKey, new()
     {
-        public TableUserStore(CloudStorageAccount account, TableRequestOptions requestOptions,
-            TableStoreOptions storeOptions)
-            : this(BuildEntityStore(account, requestOptions, storeOptions))
-        { }
+        public TableUserStore(TableStoreOptions options)
+            : this(BuildEntityStore(options)) { }
 
         protected TableUserStore(TableEntityStore entityStore)
             : this(entityStore,
@@ -34,17 +31,14 @@ namespace ThoughtHaven.AspNetCore.Identity.Stores
             return new TableEntityKeys(key.Value, "User");
         }
 
-        protected static TableEntityStore BuildEntityStore(CloudStorageAccount account,
-            TableRequestOptions requestOptions, TableStoreOptions storeOptions)
+        protected static TableEntityStore BuildEntityStore(TableStoreOptions options)
         {
-            Guard.Null(nameof(account), account);
-            Guard.Null(nameof(requestOptions), requestOptions);
-            Guard.Null(nameof(storeOptions), storeOptions);
+            Guard.Null(nameof(options), options);
 
             return new TableEntityStore(
-                account.CreateCloudTableClient().GetTableReference(
-                    storeOptions.UserStoreTableName),
-                options: requestOptions);
+                table: CloudStorageAccount.Parse(options.StorageAccountConnectionString)
+                    .CreateCloudTableClient().GetTableReference(options.UserStoreTableName),
+                options: options.TableRequest);
         }
     }
 }

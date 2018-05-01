@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using ThoughtHaven.Azure.Storage.Table;
 
-namespace ThoughtHaven.AspNetCore.Identity.Stores.Fakes
+namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
 {
     public class FakeTableExistenceTester : TableExistenceTester
     {
