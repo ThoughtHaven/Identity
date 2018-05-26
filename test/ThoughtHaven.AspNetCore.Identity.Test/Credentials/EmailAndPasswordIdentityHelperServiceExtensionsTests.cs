@@ -218,6 +218,18 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                 }
 
                 [Fact]
+                public async Task ValidatePasswordOnHelperReturnsValid_CallsResetLockedOutOnHelper()
+                {
+                    var identity = Identity();
+                    identity.Helper.ValidatePassword_OutputOverride =
+                        new PasswordValidateResult(valid: true);
+
+                    await identity.Login("some@email.com", "password", Properties());
+
+                    Assert.Equal("some@email.com", identity.Helper.ResetLockedOut_InputKey);
+                }
+
+                [Fact]
                 public async Task ValidatePasswordOnHelperReturnsUpdateHash_CallsSetPasswordHashOnHelper()
                 {
                     var identity = Identity();

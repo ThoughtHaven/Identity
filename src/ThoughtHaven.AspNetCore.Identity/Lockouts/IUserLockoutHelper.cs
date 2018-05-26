@@ -6,5 +6,6 @@ namespace ThoughtHaven.AspNetCore.Identity
     {
         UserMessage LockedOut { get; }
         Task<bool> IsLockedOut(string key);
+        Task ResetLockedOut(string key);
     }
 }

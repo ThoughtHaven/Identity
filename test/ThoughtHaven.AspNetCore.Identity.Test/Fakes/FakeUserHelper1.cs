@@ -105,6 +105,14 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
                 : Task.FromResult(this.IsLockedOut_OutputOverride.Value);
         }
 
+        public string ResetLockedOut_InputKey;
+        public override Task ResetLockedOut(string key)
+        {
+            this.ResetLockedOut_InputKey = key;
+
+            return base.ResetLockedOut(key);
+        }
+
         public UserKey CreatePasswordResetCode_InputUserKey;
         public PasswordResetCode CreatePasswordResetCode_Output;
         public override async Task<PasswordResetCode> CreatePasswordResetCode(UserKey userKey)

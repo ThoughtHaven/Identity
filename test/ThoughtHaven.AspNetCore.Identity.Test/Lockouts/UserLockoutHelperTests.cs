@@ -282,5 +282,48 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 }
             }
         }
+
+        public class ResetLockedOutMethod
+        {
+            public class KeyOverload
+            {
+                [Fact]
+                public async Task NullKey_Throws()
+                {
+                    await Assert.ThrowsAsync<ArgumentNullException>("key", async () =>
+                    {
+                        await new FakeUserHelper1().ResetLockedOut(key: null);
+                    });
+                }
+
+                [Fact]
+                public async Task EmptyKey_Throws()
+                {
+                    await Assert.ThrowsAsync<ArgumentException>("key", async () =>
+                    {
+                        await new FakeUserHelper1().ResetLockedOut(key: "");
+                    });
+                }
+
+                [Fact]
+                public async Task WhiteSpaceKey_Throws()
+                {
+                    await Assert.ThrowsAsync<ArgumentException>("key", async () =>
+                    {
+                        await new FakeUserHelper1().ResetLockedOut(key: " ");
+                    });
+                }
+
+                [Fact]
+                public async Task WhenCalled_CallsDeleteOnTimedLockoutStore()
+                {
+                    var helper = new FakeUserHelper1();
+
+                    await helper.ResetLockedOut("key");
+
+                    Assert.Equal("key", helper.FakeTimedLockoutStore.Delete_KeyInput);
+                }
+            }
+        }
     }
 }

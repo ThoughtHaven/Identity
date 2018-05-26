@@ -62,5 +62,8 @@ namespace ThoughtHaven.AspNetCore.Identity
 
             return lockout.Expiration.HasValue && lockout.Expiration > now;
         }
+
+        public virtual Task ResetLockedOut(string key) =>
+            this.TimedLockoutStore.Delete(Guard.NullOrWhiteSpace(nameof(key), key));
     }
 }

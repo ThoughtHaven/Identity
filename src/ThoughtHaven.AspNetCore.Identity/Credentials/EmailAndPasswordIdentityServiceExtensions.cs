@@ -44,7 +44,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             Guard.Null(nameof(password), password);
             Guard.Null(nameof(properties), properties);
 
-            var lockedOut = await identity.Helper.IsLockedOut(email.Value)
+            var lockedOut = await identity.Helper.IsLockedOut(key: email.Value)
                 .ConfigureAwait(false);
 
             if (lockedOut) { return identity.Helper.LockedOut; }
@@ -57,6 +57,8 @@ namespace ThoughtHaven.AspNetCore.Identity
                 .ConfigureAwait(false);
 
             if (!passwordResult.Valid) { return identity.Helper.InvalidCredentials; }
+
+            await identity.Helper.ResetLockedOut(key: email.Value).ConfigureAwait(false);
 
             if (passwordResult.UpdateHash)
             {
