@@ -7,7 +7,7 @@ Apps should have a smart IdentityService class that varies based on the shape of
 
 What about an email and password? Then use them to login [`identity.Login(email, password)`].
 
-If emails and/or passwords aren't supported, then those helper methods simply drop off the identity instance.
+If the User has no email and/or password, then those helper methods simply drop off the identity instance.
 
 **Applications decide** whether or not their users will have IDs, password hashes, security stamps, and last logins. And the IdentityService lights up with only the methods that make sense for that User.
 
