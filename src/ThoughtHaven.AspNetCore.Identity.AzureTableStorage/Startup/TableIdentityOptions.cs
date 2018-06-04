@@ -5,7 +5,7 @@ using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public class TableStorageIdentityOptions : IdentityOptions
+    public class TableIdentityOptions : IdentityOptions
     {
         public TableRequestOptions TableRequest
         {
@@ -33,14 +33,14 @@ namespace Microsoft.Extensions.DependencyInjection
             set { this._singleUseToken = Guard.Null(nameof(value), value); }
         }
 
-        public TableStorageIdentityOptions(string storageAccountConnectionString)
+        public TableIdentityOptions(string storageAccountConnectionString)
             : this(tableStore: new TableStoreOptions(Guard.NullOrWhiteSpace(
                 nameof(storageAccountConnectionString), storageAccountConnectionString)),
                   singleUseToken: new TableSingleUseTokenOptions(
                       storageAccountConnectionString))
         { }
 
-        public TableStorageIdentityOptions(TableStoreOptions tableStore,
+        public TableIdentityOptions(TableStoreOptions tableStore,
             TableSingleUseTokenOptions singleUseToken)
         {
             this._tableStore = Guard.Null(nameof(tableStore), tableStore);

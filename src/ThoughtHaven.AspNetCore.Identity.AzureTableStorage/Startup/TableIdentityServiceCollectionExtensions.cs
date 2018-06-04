@@ -1,20 +1,19 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using ThoughtHaven;
+using ThoughtHaven.AspNetCore.Identity.AzureTableStorage;
 using ThoughtHaven.AspNetCore.Identity.Created;
 using ThoughtHaven.AspNetCore.Identity.Emails;
 using ThoughtHaven.AspNetCore.Identity.Keys;
 using ThoughtHaven.AspNetCore.Identity.LastLogins;
 using ThoughtHaven.AspNetCore.Identity.SecurityStamps;
 using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
-using ThoughtHaven.AspNetCore.Identity.AzureTableStorage;
-using ThoughtHaven.AspNetCore.Identity;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class TableStorageIdentityServiceCollectionExtensions
+    public static class TableIdentityServiceCollectionExtensions
     {
         public static IServiceCollection AddThoughtHavenIdentity<TUser>(
-            this IServiceCollection services, TableStorageIdentityOptions options)
+            this IServiceCollection services, TableIdentityOptions options)
             where TUser : class, IUserKey, IUserId, IUserEmail, IUserCreated,
             IUserSecurityStamp, IUserLastLogin, new()
         {

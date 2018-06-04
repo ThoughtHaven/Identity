@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public class TableStorageIdentityServiceCollectionExtensionsTests
+    public class TableIdentityServiceCollectionExtensionsTests
     {
         public class AddThoughtHavenIdentityMethod
         {
@@ -43,7 +43,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         services.AddThoughtHavenIdentity<User>(options);
 
                         var service = services.BuildServiceProvider()
-                            .GetRequiredService<TableStorageIdentityOptions>();
+                            .GetRequiredService<TableIdentityOptions>();
 
                         Assert.Equal(options, service);
                     }
@@ -92,7 +92,7 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         private static IServiceCollection Services() => new ServiceCollection();
-        private static TableStorageIdentityOptions Options() =>
-            new TableStorageIdentityOptions("UseDevelopmentStorage=true;");
+        private static TableIdentityOptions Options() =>
+            new TableIdentityOptions("UseDevelopmentStorage=true;");
     }
 }
