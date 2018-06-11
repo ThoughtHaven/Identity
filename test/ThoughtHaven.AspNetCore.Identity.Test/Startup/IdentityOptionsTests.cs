@@ -192,7 +192,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     var options = new IdentityOptions();
 
-                    Assert.Equal(CookieSecurePolicy.Always, options.Cookie.Cookie.SecurePolicy);
+                    Assert.Equal(CookieSecurePolicy.Always,
+                        options.Cookie.Cookie.SecurePolicy);
                 }
 
                 [Fact]
@@ -209,6 +210,14 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     var options = new IdentityOptions();
 
                     Assert.True(options.Cookie.SlidingExpiration);
+                }
+
+                [Fact]
+                public void DefaultValueIsEssentialProperty_EqualsTrue()
+                {
+                    var options = new IdentityOptions();
+
+                    Assert.True(options.Cookie.Cookie.IsEssential);
                 }
             }
 

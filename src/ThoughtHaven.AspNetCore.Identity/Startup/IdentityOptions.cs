@@ -41,7 +41,8 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 Name = ".identity",
                 HttpOnly = true,
-                SecurePolicy = CookieSecurePolicy.Always
+                SecurePolicy = CookieSecurePolicy.Always,
+                IsEssential = true,
             },
             ExpireTimeSpan = TimeSpan.FromDays(7),
             SlidingExpiration = true,

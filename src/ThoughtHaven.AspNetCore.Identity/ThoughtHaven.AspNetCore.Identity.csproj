@@ -8,7 +8,7 @@
     <Product>Thought Haven AspNetCore Identity</Product>
     <Description>An alternative identity framework for AspNetCore apps.</Description>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
-    <Version>0.103.0</Version>
+    <Version>0.104.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
