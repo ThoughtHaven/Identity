@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using PwnedPasswords.Client;
 using ThoughtHaven.AspNetCore.Identity.Claims;
 using ThoughtHaven.AspNetCore.Identity.Created;
 using ThoughtHaven.AspNetCore.Identity.Emails;
@@ -143,6 +144,21 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 }
 
                 [Fact]
+                public void WhenCalled_AddsPwnedPasswordHttpClient()
+                {
+                    var services = new ServiceCollection();
+
+                    IdentityServices.AddPasswords(services);
+
+                    var provider = services.BuildServiceProvider();
+
+                    var service = provider.GetRequiredService<IPwnedPasswordsClient>();
+
+                    Assert.NotNull(service);
+                    Assert.IsType<PwnedPasswordsClient>(service);
+                }
+
+                [Fact]
                 public void WhenCalled_AddsMinimumLengthPasswordStrengthValidator()
                 {
                     var services = new ServiceCollection();
@@ -154,8 +170,26 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     var validators = provider.GetRequiredService<IEnumerable<IPasswordStrengthValidator>>();
 
                     Assert.NotNull(validators);
-                    Assert.Single(validators);
-                    Assert.True(validators.First() is MinimumLengthPasswordStrengthValidator);
+                    Assert.Equal(2, validators.Count());
+                    Assert.IsType<MinimumLengthPasswordStrengthValidator>(
+                        validators.ElementAt(index: 0));
+                }
+
+                [Fact]
+                public void WhenCalled_AddsPwnedPasswordStrengthValidator()
+                {
+                    var services = new ServiceCollection();
+
+                    IdentityServices.AddPasswords(services);
+
+                    var provider = services.BuildServiceProvider();
+
+                    var validators = provider.GetRequiredService<IEnumerable<IPasswordStrengthValidator>>();
+
+                    Assert.NotNull(validators);
+                    Assert.Equal(2, validators.Count());
+                    Assert.IsType<PwnedPasswordStrengthValidator>(
+                        validators.ElementAt(index: 1));
                 }
 
                 [Fact]

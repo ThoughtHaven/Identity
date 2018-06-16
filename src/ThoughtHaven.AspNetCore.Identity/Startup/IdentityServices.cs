@@ -41,9 +41,13 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
         public static void AddPasswords(IServiceCollection services)
         {
             Guard.Null(nameof(services), services);
-            
-            services.TryAddTransient<IPasswordStrengthValidator,
+
+            services.AddPwnedPasswordHttpClient();
+
+            services.AddTransient<IPasswordStrengthValidator,
                 MinimumLengthPasswordStrengthValidator>();
+            services.AddTransient<IPasswordStrengthValidator,
+                PwnedPasswordStrengthValidator>();
             services.TryAddTransient<IPasswordHasher, Pbkdf2PasswordHasher>();
         }
 

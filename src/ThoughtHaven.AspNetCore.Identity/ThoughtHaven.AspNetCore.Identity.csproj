@@ -8,11 +8,12 @@
     <Product>Thought Haven AspNetCore Identity</Product>
     <Description>An alternative identity framework for AspNetCore apps.</Description>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
-    <Version>0.104.0</Version>
+    <Version>0.105.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.0" />
+    <PackageReference Include="PwnedPasswords.Client" Version="1.0.0" />
     <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.101.0" />
     <PackageReference Include="ThoughtHaven.Reflection" Version="0.101.0" />
     <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.101.0" />
