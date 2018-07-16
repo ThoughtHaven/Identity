@@ -2,7 +2,7 @@
 using ThoughtHaven.AspNetCore.Identity.Emails;
 using ThoughtHaven.AspNetCore.Identity.Keys;
 using ThoughtHaven.AspNetCore.Identity.Internal;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 
 namespace ThoughtHaven.AspNetCore.Identity
 {

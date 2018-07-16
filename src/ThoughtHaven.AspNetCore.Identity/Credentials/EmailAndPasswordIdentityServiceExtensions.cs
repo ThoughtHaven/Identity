@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using ThoughtHaven.AspNetCore.Identity.Emails;
 using ThoughtHaven.AspNetCore.Identity.Passwords;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 
 namespace ThoughtHaven.AspNetCore.Identity
 {

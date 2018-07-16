@@ -12,7 +12,7 @@ using ThoughtHaven.AspNetCore.Identity.Lockouts;
 using ThoughtHaven.AspNetCore.Identity.Passwords;
 using ThoughtHaven.AspNetCore.Identity.SecurityStamps;
 using ThoughtHaven.Data;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 using ThoughtHaven.Reflection;
 using ThoughtHaven.Security.SingleUseTokens;
 

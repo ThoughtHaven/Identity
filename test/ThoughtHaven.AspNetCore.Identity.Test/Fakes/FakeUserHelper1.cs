@@ -6,7 +6,7 @@ using ThoughtHaven.AspNetCore.Identity.Keys;
 using ThoughtHaven.AspNetCore.Identity.Lockouts;
 using ThoughtHaven.AspNetCore.Identity.Passwords;
 using ThoughtHaven.Data;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 using ThoughtHaven.Security.SingleUseTokens;
 
 namespace ThoughtHaven.AspNetCore.Identity.Fakes

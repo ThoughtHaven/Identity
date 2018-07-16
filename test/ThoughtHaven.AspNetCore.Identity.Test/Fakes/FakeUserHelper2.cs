@@ -1,6 +1,6 @@
 ﻿using ThoughtHaven.AspNetCore.Identity.Passwords;
 using ThoughtHaven.Data;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 
 namespace ThoughtHaven.AspNetCore.Identity.Fakes
 {

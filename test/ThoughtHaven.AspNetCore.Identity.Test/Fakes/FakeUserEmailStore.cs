@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ThoughtHaven.Data;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 
 namespace ThoughtHaven.AspNetCore.Identity.Fakes
 {

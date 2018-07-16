@@ -7,7 +7,7 @@ using ThoughtHaven.AspNetCore.Identity.LastLogins;
 using ThoughtHaven.AspNetCore.Identity.Lockouts;
 using ThoughtHaven.AspNetCore.Identity.SecurityStamps;
 using ThoughtHaven.Data;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 using ThoughtHaven.Security.SingleUseTokens;
 using static ThoughtHaven.AspNetCore.Identity.Startup.IdentityServices;
 

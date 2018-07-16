@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using ThoughtHaven.AspNetCore.Identity.Claims;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 using ThoughtHaven.AspNetCore.Identity.Fakes;
 using ThoughtHaven.AspNetCore.Identity.Keys;
 using ThoughtHaven.AspNetCore.Identity.Lockouts;

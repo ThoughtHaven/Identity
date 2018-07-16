@@ -5,7 +5,7 @@ using ThoughtHaven.AspNetCore.Identity.Keys;
 using ThoughtHaven.Azure.Storage.Table;
 using ThoughtHaven.Data;
 using System.Linq;
-using ThoughtHaven.Messages.Emails;
+using ThoughtHaven.Contacts;
 using System;
 
 namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
