@@ -246,8 +246,8 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             }
         }
         
-        private static TableStoreConfiguration Options() =>
-            new TableStoreConfiguration("UseDevelopmentStorage=true;");
+        private static TableStoreOptions Options() =>
+            new TableStoreOptions("UseDevelopmentStorage=true;");
         private static FakeTableTimedLockoutStore Store() =>
             new FakeTableTimedLockoutStore(new FakeTimedLockoutCrudStore());
         private static TimedLockout Lockout() =>

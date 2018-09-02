@@ -9,7 +9,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
     public class TableUserStore<TUser> : TableCrudStore<UserKey, TUser>
         where TUser : class, IUserKey, new()
     {
-        public TableUserStore(TableStoreConfiguration options)
+        public TableUserStore(TableStoreOptions options)
             : this(BuildEntityStore(options)) { }
 
         protected TableUserStore(TableEntityStore entityStore)
@@ -31,7 +31,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             return new TableEntityKeys(key.Value, "User");
         }
 
-        protected static TableEntityStore BuildEntityStore(TableStoreConfiguration options)
+        protected static TableEntityStore BuildEntityStore(TableStoreOptions options)
         {
             Guard.Null(nameof(options), options);
 

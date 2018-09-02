@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             public class TUserGeneric
             {
-                public class ServicesAndConfigurationOverload
+                public class ServicesAndOptionsOverload
                 {
                     [Fact]
                     public void NullServices_Throws()
@@ -22,16 +22,16 @@ namespace Microsoft.Extensions.DependencyInjection
                         Assert.Throws<ArgumentNullException>("services", () =>
                         {
                             services.AddThoughtHavenIdentity<User>(
-                                configuration: Configuration());
+                                options: Options());
                         });
                     }
 
                     [Fact]
-                    public void NullConfiguration_Throws()
+                    public void NullOptions_Throws()
                     {
-                        Assert.Throws<ArgumentNullException>("configuration", () =>
+                        Assert.Throws<ArgumentNullException>("options", () =>
                         {
-                            Services().AddThoughtHavenIdentity<User>(configuration: null);
+                            Services().AddThoughtHavenIdentity<User>(options: null);
                         });
                     }
 
@@ -39,12 +39,12 @@ namespace Microsoft.Extensions.DependencyInjection
                     public void WhenCalled_AddsOptions()
                     {
                         var services = Services();
-                        var options = Configuration();
+                        var options = Options();
 
                         services.AddThoughtHavenIdentity<User>(options);
 
                         var service = services.BuildServiceProvider()
-                            .GetRequiredService<TableIdentityConfiguration>();
+                            .GetRequiredService<TableIdentityOptions>();
 
                         Assert.Equal(options, service);
                     }
@@ -53,12 +53,12 @@ namespace Microsoft.Extensions.DependencyInjection
                     public void WhenCalled_AddsTableStoreOptions()
                     {
                         var services = Services();
-                        var options = Configuration();
+                        var options = Options();
 
                         services.AddThoughtHavenIdentity<User>(options);
 
                         var service = services.BuildServiceProvider()
-                            .GetRequiredService<TableStoreConfiguration>();
+                            .GetRequiredService<TableStoreOptions>();
 
                         Assert.Equal(options.TableStore, service);
                     }
@@ -68,7 +68,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     {
                         var services = Services();
 
-                        services.AddThoughtHavenIdentity<User>(Configuration());
+                        services.AddThoughtHavenIdentity<User>(Options());
 
                         var service = services.BuildServiceProvider()
                             .GetRequiredService<ISingleUseTokenService>();
@@ -81,7 +81,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     {
                         var services = Services();
 
-                        services.AddThoughtHavenIdentity<User>(Configuration());
+                        services.AddThoughtHavenIdentity<User>(Options());
 
                         var service = services.BuildServiceProvider()
                             .GetRequiredService<IIdentityService<User>>();
@@ -93,7 +93,7 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         private static IServiceCollection Services() => new ServiceCollection();
-        private static TableIdentityConfiguration Configuration() =>
-            new TableIdentityConfiguration("UseDevelopmentStorage=true;");
+        private static TableIdentityOptions Options() =>
+            new TableIdentityOptions("UseDevelopmentStorage=true;");
     }
 }

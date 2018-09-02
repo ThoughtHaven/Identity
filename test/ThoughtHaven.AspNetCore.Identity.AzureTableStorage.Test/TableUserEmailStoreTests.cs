@@ -112,8 +112,8 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             }
         }
         
-        private static TableStoreConfiguration Options() =>
-            new TableStoreConfiguration("UseDevelopmentStorage=true;");
+        private static TableStoreOptions Options() =>
+            new TableStoreOptions("UseDevelopmentStorage=true;");
         private static FakeTableUserEmailStore Store() =>
             new FakeTableUserEmailStore(new FakeTableEntityStore());
     }

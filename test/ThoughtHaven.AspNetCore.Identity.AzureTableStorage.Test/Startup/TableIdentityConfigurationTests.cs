@@ -163,7 +163,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     Assert.Throws<ArgumentNullException>("storageAccountConnectionString", () =>
                     {
-                        new TableIdentityConfiguration(
+                        new TableIdentityOptions(
                             storageAccountConnectionString: null);
                     });
                 }
@@ -173,7 +173,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     Assert.Throws<ArgumentException>("storageAccountConnectionString", () =>
                     {
-                        new TableIdentityConfiguration(storageAccountConnectionString: "");
+                        new TableIdentityOptions(storageAccountConnectionString: "");
                     });
                 }
 
@@ -182,14 +182,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     Assert.Throws<ArgumentException>("storageAccountConnectionString", () =>
                     {
-                        new TableIdentityConfiguration(storageAccountConnectionString: " ");
+                        new TableIdentityOptions(storageAccountConnectionString: " ");
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsTableStoreWithConnectionString()
                 {
-                    var options = new TableIdentityConfiguration("ConnectionString");
+                    var options = new TableIdentityOptions("ConnectionString");
 
                     Assert.NotNull(options.TableStore);
                     Assert.Equal("ConnectionString",
@@ -199,7 +199,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 [Fact]
                 public void WhenCalled_SetsSingleUseTokenWithConnectionString()
                 {
-                    var options = new TableIdentityConfiguration("ConnectionString");
+                    var options = new TableIdentityOptions("ConnectionString");
 
                     Assert.NotNull(options.SingleUseToken);
                     Assert.Equal("ConnectionString",
@@ -214,7 +214,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     Assert.Throws<ArgumentNullException>("tableStore", () =>
                     {
-                        new TableIdentityConfiguration(
+                        new TableIdentityOptions(
                             tableStore: null,
                             singleUseToken: SingleUseToken());
                     });
@@ -225,7 +225,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     Assert.Throws<ArgumentNullException>("singleUseToken", () =>
                     {
-                        new TableIdentityConfiguration(
+                        new TableIdentityOptions(
                             tableStore: TableStore(),
                             singleUseToken: null);
                     });
@@ -237,7 +237,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     var tableStore = TableStore();
                     var singleUseToken = SingleUseToken();
 
-                    var options = new TableIdentityConfiguration(tableStore,
+                    var options = new TableIdentityOptions(tableStore,
                         singleUseToken);
 
                     Assert.Equal(tableStore, options.TableStore);
@@ -249,7 +249,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     var tableStore = TableStore();
                     var singleUseToken = SingleUseToken();
 
-                    var options = new TableIdentityConfiguration(tableStore,
+                    var options = new TableIdentityOptions(tableStore,
                         singleUseToken);
 
                     Assert.Equal(singleUseToken, options.SingleUseToken);
@@ -257,11 +257,11 @@ namespace Microsoft.Extensions.DependencyInjection
             }
         }
 
-        private static TableSingleUseTokenConfiguration SingleUseToken() =>
-            new TableSingleUseTokenConfiguration("UseDevelopmentStorage=true;");
-        private static TableStoreConfiguration TableStore() =>
-            new TableStoreConfiguration("UseDevelopmentStorage=true;");
-        private static TableIdentityConfiguration TableStorageIdentity() =>
-            new TableIdentityConfiguration("UseDevelopmentStorage=true;");
+        private static TableSingleUseTokenOptions SingleUseToken() =>
+            new TableSingleUseTokenOptions("UseDevelopmentStorage=true;");
+        private static TableStoreOptions TableStore() =>
+            new TableStoreOptions("UseDevelopmentStorage=true;");
+        private static TableIdentityOptions TableStorageIdentity() =>
+            new TableIdentityOptions("UseDevelopmentStorage=true;");
     }
 }

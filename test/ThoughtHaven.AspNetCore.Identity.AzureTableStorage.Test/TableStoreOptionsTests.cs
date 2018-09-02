@@ -4,7 +4,7 @@ using Xunit;
 
 namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 {
-    public class TableStoreConfigurationTests
+    public class TableStoreOptionsTests
     {
         public class TableRequestProperty
         {
@@ -173,7 +173,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("storageAccountConnectionString", () =>
                     {
-                        new TableStoreConfiguration(storageAccountConnectionString: null);
+                        new TableStoreOptions(storageAccountConnectionString: null);
                     });
                 }
 
@@ -182,7 +182,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentException>("storageAccountConnectionString", () =>
                     {
-                        new TableStoreConfiguration(storageAccountConnectionString: "");
+                        new TableStoreOptions(storageAccountConnectionString: "");
                     });
                 }
 
@@ -191,21 +191,21 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentException>("storageAccountConnectionString", () =>
                     {
-                        new TableStoreConfiguration(storageAccountConnectionString: " ");
+                        new TableStoreOptions(storageAccountConnectionString: " ");
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsStorageAccountConnectionString()
                 {
-                    var options = new TableStoreConfiguration("ConnectionString");
+                    var options = new TableStoreOptions("ConnectionString");
 
                     Assert.Equal("ConnectionString", options.StorageAccountConnectionString);
                 }
             }
         }
 
-        private static TableStoreConfiguration Options() =>
-            new TableStoreConfiguration("UseDevelopmentStorage=true;");
+        private static TableStoreOptions Options() =>
+            new TableStoreOptions("UseDevelopmentStorage=true;");
     }
 }

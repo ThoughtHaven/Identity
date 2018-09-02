@@ -14,7 +14,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
         : TableUserStore<TUser>, IRetrieveOperation<EmailAddress, TUser>
         where TUser : class, IUserKey, IUserEmail, new()
     {
-        public TableUserEmailStore(TableStoreConfiguration options) : base(options) { }
+        public TableUserEmailStore(TableStoreOptions options) : base(options) { }
 
         protected TableUserEmailStore(TableEntityStore entityStore) : base(entityStore) { }
 

@@ -2,7 +2,7 @@
 
 namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 {
-    public class TableStoreConfiguration
+    public class TableStoreOptions
     {
         public string StorageAccountConnectionString { get; }
 
@@ -34,7 +34,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             }
         }
 
-        public TableStoreConfiguration(string storageAccountConnectionString)
+        public TableStoreOptions(string storageAccountConnectionString)
         {
             this.StorageAccountConnectionString = Guard.NullOrWhiteSpace(
                 nameof(storageAccountConnectionString), storageAccountConnectionString);

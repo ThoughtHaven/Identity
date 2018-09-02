@@ -5,7 +5,7 @@ using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public class TableIdentityConfiguration : IdentityOptions
+    public class TableIdentityOptions : IdentityOptions
     {
         public TableRequestOptions TableRequest
         {
@@ -19,29 +19,29 @@ namespace Microsoft.Extensions.DependencyInjection
             }
         }
 
-        private TableStoreConfiguration _tableStore;
-        public TableStoreConfiguration TableStore
+        private TableStoreOptions _tableStore;
+        public TableStoreOptions TableStore
         {
             get { return this._tableStore; }
             set { this._tableStore = Guard.Null(nameof(value), value); }
         }
 
-        private TableSingleUseTokenConfiguration _singleUseToken;
-        public virtual TableSingleUseTokenConfiguration SingleUseToken
+        private TableSingleUseTokenOptions _singleUseToken;
+        public virtual TableSingleUseTokenOptions SingleUseToken
         {
             get { return this._singleUseToken; }
             set { this._singleUseToken = Guard.Null(nameof(value), value); }
         }
 
-        public TableIdentityConfiguration(string storageAccountConnectionString)
-            : this(tableStore: new TableStoreConfiguration(Guard.NullOrWhiteSpace(
+        public TableIdentityOptions(string storageAccountConnectionString)
+            : this(tableStore: new TableStoreOptions(Guard.NullOrWhiteSpace(
                 nameof(storageAccountConnectionString), storageAccountConnectionString)),
-                  singleUseToken: new TableSingleUseTokenConfiguration(
+                  singleUseToken: new TableSingleUseTokenOptions(
                       storageAccountConnectionString))
         { }
 
-        public TableIdentityConfiguration(TableStoreConfiguration tableStore,
-            TableSingleUseTokenConfiguration singleUseToken)
+        public TableIdentityOptions(TableStoreOptions tableStore,
+            TableSingleUseTokenOptions singleUseToken)
         {
             this._tableStore = Guard.Null(nameof(tableStore), tableStore);
             this._singleUseToken = Guard.Null(nameof(singleUseToken), singleUseToken);
