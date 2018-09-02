@@ -45,7 +45,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             }
         }
         
-        private static TableStoreOptions StoreOptions() =>
-            new TableStoreOptions("UseDevelopmentStorage=true;");
+        private static TableStoreConfiguration StoreOptions() =>
+            new TableStoreConfiguration("UseDevelopmentStorage=true;");
     }
 }

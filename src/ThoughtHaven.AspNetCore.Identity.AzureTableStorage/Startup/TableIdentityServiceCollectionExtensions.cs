@@ -13,20 +13,20 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class TableIdentityServiceCollectionExtensions
     {
         public static IServiceCollection AddThoughtHavenIdentity<TUser>(
-            this IServiceCollection services, TableIdentityOptions options)
+            this IServiceCollection services, TableIdentityConfiguration configuration)
             where TUser : class, IUserKey, IUserId, IUserEmail, IUserCreated,
             IUserSecurityStamp, IUserLastLogin, new()
         {
             Guard.Null(nameof(services), services);
-            Guard.Null(nameof(options), options);
+            Guard.Null(nameof(configuration), configuration);
 
-            services.TryAddSingleton(options);
-            services.TryAddSingleton(options.TableStore);
+            services.TryAddSingleton(configuration);
+            services.TryAddSingleton(configuration.TableStore);
 
-            services.AddSingleUseTokens(options.SingleUseToken);
+            services.AddSingleUseTokens(configuration.SingleUseToken);
 
             return services.AddThoughtHavenIdentity<TUser, TableUserEmailStore<TUser>,
-                TableSingleUseTokenService, TableTimedLockoutStore>(options);
+                TableSingleUseTokenService, TableTimedLockoutStore>(configuration);
         }
     }
 }

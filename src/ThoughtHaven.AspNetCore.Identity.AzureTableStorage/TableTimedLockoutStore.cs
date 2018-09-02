@@ -10,7 +10,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
     {
         protected readonly TableCrudStore<string, TimedLockoutModel> ModelStore;
 
-        public TableTimedLockoutStore(TableStoreOptions options)
+        public TableTimedLockoutStore(TableStoreConfiguration options)
             : this(new TableCrudStore<string, TimedLockoutModel>(
                 entityStore: BuildEntityStore(options),
                 dataKeyToEntityKeys: key => CreateEntityKeys(key),
@@ -74,7 +74,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             return new TableEntityKeys(key, "Lockout");
         }
 
-        protected static TableEntityStore BuildEntityStore(TableStoreOptions options)
+        protected static TableEntityStore BuildEntityStore(TableStoreConfiguration options)
         {
             Guard.Null(nameof(options), options);
 

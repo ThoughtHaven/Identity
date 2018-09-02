@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             public class TUserGeneric
             {
-                public class ServicesAndOptionsOverload
+                public class ServicesAndConfigurationOverload
                 {
                     [Fact]
                     public void NullServices_Throws()
@@ -21,16 +21,17 @@ namespace Microsoft.Extensions.DependencyInjection
 
                         Assert.Throws<ArgumentNullException>("services", () =>
                         {
-                            services.AddThoughtHavenIdentity<User>(options: Options());
+                            services.AddThoughtHavenIdentity<User>(
+                                configuration: Configuration());
                         });
                     }
 
                     [Fact]
-                    public void NullOptions_Throws()
+                    public void NullConfiguration_Throws()
                     {
-                        Assert.Throws<ArgumentNullException>("options", () =>
+                        Assert.Throws<ArgumentNullException>("configuration", () =>
                         {
-                            Services().AddThoughtHavenIdentity<User>(options: null);
+                            Services().AddThoughtHavenIdentity<User>(configuration: null);
                         });
                     }
 
@@ -38,12 +39,12 @@ namespace Microsoft.Extensions.DependencyInjection
                     public void WhenCalled_AddsOptions()
                     {
                         var services = Services();
-                        var options = Options();
+                        var options = Configuration();
 
                         services.AddThoughtHavenIdentity<User>(options);
 
                         var service = services.BuildServiceProvider()
-                            .GetRequiredService<TableIdentityOptions>();
+                            .GetRequiredService<TableIdentityConfiguration>();
 
                         Assert.Equal(options, service);
                     }
@@ -52,12 +53,12 @@ namespace Microsoft.Extensions.DependencyInjection
                     public void WhenCalled_AddsTableStoreOptions()
                     {
                         var services = Services();
-                        var options = Options();
+                        var options = Configuration();
 
                         services.AddThoughtHavenIdentity<User>(options);
 
                         var service = services.BuildServiceProvider()
-                            .GetRequiredService<TableStoreOptions>();
+                            .GetRequiredService<TableStoreConfiguration>();
 
                         Assert.Equal(options.TableStore, service);
                     }
@@ -67,7 +68,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     {
                         var services = Services();
 
-                        services.AddThoughtHavenIdentity<User>(Options());
+                        services.AddThoughtHavenIdentity<User>(Configuration());
 
                         var service = services.BuildServiceProvider()
                             .GetRequiredService<ISingleUseTokenService>();
@@ -76,11 +77,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     }
 
                     [Fact]
-                    public void WhenCalled_AddsThoughtHavenIdentityBase()
+                    public void WhenCalled_AddsThoughtHavenIdentity()
                     {
                         var services = Services();
 
-                        services.AddThoughtHavenIdentity<User>(Options());
+                        services.AddThoughtHavenIdentity<User>(Configuration());
 
                         var service = services.BuildServiceProvider()
                             .GetRequiredService<IIdentityService<User>>();
@@ -92,7 +93,7 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         private static IServiceCollection Services() => new ServiceCollection();
-        private static TableIdentityOptions Options() =>
-            new TableIdentityOptions("UseDevelopmentStorage=true;");
+        private static TableIdentityConfiguration Configuration() =>
+            new TableIdentityConfiguration("UseDevelopmentStorage=true;");
     }
 }

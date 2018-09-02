@@ -2,18 +2,9 @@
 
 namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 {
-    public class TableStoreOptions
+    public class TableStoreConfiguration
     {
-        private string _storageAccountConnectionString;
-        public virtual string StorageAccountConnectionString
-        {
-            get { return this._storageAccountConnectionString; }
-            set
-            {
-                this._storageAccountConnectionString = Guard.NullOrWhiteSpace(nameof(value),
-                    value);
-            }
-        }
+        public string StorageAccountConnectionString { get; }
 
         private TableRequestOptions _tableRequest = new TableRequestOptions();
         public TableRequestOptions TableRequest
@@ -43,9 +34,9 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             }
         }
 
-        public TableStoreOptions(string storageAccountConnectionString)
+        public TableStoreConfiguration(string storageAccountConnectionString)
         {
-            this._storageAccountConnectionString = Guard.NullOrWhiteSpace(
+            this.StorageAccountConnectionString = Guard.NullOrWhiteSpace(
                 nameof(storageAccountConnectionString), storageAccountConnectionString);
         }
     }

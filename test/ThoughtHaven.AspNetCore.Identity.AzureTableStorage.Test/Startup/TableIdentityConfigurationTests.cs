@@ -1,13 +1,12 @@
 ﻿using System;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.WindowsAzure.Storage.Table;
 using ThoughtHaven.AspNetCore.Identity.AzureTableStorage;
 using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
 using Xunit;
 
-namespace ThoughtHaven.AspNetCore.Identity.Startup
+namespace Microsoft.Extensions.DependencyInjection
 {
-    public class TableIdentityOptionsTests
+    public class TableIdentityConfigurationTests
     {
         public class TableRequestProperty
         {
@@ -164,7 +163,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("storageAccountConnectionString", () =>
                     {
-                        new TableIdentityOptions(
+                        new TableIdentityConfiguration(
                             storageAccountConnectionString: null);
                     });
                 }
@@ -174,7 +173,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentException>("storageAccountConnectionString", () =>
                     {
-                        new TableIdentityOptions(storageAccountConnectionString: "");
+                        new TableIdentityConfiguration(storageAccountConnectionString: "");
                     });
                 }
 
@@ -183,14 +182,14 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentException>("storageAccountConnectionString", () =>
                     {
-                        new TableIdentityOptions(storageAccountConnectionString: " ");
+                        new TableIdentityConfiguration(storageAccountConnectionString: " ");
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsTableStoreWithConnectionString()
                 {
-                    var options = new TableIdentityOptions("ConnectionString");
+                    var options = new TableIdentityConfiguration("ConnectionString");
 
                     Assert.NotNull(options.TableStore);
                     Assert.Equal("ConnectionString",
@@ -200,7 +199,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 [Fact]
                 public void WhenCalled_SetsSingleUseTokenWithConnectionString()
                 {
-                    var options = new TableIdentityOptions("ConnectionString");
+                    var options = new TableIdentityConfiguration("ConnectionString");
 
                     Assert.NotNull(options.SingleUseToken);
                     Assert.Equal("ConnectionString",
@@ -215,7 +214,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("tableStore", () =>
                     {
-                        new TableIdentityOptions(
+                        new TableIdentityConfiguration(
                             tableStore: null,
                             singleUseToken: SingleUseToken());
                     });
@@ -226,7 +225,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("singleUseToken", () =>
                     {
-                        new TableIdentityOptions(
+                        new TableIdentityConfiguration(
                             tableStore: TableStore(),
                             singleUseToken: null);
                     });
@@ -238,7 +237,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     var tableStore = TableStore();
                     var singleUseToken = SingleUseToken();
 
-                    var options = new TableIdentityOptions(tableStore,
+                    var options = new TableIdentityConfiguration(tableStore,
                         singleUseToken);
 
                     Assert.Equal(tableStore, options.TableStore);
@@ -250,7 +249,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     var tableStore = TableStore();
                     var singleUseToken = SingleUseToken();
 
-                    var options = new TableIdentityOptions(tableStore,
+                    var options = new TableIdentityConfiguration(tableStore,
                         singleUseToken);
 
                     Assert.Equal(singleUseToken, options.SingleUseToken);
@@ -258,11 +257,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
             }
         }
 
-        private static TableSingleUseTokenOptions SingleUseToken() =>
-            new TableSingleUseTokenOptions("UseDevelopmentStorage=true;");
-        private static TableStoreOptions TableStore() =>
-            new TableStoreOptions("UseDevelopmentStorage=true;");
-        private static TableIdentityOptions TableStorageIdentity() =>
-            new TableIdentityOptions("UseDevelopmentStorage=true;");
+        private static TableSingleUseTokenConfiguration SingleUseToken() =>
+            new TableSingleUseTokenConfiguration("UseDevelopmentStorage=true;");
+        private static TableStoreConfiguration TableStore() =>
+            new TableStoreConfiguration("UseDevelopmentStorage=true;");
+        private static TableIdentityConfiguration TableStorageIdentity() =>
+            new TableIdentityConfiguration("UseDevelopmentStorage=true;");
     }
 }
