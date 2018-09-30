@@ -43,6 +43,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 HttpOnly = true,
                 SecurePolicy = CookieSecurePolicy.Always,
                 IsEssential = true,
+                SameSite = SameSiteMode.None,
             },
             ExpireTimeSpan = TimeSpan.FromDays(7),
             SlidingExpiration = true,

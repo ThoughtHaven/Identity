@@ -219,6 +219,14 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
 
                     Assert.True(options.Cookie.Cookie.IsEssential);
                 }
+
+                [Fact]
+                public void DefaultValueSameSiteProperty_EqualsNone()
+                {
+                    var options = new IdentityOptions();
+
+                    Assert.Equal(SameSiteMode.None, options.Cookie.Cookie.SameSite);
+                }
             }
 
             public class SetOperator
