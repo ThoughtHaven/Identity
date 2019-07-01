@@ -15,7 +15,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     Assert.Throws<ArgumentNullException>("key", () =>
                     {
                         new TimedLockout(
-                            key: null,
+                            key: null!,
                             lastModified: DateTimeOffset.UtcNow);
                     });
                 }

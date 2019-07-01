@@ -15,8 +15,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             : base(userStore, options, clock)
         { }
 
-        public ClaimsPrincipal Login_InputPrincipal;
-        public AuthenticationProperties Login_InputProperties;
+        public ClaimsPrincipal? Login_InputPrincipal;
+        public AuthenticationProperties? Login_InputProperties;
         public override Task Login(ClaimsPrincipal principal,
             AuthenticationProperties properties)
         {
@@ -36,9 +36,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 
         public static ClaimsPrincipal Principal(bool hasUserKey = true,
             bool hasSecurityStamp = true, bool hasSecurityStampValidated = true,
-            FakeSystemClock clock = null)
+            FakeSystemClock? clock = null)
         {
-            clock = clock ?? new FakeSystemClock(DateTimeOffset.UtcNow);
+            clock ??= new FakeSystemClock(DateTimeOffset.UtcNow);
             var options = new ClaimOptions();
             var claims = new List<Claim>();
 
@@ -56,20 +56,20 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return new ClaimsPrincipal(
                 new ClaimsIdentity(claims, options.AuthenticationScheme));
         }
-        public string Authenticate_InputAuthenticationScheme;
-        public UserKey Authenticate_OutputUserKey =>
-            this.Authenticate_Output?.FindFirst(new ClaimOptions().ClaimTypes.UserKey).Value;
-        public UserKey Authenticate_OutputSecurityStamp =>
-            this.Authenticate_Output?.FindFirst(new ClaimOptions().ClaimTypes.SecurityStamp).Value;
-        public ClaimsPrincipal Authenticate_Output = Principal();
-        protected override Task<ClaimsPrincipal> Authenticate(string authenticationScheme)
+        public string? Authenticate_InputAuthenticationScheme;
+        public UserKey? Authenticate_OutputUserKey =>
+            this.Authenticate_Output?.FindFirst(new ClaimOptions().ClaimTypes.UserKey).Value!;
+        public UserKey? Authenticate_OutputSecurityStamp =>
+            this.Authenticate_Output?.FindFirst(new ClaimOptions().ClaimTypes.SecurityStamp).Value!;
+        public ClaimsPrincipal? Authenticate_Output = Principal();
+        protected override Task<ClaimsPrincipal?> Authenticate(string authenticationScheme)
         {
             this.Authenticate_InputAuthenticationScheme = authenticationScheme;
 
             return Task.FromResult(this.Authenticate_Output);
         }
 
-        public ClaimsPrincipal RefreshLogin_InputPrincipal;
+        public ClaimsPrincipal? RefreshLogin_InputPrincipal;
         protected override Task RefreshLogin(ClaimsPrincipal principal)
         {
             this.RefreshLogin_InputPrincipal = principal;

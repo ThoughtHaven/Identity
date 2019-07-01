@@ -28,7 +28,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.TableRequest = null;
+                        options.TableRequest = null!;
                     });
                 }
 
@@ -67,7 +67,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.UserStoreTableName = null;
+                        options.UserStoreTableName = null!;
                     });
                 }
 
@@ -126,7 +126,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.TimedLockoutStoreTableName = null;
+                        options.TimedLockoutStoreTableName = null!;
                     });
                 }
 
@@ -173,7 +173,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("storageAccountConnectionString", () =>
                     {
-                        new TableStoreOptions(storageAccountConnectionString: null);
+                        new TableStoreOptions(storageAccountConnectionString: null!);
                     });
                 }
 

@@ -7,7 +7,7 @@ namespace ThoughtHaven.AspNetCore.Identity
     {
         public static async Task Logout<TUser>(this IIdentityService<TUser> identity,
             bool logoutEverywhere)
-            where TUser : IUserSecurityStamp
+            where TUser : class, IUserSecurityStamp
         {
             Guard.Null(nameof(identity), identity);
 

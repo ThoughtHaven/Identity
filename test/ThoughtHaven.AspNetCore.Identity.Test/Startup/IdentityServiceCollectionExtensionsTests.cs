@@ -31,11 +31,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 [Fact]
                 public void NullServices_Throws()
                 {
-                    ServiceCollection services = null;
+                    ServiceCollection? services = null;
 
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        services.AddThoughtHavenIdentity<User, FakeUserStore, FakeSingleUseTokenService, FakeTimedLockoutStore>(
+                        services!.AddThoughtHavenIdentity<User, FakeUserStore, FakeSingleUseTokenService, FakeTimedLockoutStore>(
                             options: new IdentityOptions());
                     });
                 }
@@ -48,7 +48,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     Assert.Throws<ArgumentNullException>("options", () =>
                     {
                         services.AddThoughtHavenIdentity<User, FakeUserStore, FakeSingleUseTokenService, FakeTimedLockoutStore>(
-                            options: null);
+                            options: null!);
                     });
                 }
 
@@ -255,7 +255,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                         },
                         options.AuthenticationScheme) as CookieAuthenticationHandler;
 
-                    foreach (var property in handler.Options.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+                    foreach (var property in handler!.Options.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
                     {
                         if (!property.CanRead || !property.CanWrite) continue;
 
@@ -267,13 +267,13 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                         if (expected is string)
                         {
                             if (string.IsNullOrEmpty((string)expected) &&
-                                !string.IsNullOrEmpty((string)actual)) continue;
+                                !string.IsNullOrEmpty((string)actual!)) continue;
                         }
 
                         if (expected is PathString)
                         {
                             if (string.IsNullOrEmpty((PathString)expected) &&
-                                !string.IsNullOrEmpty((PathString)actual)) continue;
+                                !string.IsNullOrEmpty((PathString)actual!)) continue;
                         }
 
                         Assert.Equal(expected, actual);

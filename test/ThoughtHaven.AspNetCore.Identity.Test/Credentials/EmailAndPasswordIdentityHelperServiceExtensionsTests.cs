@@ -19,7 +19,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                     await Assert.ThrowsAsync<ArgumentNullException>("email", async () =>
                     {
                         await Identity().Create(
-                            email: null,
+                            email: null!,
                             password: "password");
                     });
                 }
@@ -31,7 +31,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                     {
                         await Identity().Create(
                             email: "some@email.com",
-                            password: null);
+                            password: null!);
                     });
                 }
 
@@ -52,7 +52,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                     var identity = Identity();
                     identity.Helper.FakeUserEmailStore.Retrieve_Output = null;
 
-                    var result = await identity.Create("some@email.com", "password");
+                    _ = await identity.Create("some@email.com", "password");
 
                     Assert.Equal("some@email.com", identity.Helper.SetEmail_InputEmail);
                 }
@@ -63,7 +63,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                     var identity = Identity();
                     identity.Helper.FakeUserEmailStore.Retrieve_Output = null;
 
-                    var result = await identity.Create("some@email.com", "password");
+                    _ = await identity.Create("some@email.com", "password");
 
                     Assert.Equal("password", identity.Helper.SetPasswordHash_InputPassword);
                 }
@@ -103,7 +103,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await ((IIdentityService<User>)null).Login(
+                        await ((IIdentityService<User>)null!).Login(
                             email: "some@email.com",
                             password: "password",
                             properties: Properties());
@@ -116,7 +116,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                     await Assert.ThrowsAsync<ArgumentNullException>("email", async () =>
                     {
                         await Identity().Login(
-                            email: null,
+                            email: null!,
                             password: "password",
                             properties: Properties());
                     });
@@ -129,7 +129,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                     {
                         await Identity().Login(
                             email: "some@email.com",
-                            password: null,
+                            password: null!,
                             properties: Properties());
                     });
                 }
@@ -142,7 +142,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                         await Identity().Login(
                             email: "some@email.com",
                             password: "password",
-                            properties: null);
+                            properties: null!);
                     });
                 }
 
@@ -289,7 +289,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await ((IIdentityService<User>)null).Login(
+                        await ((IIdentityService<User>)null!).Login(
                             email: "some@email.com",
                             password: "password");
                     });
@@ -301,7 +301,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                     await Assert.ThrowsAsync<ArgumentNullException>("email", async () =>
                     {
                         await Identity().Login(
-                            email: null,
+                            email: null!,
                             password: "password");
                     });
                 }
@@ -313,7 +313,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
                     {
                         await Identity().Login(
                             email: "some@email.com",
-                            password: null);
+                            password: null!);
                     });
                 }
 
@@ -394,7 +394,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
 
                     Assert.Equal(identity.Helper.FakeUserEmailStore.Retrieve_Output,
                         identity.Login_InputUser);
-                    Assert.False(identity.Login_InputProperties.IsPersistent);
+                    Assert.False(identity.Login_InputProperties!.IsPersistent);
                 }
 
                 [Fact]
@@ -406,7 +406,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
 
                     Assert.Equal(identity.Helper.FakeUserEmailStore.Retrieve_Output,
                         identity.Login_InputUser);
-                    Assert.False(identity.Login_InputProperties.IsPersistent);
+                    Assert.False(identity.Login_InputProperties!.IsPersistent);
                 }
 
                 [Fact]
@@ -418,7 +418,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Credentials
 
                     Assert.Equal(identity.Helper.FakeUserEmailStore.Retrieve_Output,
                         identity.Login_InputUser);
-                    Assert.True(identity.Login_InputProperties.IsPersistent);
+                    Assert.True(identity.Login_InputProperties!.IsPersistent);
                 }
 
                 [Fact]

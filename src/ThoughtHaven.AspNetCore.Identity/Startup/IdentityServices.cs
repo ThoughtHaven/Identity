@@ -52,6 +52,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
         }
 
         public static void AddUserHelpers<TUser>(IServiceCollection services)
+            where TUser : class
         {
             Guard.Null(nameof(services), services);
 
@@ -99,6 +100,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
 
         public static void AddUserStore<TUser, TUserStore>(IServiceCollection services)
             where TUserStore : class, ICrudStore<UserKey, TUser>
+            where TUser : class
         {
             Guard.Null(nameof(services), services);
 
@@ -112,6 +114,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
         public static void AddUserEmailStore<TUser, TUserEmailStore>(
             IServiceCollection services)
             where TUserEmailStore : class, IRetrieveOperation<EmailAddress, TUser>
+            where TUser : class
         {
             Guard.Null(nameof(services), services);
 
@@ -138,7 +141,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
         }
 
         public static void AddUserClaims<TUser>(IServiceCollection services)
-            where TUser : IUserKey, IUserSecurityStamp
+            where TUser : class, IUserKey, IUserSecurityStamp
         {
             Guard.Null(nameof(services), services);
 

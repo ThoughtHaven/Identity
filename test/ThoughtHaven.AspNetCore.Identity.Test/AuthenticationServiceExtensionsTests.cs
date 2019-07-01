@@ -14,11 +14,11 @@ namespace ThoughtHaven.AspNetCore.Identity
                 [Fact]
                 public async Task NullAuthentication_Throws()
                 {
-                    IAuthenticationService<User> authentication = null;
+                    IAuthenticationService<User>? authentication = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("authentication", async () =>
                     {
-                        await authentication.Login(User());
+                        await authentication!.Login(User());
                     });
                 }
 
@@ -27,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("login", async () =>
                     {
-                        await Authentication().Login(login: null);
+                        await Authentication().Login(login: null!);
                     });
                 }
 
@@ -53,11 +53,11 @@ namespace ThoughtHaven.AspNetCore.Identity
                 [Fact]
                 public async Task NullAuthentication_Throws()
                 {
-                    IAuthenticationService<User> authentication = null;
+                    IAuthenticationService<User>? authentication = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("authentication", async () =>
                     {
-                        await authentication.Login(User(), persistent: false);
+                        await authentication!.Login(User(), persistent: false);
                     });
                 }
 
@@ -66,7 +66,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("login", async () =>
                     {
-                        await Authentication().Login(login: null, persistent: false);
+                        await Authentication().Login(login: null!, persistent: false);
                     });
                 }
 

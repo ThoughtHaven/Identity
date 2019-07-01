@@ -20,7 +20,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                         Assert.Throws<ArgumentNullException>("userEmailStore", () =>
                         {
                             new UserHelper<User>(
-                                userEmailStore: null,
+                                userEmailStore: null!,
                                 singleUseTokenService: new FakeSingleUseTokenService(),
                                 timedLockoutStore: new FakeTimedLockoutStore(),
                                 passwordHasher: new FakePasswordHasher(),
@@ -36,7 +36,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                         {
                             new UserHelper<User>(
                                 userEmailStore: new FakeUserEmailStore(),
-                                singleUseTokenService: null,
+                                singleUseTokenService: null!,
                                 timedLockoutStore: new FakeTimedLockoutStore(),
                                 passwordHasher: new FakePasswordHasher(),
                                 passwordStrengthValidators: PasswordStrengthValidators(),
@@ -52,7 +52,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                             new UserHelper<User>(
                                 userEmailStore: new FakeUserEmailStore(),
                                 singleUseTokenService: new FakeSingleUseTokenService(),
-                                timedLockoutStore: null,
+                                timedLockoutStore: null!,
                                 passwordHasher: new FakePasswordHasher(),
                                 passwordStrengthValidators: PasswordStrengthValidators(),
                                 clock: new FakeSystemClock());
@@ -68,7 +68,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                                 userEmailStore: new FakeUserEmailStore(),
                                 singleUseTokenService: new FakeSingleUseTokenService(),
                                 timedLockoutStore: new FakeTimedLockoutStore(),
-                                passwordHasher: null,
+                                passwordHasher: null!,
                                 passwordStrengthValidators: PasswordStrengthValidators(),
                                 clock: new FakeSystemClock());
                         });
@@ -84,7 +84,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                                 singleUseTokenService: new FakeSingleUseTokenService(),
                                 timedLockoutStore: new FakeTimedLockoutStore(),
                                 passwordHasher: new FakePasswordHasher(),
-                                passwordStrengthValidators: null,
+                                passwordStrengthValidators: null!,
                                 clock: new FakeSystemClock());
                         });
                     }
@@ -100,7 +100,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                                 timedLockoutStore: new FakeTimedLockoutStore(),
                                 passwordHasher: new FakePasswordHasher(),
                                 passwordStrengthValidators: PasswordStrengthValidators(),
-                                clock: null);
+                                clock: null!);
                         });
                     }
                 }

@@ -10,7 +10,7 @@ namespace ThoughtHaven.AspNetCore.Identity
     {
         public static async Task<Result<UserMessage>> ValidatePassword<TUser>(
             this IIdentityService<TUser> identity, TUser user, Password password)
-            where TUser : IUserPasswordHash
+            where TUser : class, IUserPasswordHash
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(user), user);
@@ -40,13 +40,13 @@ namespace ThoughtHaven.AspNetCore.Identity
 
         public static Task<PasswordResetCode> ForgotPassword<TUser>(
             this IIdentityService<TUser> identity, TUser user)
-            where TUser : IUserKey, IUserPasswordHash
+            where TUser : class, IUserKey, IUserPasswordHash
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(user), user);
 
             var key = user.Key();
-            if (key == null)
+            if (key is null)
             {
                 throw new ArgumentException(
                     paramName: nameof(user),
@@ -59,7 +59,7 @@ namespace ThoughtHaven.AspNetCore.Identity
         public static async Task<Result<UserMessage>> UpdatePassword<TUser>(
             this IIdentityService<TUser> identity, TUser user, Password current,
             Password updated)
-            where TUser : IUserPasswordHash, IUserSecurityStamp
+            where TUser : class, IUserPasswordHash, IUserSecurityStamp
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(user), user);
@@ -76,7 +76,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             var result = await identity.ValidatePassword(user, current)
                 .ConfigureAwait(false);
 
-            if (!result.Success) { return result.Failure; }
+            if (!result.Success) { return result.Failure!; }
 
             result = await identity.Helper.SetPasswordHash(user, updated)
                 .ConfigureAwait(false);
@@ -94,7 +94,7 @@ namespace ThoughtHaven.AspNetCore.Identity
         public static async Task<Result<UserMessage>> UpdatePassword<TUser>(
             this IIdentityService<TUser> identity, TUser user, PasswordResetCode code,
             Password password)
-            where TUser : IUserKey, IUserPasswordHash, IUserSecurityStamp
+            where TUser : class, IUserKey, IUserPasswordHash, IUserSecurityStamp
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(user), user);
@@ -102,7 +102,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             Guard.Null(nameof(password), password);
 
             var key = user.Key();
-            if (key == null)
+            if (key is null)
             {
                 throw new ArgumentException(
                     paramName: nameof(user),

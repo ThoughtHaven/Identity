@@ -12,14 +12,14 @@ namespace ThoughtHaven.AspNetCore.Identity
         : IUserKey, IUserId, IUserEmail, IUserPasswordHash, IUserSecurityStamp, IUserCreated,
         IUserLastLogin
     {
-        public virtual UserKey Key() =>
-            string.IsNullOrWhiteSpace(this.Id) ? default(UserKey) : new UserKey(this.Id);
+        public virtual UserKey? Key() =>
+            string.IsNullOrWhiteSpace(this.Id) ? default : new UserKey(this.Id);
 
-        public virtual string Id { get; set; }
-        public string Email { get; set; }
+        public virtual string? Id { get; set; }
+        public string? Email { get; set; }
         public bool EmailConfirmed { get; set; }
-        public string PasswordHash { get; set; }
-        public virtual string SecurityStamp { get; set; }
+        public string? PasswordHash { get; set; }
+        public virtual string? SecurityStamp { get; set; }
         public DateTimeOffset Created { get; set; } = DateTimeOffset.UtcNow;
         public DateTimeOffset? LastLogin { get; set; }
     }

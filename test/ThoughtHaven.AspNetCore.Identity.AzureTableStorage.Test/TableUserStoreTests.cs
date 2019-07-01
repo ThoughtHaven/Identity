@@ -15,7 +15,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("options", () =>
                     {
-                        new TableUserStore<User>(options: null);
+                        new TableUserStore<User>(options: null!);
                     });
                 }
             }
@@ -30,7 +30,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("key", () =>
                     {
-                        FakeTableUserStore.CreateEntityKeys(key: null);
+                        FakeTableUserStore.CreateEntityKeys(key: null!);
                     });
                 }
 

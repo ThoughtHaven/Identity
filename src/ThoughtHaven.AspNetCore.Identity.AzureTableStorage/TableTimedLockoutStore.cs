@@ -14,7 +14,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             : this(new TableCrudStore<string, TimedLockoutModel>(
                 entityStore: BuildEntityStore(options),
                 dataKeyToEntityKeys: key => CreateEntityKeys(key),
-                dataToEntityKeys: model => CreateEntityKeys(model.Key)))
+                dataToEntityKeys: model => CreateEntityKeys(model.Key!)))
         { }
 
         protected TableTimedLockoutStore(
@@ -23,7 +23,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             this.ModelStore = Guard.Null(nameof(modelStore), modelStore);
         }
 
-        public virtual async Task<TimedLockout> Retrieve(string key)
+        public virtual async Task<TimedLockout?> Retrieve(string key)
         {
             Guard.NullOrWhiteSpace(nameof(key), key);
 
@@ -31,9 +31,9 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
             if (model == null) { return null; }
 
-            return new TimedLockout(model.Key, model.LastModified)
+            return new TimedLockout(model.Key!, model.LastModified!.Value)
             {
-                FailedAccessAttempts = model.FailedAccessAttempts,
+                FailedAccessAttempts = model.FailedAccessAttempts!.Value,
                 Expiration = model.Expiration,
             };
         }

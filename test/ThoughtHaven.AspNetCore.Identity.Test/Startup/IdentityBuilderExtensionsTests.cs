@@ -15,11 +15,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 [Fact]
                 public void NullApp_Throws()
                 {
-                    IApplicationBuilder app = null;
+                    IApplicationBuilder? app = null;
 
                     Assert.Throws<ArgumentNullException>("app", () =>
                     {
-                        app.UseThoughtHavenIdentity();
+                        app!.UseThoughtHavenIdentity();
                     });
                 }
 

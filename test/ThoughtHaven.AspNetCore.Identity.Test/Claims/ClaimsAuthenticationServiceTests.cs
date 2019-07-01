@@ -29,7 +29,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     Assert.Throws<ArgumentNullException>("httpContextAccessor", () =>
                     {
                         new ClaimsAuthenticationService<User>(
-                            httpContextAccessor: null,
+                            httpContextAccessor: null!,
                             userStore: UserStore(),
                             options: Options(),
                             clock: Clock());
@@ -43,7 +43,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     {
                         new ClaimsAuthenticationService<User>(
                             httpContextAccessor: HttpContextAccessor(),
-                            userStore: null,
+                            userStore: null!,
                             options: Options(),
                             clock: Clock());
                     });
@@ -57,7 +57,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                         new ClaimsAuthenticationService<User>(
                             httpContextAccessor: HttpContextAccessor(),
                             userStore: UserStore(),
-                            options: null,
+                            options: null!,
                             clock: Clock());
                     });
                 }
@@ -71,7 +71,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                             httpContextAccessor: HttpContextAccessor(),
                             userStore: UserStore(),
                             options: Options(),
-                            clock: null);
+                            clock: null!);
                     });
                 }
             }
@@ -87,7 +87,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     await Assert.ThrowsAsync<ArgumentNullException>("principal", async () =>
                     {
                         await Authentication().Login(
-                            principal: null,
+                            principal: null!,
                             properties: Properties());
                     });
                 }
@@ -99,7 +99,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     {
                         await Authentication().Login(
                             principal: Principal(),
-                            properties: null);
+                            properties: null!);
                     });
                 }
 
@@ -137,7 +137,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     Assert.True(properties.AllowRefresh);
                     Assert.True(
-                        context.Authentication.SignInAsync_InputProperties.AllowRefresh);
+                        context.Authentication.SignInAsync_InputProperties!.AllowRefresh);
                 }
 
                 [Fact]
@@ -156,7 +156,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                         .Login(principal, properties);
                     
                     Assert.Equal(clock.UtcNow,
-                        context.Authentication.SignInAsync_InputProperties.IssuedUtc);
+                        context.Authentication.SignInAsync_InputProperties!.IssuedUtc);
                 }
             }
         }
@@ -170,7 +170,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("principal", async () =>
                     {
-                        await Authentication().RefreshLogin(principal: null);
+                        await Authentication().RefreshLogin(principal: null!);
                     });
                 }
 
@@ -218,7 +218,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                         accessor.Authentication.SignInAsync_InputContext);
                     Assert.Equal(principal,
                         accessor.Authentication.SignInAsync_InputPrincipal);
-                    Assert.Equal(accessor.Authentication.AuthenticateAsync_Output.Properties,
+                    Assert.Equal(accessor.Authentication.AuthenticateAsync_Output!.Properties,
                         accessor.Authentication.SignInAsync_InputProperties);
                 }
             }
@@ -233,7 +233,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("authenticationScheme", async () =>
                     {
-                        await Authentication().Authenticate(authenticationScheme: null);
+                        await Authentication().Authenticate(authenticationScheme: null!);
                     });
                 }
 
@@ -292,7 +292,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var result = await Authentication(accessor).Authenticate();
 
                     Assert.Equal(result,
-                        accessor.Authentication.AuthenticateAsync_Output.Principal);
+                        accessor.Authentication.AuthenticateAsync_Output!.Principal);
                 }
             }
         }
@@ -306,7 +306,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("authenticationScheme", async () =>
                     {
-                        await Authentication().AuthenticateContext(authenticationScheme: null);
+                        await Authentication().AuthenticateContext(authenticationScheme: null!);
                     });
                 }
 
@@ -387,9 +387,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
         private static FakeSystemClock Clock(DateTimeOffset? utcNow = null) =>
             new FakeSystemClock(utcNow ?? DateTimeOffset.UtcNow);
         private static FakeClaimsAuthenticationService2 Authentication(
-            FakeHttpContextAccessor httpContextAccessor = null,
-            FakeUserStore userStore = null, ClaimOptions options = null,
-            FakeSystemClock clock = null) =>
+            FakeHttpContextAccessor? httpContextAccessor = null,
+            FakeUserStore? userStore = null, ClaimOptions? options = null,
+            FakeSystemClock? clock = null) =>
             new FakeClaimsAuthenticationService2(httpContextAccessor ?? HttpContextAccessor(),
                 userStore ?? UserStore(), options ?? Options(), clock ?? Clock());
         private static ClaimsPrincipal Principal() => new ClaimsPrincipal();

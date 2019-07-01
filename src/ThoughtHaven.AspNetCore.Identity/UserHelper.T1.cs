@@ -8,6 +8,7 @@ using ThoughtHaven.Security.SingleUseTokens;
 namespace ThoughtHaven.AspNetCore.Identity
 {
     public class UserHelper<TUser> : UserHelper
+        where TUser : class
     {
         private readonly IRetrieveOperation<EmailAddress, TUser> _userEmailStore;
 

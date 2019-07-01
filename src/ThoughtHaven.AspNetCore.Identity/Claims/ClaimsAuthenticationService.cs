@@ -11,7 +11,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 {
     public class ClaimsAuthenticationService<TUser>
         : ClaimsAuthenticationServiceBase<TUser>
-        where TUser : IUserKey, IUserSecurityStamp
+        where TUser : class, IUserKey, IUserSecurityStamp
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ClaimOptions _options;
@@ -55,7 +55,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             await this.Login(principal, result.Properties).ConfigureAwait(false);
         }
 
-        protected override async Task<ClaimsPrincipal> Authenticate(
+        protected override async Task<ClaimsPrincipal?> Authenticate(
             string authenticationScheme)
         {
             Guard.NullOrWhiteSpace(nameof(authenticationScheme), authenticationScheme);

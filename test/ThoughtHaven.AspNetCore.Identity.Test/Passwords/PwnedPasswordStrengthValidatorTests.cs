@@ -26,7 +26,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 {
                     Assert.Throws<ArgumentNullException>("pwned", () =>
                     {
-                        new PwnedPasswordStrengthValidator(pwned: null);
+                        new PwnedPasswordStrengthValidator(pwned: null!);
                     });
                 }
             }
@@ -41,7 +41,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("password", async () =>
                     {
-                        await Validator().Validate(password: null);
+                        await Validator().Validate(password: null!);
                     });
                 }
 
@@ -55,7 +55,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
 
                     Assert.False(result.Success);
                     Assert.Equal("This password is insecure because it was exposed in an online data breach. You'll need a stronger password to protect your account. You can learn more at https://haveibeenpwned.com.",
-                        result.Failure.Message);
+                        result.Failure!.Message);
                 }
 
                 [Fact]
@@ -73,7 +73,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
 
         private static FakePwnedPasswordClient Pwned() => new FakePwnedPasswordClient();
         private static PwnedPasswordStrengthValidator Validator(
-            FakePwnedPasswordClient pwned = null) =>
+            FakePwnedPasswordClient? pwned = null) =>
             new PwnedPasswordStrengthValidator(pwned ?? new FakePwnedPasswordClient());
     }
 }

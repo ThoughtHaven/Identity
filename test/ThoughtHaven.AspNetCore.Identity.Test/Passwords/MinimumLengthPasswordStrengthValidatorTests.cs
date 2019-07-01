@@ -42,7 +42,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
 
                     await Assert.ThrowsAsync<ArgumentNullException>("password", async () =>
                     {
-                        await validator.Validate(password: null);
+                        await validator.Validate(password: null!);
                     });
                 }
 
@@ -65,7 +65,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
 
                     Assert.False(result.Success);
                     Assert.Equal(validator.InvalidPasswordStrength.Message,
-                        result.Failure.Message);
+                        result.Failure!.Message);
                 }
             }
         }

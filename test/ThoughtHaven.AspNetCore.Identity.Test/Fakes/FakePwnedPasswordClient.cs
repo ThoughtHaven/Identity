@@ -6,10 +6,10 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 {
     public class FakePwnedPasswordClient : IPwnedPasswordsClient
     {
-        public string HasPasswordBeenPwned_InputPassword;
+        public string? HasPasswordBeenPwned_InputPassword;
         public bool HasPasswordBeenPwned_Output;
         public Task<bool> HasPasswordBeenPwned(string password,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
             this.HasPasswordBeenPwned_InputPassword = password;
 

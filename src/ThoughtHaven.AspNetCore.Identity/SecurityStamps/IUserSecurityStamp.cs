@@ -2,6 +2,6 @@
 {
     public interface IUserSecurityStamp
     {
-        string SecurityStamp { get; set; }
+        string? SecurityStamp { get; set; }
     }
 }

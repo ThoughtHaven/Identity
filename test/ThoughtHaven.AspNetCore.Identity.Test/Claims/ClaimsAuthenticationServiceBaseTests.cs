@@ -26,7 +26,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 Assert.Throws<ArgumentNullException>("userStore", () =>
                 {
                     new FakeClaimsAuthenticationServiceBase(
-                        userStore: null,
+                        userStore: null!,
                         options: Options(),
                         clock: Clock());
                 });
@@ -39,7 +39,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 {
                     new FakeClaimsAuthenticationServiceBase(
                         userStore: UserStore(),
-                        options: null,
+                        options: null!,
                         clock: Clock());
                 });
             }
@@ -52,7 +52,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     new FakeClaimsAuthenticationServiceBase(
                         userStore: UserStore(),
                         options: Options(),
-                        clock: null);
+                        clock: null!);
                 });
             }
         }
@@ -222,7 +222,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 public async Task AuthenticatedSecurityStampDoesNotMatch_CallsLogoutOnAbstract()
                 {
                     var store = UserStore();
-                    store.Retrieve_ByKey_Output.SecurityStamp = "different";
+                    store.Retrieve_ByKey_Output!.SecurityStamp = "different";
                     var clock = Clock();
                     var authentication = Authentication(store, clock: clock);
                     authentication.Authenticate_Output = Principal(
@@ -237,7 +237,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 public async Task AuthenticatedSecurityStampDoesNotMatch_ReturnsNull()
                 {
                     var store = UserStore();
-                    store.Retrieve_ByKey_Output.SecurityStamp = "different";
+                    store.Retrieve_ByKey_Output!.SecurityStamp = "different";
                     var clock = Clock();
                     var authentication = Authentication(store, clock: clock);
                     authentication.Authenticate_Output = Principal(
@@ -262,7 +262,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     Assert.NotNull(authentication.RefreshLogin_InputPrincipal);
 
                     var stampValidated = new DateTimeOffset(
-                        ticks: long.Parse(authentication.RefreshLogin_InputPrincipal.FindFirst(
+                        ticks: long.Parse(authentication.RefreshLogin_InputPrincipal!.FindFirst(
                             options.ClaimTypes.SecurityStampValidated).Value),
                         offset: TimeSpan.Zero);
 
@@ -287,7 +287,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
         private static ClaimsPrincipal Principal(bool hasUserKey = true,
             bool hasSecurityStamp = true, bool hasSecurityStampValidated = true,
-            FakeSystemClock clock = null) =>
+            FakeSystemClock? clock = null) =>
             FakeClaimsAuthenticationServiceBase.Principal(hasUserKey, hasSecurityStamp,
                 hasSecurityStampValidated, clock);
         private static FakeUserStore UserStore() => new FakeUserStore();
@@ -295,8 +295,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
         private static FakeSystemClock Clock(DateTimeOffset? utcNow = null) =>
             new FakeSystemClock(utcNow ?? DateTimeOffset.UtcNow);
         private static FakeClaimsAuthenticationServiceBase Authentication(
-            FakeUserStore userStore = null, ClaimOptions options = null,
-            FakeSystemClock clock = null) =>
+            FakeUserStore? userStore = null, ClaimOptions? options = null,
+            FakeSystemClock? clock = null) =>
             new FakeClaimsAuthenticationServiceBase(userStore ?? UserStore(),
                 options ?? Options(), clock ?? Clock());
         private static User User() => new User() { Id = "id", SecurityStamp = "stamp", };

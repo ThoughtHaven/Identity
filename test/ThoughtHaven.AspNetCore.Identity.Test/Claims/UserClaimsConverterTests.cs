@@ -49,7 +49,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     Assert.Throws<ArgumentNullException>("options", () =>
                     {
                         new UserClaimsConverter<User>(
-                            options: null,
+                            options: null!,
                             clock: new SystemClock());
                     });
                 }
@@ -61,7 +61,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     {
                         new UserClaimsConverter<User>(
                             options: new ClaimOptions(),
-                            clock: null);
+                            clock: null!);
                     });
                 }
             }
@@ -76,7 +76,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await Converter().Convert(user: null);
+                        await Converter().Convert(user: null!);
                     });
                 }
 
@@ -169,7 +169,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     var principal = await Converter(options).Convert(User());
 
-                    var identity = GetIdentity(principal);
+                    _ = GetIdentity(principal);
 
                     foreach (var claim in principal.Claims)
                     {
@@ -229,7 +229,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("principal", async () =>
                     {
-                        await Converter().Convert(principal: null);
+                        await Converter().Convert(principal: null!);
                     });
                 }
 
@@ -256,7 +256,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var userKey = await Converter(options).Convert(principal);
 
                     Assert.NotNull(userKey);
-                    Assert.Equal("user-id", userKey.Value);
+                    Assert.Equal("user-id", userKey!.Value);
                 }
 
                 [Fact]
@@ -285,8 +285,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
         private static ClaimOptions Options() => new ClaimOptions();
         private static FakeSystemClock Clock(DateTimeOffset? utcNow = null) =>
             new FakeSystemClock(utcNow ?? DateTimeOffset.UtcNow);
-        private static UserClaimsConverter<User> Converter(ClaimOptions options = null,
-            FakeSystemClock clock = null) =>
+        private static UserClaimsConverter<User> Converter(ClaimOptions? options = null,
+            FakeSystemClock? clock = null) =>
             new UserClaimsConverter<User>(options ?? Options(), clock ?? Clock());
         private static User User() => new User()
         {

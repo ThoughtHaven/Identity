@@ -28,7 +28,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.Issuer = null;
+                        options.Issuer = null!;
                     });
                 }
 
@@ -89,7 +89,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.AuthenticationScheme = null;
+                        options.AuthenticationScheme = null!;
                     });
                 }
 
@@ -194,7 +194,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                         Assert.Throws<ArgumentNullException>("value", () =>
                         {
-                            options.UserKey = null;
+                            options.UserKey = null!;
                         });
                     }
 
@@ -255,7 +255,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                         Assert.Throws<ArgumentNullException>("value", () =>
                         {
-                            options.SecurityStamp = null;
+                            options.SecurityStamp = null!;
                         });
                     }
 
@@ -316,7 +316,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                         Assert.Throws<ArgumentNullException>("value", () =>
                         {
-                            options.SecurityStampValidated = null;
+                            options.SecurityStampValidated = null!;
                         });
                     }
 

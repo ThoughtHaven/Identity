@@ -9,9 +9,9 @@ namespace ThoughtHaven.AspNetCore.Identity
 {
     public static partial class IdentityHelperServiceExtensions
     {
-        public static Task<TUser> Retrieve<TUser>(this IIdentityService<TUser> identity,
+        public static Task<TUser?> Retrieve<TUser>(this IIdentityService<TUser> identity,
             EmailAddress email)
-            where TUser : IUserEmail
+            where TUser : class, IUserEmail
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(email), email);
@@ -21,14 +21,14 @@ namespace ThoughtHaven.AspNetCore.Identity
 
         public static async Task<Result<VerificationCode, UserMessage>> UpdateEmail<TUser>(
             this IIdentityService<TUser> identity, TUser user, EmailAddress email)
-            where TUser : IUserKey, IUserEmail
+            where TUser : class, IUserKey, IUserEmail
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(user), user);
             Guard.Null(nameof(email), email);
 
             var key = user.Key();
-            if (key == null)
+            if (key is null)
             {
                 throw new ArgumentException(
                     paramName: nameof(user),
@@ -39,7 +39,7 @@ namespace ThoughtHaven.AspNetCore.Identity
 
             if (existing != null)
             {
-                if (existing.Key() == key) { return identity.Helper.UserAlreadyOwnsEmail; }
+                if (existing.Key()! == key) { return identity.Helper.UserAlreadyOwnsEmail; }
 
                 return identity.Helper.EmailNotAvailable;
             }
@@ -54,14 +54,14 @@ namespace ThoughtHaven.AspNetCore.Identity
 
         public static async Task<Result<UserMessage>> ConfirmEmail<TUser>(
             this IIdentityService<TUser> identity, TUser user, VerificationCode code)
-            where TUser : IUserKey, IUserEmail
+            where TUser : class, IUserKey, IUserEmail
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(user), user);
             Guard.Null(nameof(code), code);
 
             var key = user.Key();
-            if (key == null)
+            if (key is null)
             {
                 throw new ArgumentException(
                     paramName: nameof(user),

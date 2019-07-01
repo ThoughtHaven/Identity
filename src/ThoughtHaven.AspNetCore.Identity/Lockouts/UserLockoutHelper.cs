@@ -20,7 +20,7 @@ namespace ThoughtHaven.AspNetCore.Identity
         {
             Guard.NullOrWhiteSpace(nameof(key), key);
             Guard.LessThan(nameof(maxFailedAccessAttempts), maxFailedAccessAttempts,
-                minimum: 2);
+                minimum: (byte)2);
 
             var now = this.Clock.UtcNow;
 

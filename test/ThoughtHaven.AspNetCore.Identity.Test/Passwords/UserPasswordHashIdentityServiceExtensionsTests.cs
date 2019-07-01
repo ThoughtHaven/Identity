@@ -14,11 +14,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 [Fact]
                 public async Task NullIdentity_Throws()
                 {
-                    FakeIdentityService identity = null;
+                    FakeIdentityService? identity = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await identity.ValidatePassword(
+                        await identity!.ValidatePassword(
                             user: User(),
                             password: "password");
                     });
@@ -30,7 +30,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await Identity().ValidatePassword(
-                            user: null,
+                            user: null!,
                             password: "password");
                     });
                 }
@@ -42,7 +42,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     {
                         await Identity().ValidatePassword(
                             user: User(),
-                            password: null);
+                            password: null!);
                     });
                 }
 
@@ -175,11 +175,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 [Fact]
                 public async Task NullIdentity_Throws()
                 {
-                    FakeIdentityService identity = null;
+                    FakeIdentityService? identity = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await identity.ForgotPassword(user: User());
+                        await identity!.ForgotPassword(user: User());
                     });
                 }
 
@@ -188,7 +188,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await Identity().ForgotPassword(user: null);
+                        await Identity().ForgotPassword(user: null!);
                     });
                 }
 
@@ -233,11 +233,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 [Fact]
                 public async Task NullIdentity_Throws()
                 {
-                    FakeIdentityService identity = null;
+                    FakeIdentityService? identity = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await identity.UpdatePassword(
+                        await identity!.UpdatePassword(
                             user: User(),
                             current: "current",
                             updated: "updated");
@@ -250,7 +250,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await Identity().UpdatePassword(
-                            user: null,
+                            user: null!,
                             current: "current",
                             updated: "updated");
                     });
@@ -263,7 +263,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     {
                         await Identity().UpdatePassword(
                             user: User(),
-                            current: null,
+                            current: null!,
                             updated: "updated");
                     });
                 }
@@ -276,7 +276,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                         await Identity().UpdatePassword(
                             user: User(),
                             current: "current",
-                            updated: null);
+                            updated: null!);
                     });
                 }
 
@@ -405,11 +405,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 [Fact]
                 public async Task NullIdentity_Throws()
                 {
-                    FakeIdentityService identity = null;
+                    FakeIdentityService? identity = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await identity.UpdatePassword(
+                        await identity!.UpdatePassword(
                             user: User(),
                             code: 1234,
                             password: "password");
@@ -422,7 +422,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await Identity().UpdatePassword(
-                            user: null,
+                            user: null!,
                             code: 1234,
                             password: "password");
                     });
@@ -435,7 +435,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     {
                         await Identity().UpdatePassword(
                             user: User(),
-                            code: null,
+                            code: null!,
                             password: "password");
                     });
                 }
@@ -448,7 +448,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                         await Identity().UpdatePassword(
                             user: User(),
                             code: 1234,
-                            password: null);
+                            password: null!);
                     });
                 }
 

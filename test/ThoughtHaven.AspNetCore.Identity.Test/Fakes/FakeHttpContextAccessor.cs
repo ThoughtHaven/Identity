@@ -31,10 +31,10 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 
         public class AuthenticationService : IAuthenticationService
         {
-            public HttpContext SignInAsync_InputContext;
-            public string SignInAsync_InputScheme;
-            public ClaimsPrincipal SignInAsync_InputPrincipal;
-            public AuthenticationProperties SignInAsync_InputProperties;
+            public HttpContext? SignInAsync_InputContext;
+            public string? SignInAsync_InputScheme;
+            public ClaimsPrincipal? SignInAsync_InputPrincipal;
+            public AuthenticationProperties? SignInAsync_InputProperties;
             public Task SignInAsync(HttpContext context, string scheme,
                 ClaimsPrincipal principal, AuthenticationProperties properties)
             {
@@ -46,12 +46,12 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
                 return Task.CompletedTask;
             }
 
-            public HttpContext AuthenticateAsync_InputContext;
-            public string AuthenticateAsync_InputScheme;
-            public AuthenticateResult AuthenticateAsync_Output = AuthenticateResult.Success(
+            public HttpContext? AuthenticateAsync_InputContext;
+            public string? AuthenticateAsync_InputScheme;
+            public AuthenticateResult? AuthenticateAsync_Output = AuthenticateResult.Success(
                 new AuthenticationTicket(FakeClaimsAuthenticationServiceBase.Principal(),
                     new AuthenticationProperties(), new ClaimOptions().AuthenticationScheme));
-            public Task<AuthenticateResult> AuthenticateAsync(HttpContext context,
+            public Task<AuthenticateResult?> AuthenticateAsync(HttpContext context,
                 string scheme)
             {
                 this.AuthenticateAsync_InputContext = context;
@@ -61,9 +61,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             }
 
             public bool SignOutAsync_Called => this.SignOutAsync_InputContext != null;
-            public HttpContext SignOutAsync_InputContext;
-            public string SignOutAsync_InputScheme;
-            public AuthenticationProperties SignOutAsync_InputProperties;
+            public HttpContext? SignOutAsync_InputContext;
+            public string? SignOutAsync_InputScheme;
+            public AuthenticationProperties? SignOutAsync_InputProperties;
             public Task SignOutAsync(HttpContext context, string scheme,
                 AuthenticationProperties properties)
             {

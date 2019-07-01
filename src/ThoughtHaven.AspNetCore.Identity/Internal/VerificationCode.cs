@@ -4,7 +4,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
 {
     public class VerificationCode : ValueObject<int>
     {
-        public VerificationCode(int value) : base(value)
+        public VerificationCode(int value)
+            : base(value)
         {
             Guard.LessThan(nameof(value), value, minimum: 0);
             

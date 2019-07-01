@@ -2,6 +2,6 @@
 {
     public interface IUserPasswordHash
     {
-        string PasswordHash { get; set; }
+        string? PasswordHash { get; set; }
     }
 }

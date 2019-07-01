@@ -2,7 +2,7 @@
 {
     public interface IUserEmail
     {
-        string Email { get; set; }
+        string? Email { get; set; }
         bool EmailConfirmed { get; set; }
     }
 }

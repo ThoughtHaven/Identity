@@ -7,7 +7,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 {
     public class FakeClaimsConverter : IUserClaimsConverter<User>
     {
-        public User Convert_FromUser_InputUser;
+        public User? Convert_FromUser_InputUser;
         public ClaimsPrincipal Convert_FromUser_Output = new ClaimsPrincipal();
         public Task<ClaimsPrincipal> Convert(User user)
         {
@@ -16,9 +16,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return Task.FromResult(this.Convert_FromUser_Output);
         }
 
-        public ClaimsPrincipal Convert_FromPrincipal_InputPrincipal;
-        public UserKey Convert_FromPrincipal_Output = "key";
-        public Task<UserKey> Convert(ClaimsPrincipal principal)
+        public ClaimsPrincipal? Convert_FromPrincipal_InputPrincipal;
+        public UserKey? Convert_FromPrincipal_Output = "key";
+        public Task<UserKey?> Convert(ClaimsPrincipal principal)
         {
             this.Convert_FromPrincipal_InputPrincipal = principal;
 

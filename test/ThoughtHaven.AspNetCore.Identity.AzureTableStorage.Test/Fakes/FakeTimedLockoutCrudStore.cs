@@ -12,26 +12,26 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
             : base(entityStore: new TableEntityStore(
                 new CloudTable(new Uri("https://example.com/table")),
                 new TableRequestOptions()),
-                  dataKeyToEntityKeys: k => null,
-                  dataToEntityKeys: m => null)
+                  dataKeyToEntityKeys: k => null!,
+                  dataToEntityKeys: m => null!)
         { }
 
-        public string Retrieve_InputKey;
-        public TimedLockoutModel Retrieve_Output = new TimedLockoutModel()
+        public string? Retrieve_InputKey;
+        public TimedLockoutModel? Retrieve_Output = new TimedLockoutModel()
         {
             Key = "key",
             LastModified = DateTimeOffset.UtcNow,
             FailedAccessAttempts = 1,
             Expiration = DateTimeOffset.UtcNow.AddDays(1),
         };
-        public override Task<TimedLockoutModel> Retrieve(string key)
+        public override Task<TimedLockoutModel?> Retrieve(string key)
         {
             this.Retrieve_InputKey = key;
 
             return Task.FromResult(this.Retrieve_Output);
         }
 
-        public TimedLockoutModel Create_InputModel;
+        public TimedLockoutModel? Create_InputModel;
         public override Task<TimedLockoutModel> Create(TimedLockoutModel model)
         {
             this.Create_InputModel = model;
@@ -39,7 +39,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
             return Task.FromResult(model);
         }
 
-        public TimedLockoutModel Update_InputModel;
+        public TimedLockoutModel? Update_InputModel;
         public override Task<TimedLockoutModel> Update(TimedLockoutModel model)
         {
             this.Update_InputModel = model;
@@ -47,7 +47,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
             return Task.FromResult(model);
         }
 
-        public string Delete_InputKey;
+        public string? Delete_InputKey;
         public override Task Delete(string key)
         {
             this.Delete_InputKey = key;

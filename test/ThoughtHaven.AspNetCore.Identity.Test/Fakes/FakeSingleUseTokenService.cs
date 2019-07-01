@@ -6,9 +6,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 {
     public class FakeSingleUseTokenService : ISingleUseTokenService
     {
-        public bool Create_Called => this.Create_InputToken != null;
-        public SingleUseToken Create_InputToken;
-        public DateTimeOffset Create_InputExpiration;
+        public bool Create_Called => !(this.Create_InputToken is null);
+        public SingleUseToken? Create_InputToken;
+        public DateTimeOffset? Create_InputExpiration;
         public Task Create(SingleUseToken token, DateTimeOffset expiration)
         {
             this.Create_InputToken = token;
@@ -17,7 +17,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return Task.CompletedTask;
         }
         
-        public SingleUseToken Validate_InputToken;
+        public SingleUseToken? Validate_InputToken;
         public bool Validate_Output = true;
         public Task<bool> Validate(SingleUseToken token)
         {

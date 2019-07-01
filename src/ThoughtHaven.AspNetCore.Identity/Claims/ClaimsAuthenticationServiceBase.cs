@@ -12,7 +12,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 {
     public abstract class ClaimsAuthenticationServiceBase<TUser>
         : IAuthenticationService<ClaimsPrincipal>
-        where TUser : IUserKey, IUserSecurityStamp
+        where TUser : class, IUserKey, IUserSecurityStamp
     {
         private readonly IRetrieveOperation<UserKey, TUser> _store;
         private readonly ClaimOptions _options;
@@ -31,7 +31,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
         protected abstract Task RefreshLogin(ClaimsPrincipal principal);
 
-        public virtual async Task<ClaimsPrincipal> Authenticate()
+        public virtual async Task<ClaimsPrincipal?> Authenticate()
         {
             var principal = await this.Authenticate(this._options.AuthenticationScheme)
                 .ConfigureAwait(false);
@@ -54,7 +54,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             if (timeSinceCheck < this._options.ValidateSecurityStampInterval)
             { return principal; }
 
-            var user = await this._store.Retrieve(claims.UserKey).ConfigureAwait(false);
+            var user = await this._store.Retrieve(claims.UserKey!).ConfigureAwait(false);
 
             if (user?.SecurityStamp == claims.SecurityStamp)
             {
@@ -72,7 +72,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             }
         }
 
-        protected abstract Task<ClaimsPrincipal> Authenticate(string authenticationScheme);
+        protected abstract Task<ClaimsPrincipal?> Authenticate(string authenticationScheme);
 
         public abstract Task Logout();
 
@@ -103,11 +103,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
         protected class UserClaims
         {
             public bool IsValid =>
-                this.UserKey != null
+                !(this.UserKey is null)
                 && !string.IsNullOrWhiteSpace(this.SecurityStamp)
                 && this.SecurityStampValidated.HasValue;
-            public UserKey UserKey { get; }
-            public string SecurityStamp { get; }
+            public UserKey? UserKey { get; }
+            public string? SecurityStamp { get; }
             public DateTimeOffset? SecurityStampValidated { get; }
 
             public UserClaims(ClaimsIdentity identity, ClaimOptions.ClaimTypeOptions options)

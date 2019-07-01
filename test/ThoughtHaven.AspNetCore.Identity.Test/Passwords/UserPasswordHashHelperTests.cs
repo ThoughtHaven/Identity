@@ -49,7 +49,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await helper.SetPasswordHash<User>(
-                            user: null,
+                            user: null!,
                             password: new Password("ValidPassword"));
                     });
                 }
@@ -63,7 +63,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     {
                         await helper.SetPasswordHash(
                             user: new User(),
-                            password: null);
+                            password: null!);
                     });
                 }
 
@@ -86,7 +86,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     var password = new Password("password");
                     var user = new User();
 
-                    var result = await helper.SetPasswordHash(user, password);
+                    _ = await helper.SetPasswordHash(user, password);
 
                     Assert.Equal(password, helper.FakePasswordHasher.Hash_InputPassword);
                     Assert.Equal(helper.FakePasswordHasher.Hash_Output,
@@ -104,7 +104,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     Assert.False(result.Success);
                     Assert.Equal(
                         new FakeMinimumLengthPasswordStrengthValidator().InvalidPasswordStrength.Message,
-                        result.Failure.Message);
+                        result.Failure!.Message);
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await new FakeUserHelper1().ValidatePassword<User>(
-                            user: null,
+                            user: null!,
                             password: new Password("ValidPassword"));
                     });
                 }
@@ -134,7 +134,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                             {
                                 PasswordHash = "Hash",
                             },
-                            password: null);
+                            password: null!);
                     });
                 }
 
@@ -228,7 +228,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("userKey", async () =>
                     {
-                        await new FakeUserHelper1().CreatePasswordResetCode(userKey: null);
+                        await new FakeUserHelper1().CreatePasswordResetCode(userKey: null!);
                     });
                 }
 
@@ -271,7 +271,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     var helper = new FakeUserHelper1();
                     var userKey = new UserKey("key");
 
-                    var code = await helper.CreatePasswordResetCode(userKey);
+                    _ = await helper.CreatePasswordResetCode(userKey);
 
                     Assert.Equal(helper.FakeClock.UtcNow.AddDays(1),
                         helper.FakeSingleUseTokenService.Create_InputExpiration);
@@ -289,7 +289,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     await Assert.ThrowsAsync<ArgumentNullException>("userKey", async () =>
                     {
                         await new FakeUserHelper1().ValidatePasswordResetCode(
-                            userKey: null,
+                            userKey: null!,
                             code: 1234);
                     });
                 }
@@ -301,7 +301,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     {
                         await new FakeUserHelper1().ValidatePasswordResetCode(
                             userKey: "key",
-                            code: null);
+                            code: null!);
                     });
                 }
 

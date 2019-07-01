@@ -16,9 +16,11 @@ namespace ThoughtHaven.AspNetCore.Identity
 
         public virtual UserMessage InvalidEmailVerificationCode { get; } = "We couldn't confirm your email. The link we sent you may have expired. You'll need to try confirming your email again.";
 
-        protected abstract IRetrieveOperation<EmailAddress, TUser> UserEmailStore<TUser>();
+        protected abstract IRetrieveOperation<EmailAddress, TUser> UserEmailStore<TUser>()
+            where TUser : class;
 
-        public virtual Task<TUser> Retrieve<TUser>(EmailAddress email) where TUser : IUserEmail
+        public virtual Task<TUser?> Retrieve<TUser>(EmailAddress email)
+            where TUser : class, IUserEmail
         {
             Guard.Null(nameof(email), email);
 

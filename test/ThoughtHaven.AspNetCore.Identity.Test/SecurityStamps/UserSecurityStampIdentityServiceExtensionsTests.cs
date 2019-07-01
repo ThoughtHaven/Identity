@@ -14,11 +14,11 @@ namespace ThoughtHaven.AspNetCore.Identity.SecurityStamps
                 [Fact]
                 public async Task NullIdentity_Throws()
                 {
-                    IIdentityService<User> identity = null;
+                    IIdentityService<User>? identity = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await identity.Logout(logoutEverywhere: false);
+                        await identity!.Logout(logoutEverywhere: false);
                     });
                 }
 

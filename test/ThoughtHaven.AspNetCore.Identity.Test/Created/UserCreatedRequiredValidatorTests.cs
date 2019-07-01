@@ -36,7 +36,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Created
 
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await validator.Validate(user: null);
+                        await validator.Validate(user: null!);
                     });
                 }
 
@@ -44,7 +44,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Created
                 public async Task DefaultCreated_Throws()
                 {
                     var validator = new UserCreatedRequiredValidator<User>();
-                    var user = new User() { Created = default(DateTimeOffset) };
+                    var user = new User() { Created = default };
 
                     await Assert.ThrowsAsync<ArgumentException>("user", async () =>
                     {

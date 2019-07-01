@@ -18,7 +18,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Created
 
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await helper.SetCreated<User>(user: null);
+                        await helper.SetCreated<User>(user: null!);
                     });
                 }
 

@@ -13,7 +13,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
         }
 
         public bool Validate_Called = false;
-        public User Validate_UserInput;
+        public User? Validate_UserInput;
         public Task Validate(User user)
         {
             this.Validate_Called = true;

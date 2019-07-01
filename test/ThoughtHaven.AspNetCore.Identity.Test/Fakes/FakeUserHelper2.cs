@@ -6,7 +6,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 {
     public class FakeUserHelper2 : UserHelper<User>
     {
-        public FakeUserHelper2(FakeUserEmailStore userEmailStore = null)
+        public FakeUserHelper2(FakeUserEmailStore? userEmailStore = null)
             : base(userEmailStore ?? new FakeUserEmailStore(), new FakeSingleUseTokenService(),
                   new FakeTimedLockoutStore(), new FakePasswordHasher(),
                   new IPasswordStrengthValidator[]
@@ -14,7 +14,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
                   new FakeSystemClock())
         { }
 
-        new public IRetrieveOperation<EmailAddress, TEmailUser> UserEmailStore<TEmailUser>() =>
-            base.UserEmailStore<TEmailUser>();
+        new public IRetrieveOperation<EmailAddress, TEmailUser> UserEmailStore<TEmailUser>()
+            where TEmailUser : class => base.UserEmailStore<TEmailUser>();
     }
 }

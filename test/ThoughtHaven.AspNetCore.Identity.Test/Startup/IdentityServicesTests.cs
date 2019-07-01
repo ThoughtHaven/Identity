@@ -33,7 +33,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
                         IdentityServices.AddOptions(
-                            services: null,
+                            services: null!,
                             options: new IdentityOptions());
                     });
                 }
@@ -45,7 +45,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     {
                         IdentityServices.AddOptions(
                             services: new ServiceCollection(),
-                            options: null);
+                            options: null!);
                     });
                 }
 
@@ -99,7 +99,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        IdentityServices.AddInfrastructure(services: null);
+                        IdentityServices.AddInfrastructure(services: null!);
                     });
                 }
 
@@ -139,7 +139,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        IdentityServices.AddPasswords(services: null);
+                        IdentityServices.AddPasswords(services: null!);
                     });
                 }
 
@@ -216,7 +216,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        IdentityServices.AddUserHelpers<User>(services: null);
+                        IdentityServices.AddUserHelpers<User>(services: null!);
                     });
                 }
 
@@ -252,7 +252,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
                         IdentityServices.AddUserValidators<User>(
-                            services: null,
+                            services: null!,
                             options: new UserOptions());
                     });
                 }
@@ -264,7 +264,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     {
                         IdentityServices.AddUserValidators<User>(
                             services: new ServiceCollection(),
-                            options: null);
+                            options: null!);
                     });
                 }
 
@@ -549,7 +549,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        IdentityServices.AddUserStore<User, FakeUserStore>(services: null);
+                        IdentityServices.AddUserStore<User, FakeUserStore>(services: null!);
                     });
                 }
 
@@ -625,7 +625,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
                         IdentityServices.AddUserEmailStore<User, FakeUserEmailStore>(
-                            services: null);
+                            services: null!);
                     });
                 }
 
@@ -653,7 +653,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
                         IdentityServices.AddSingleUseTokenService<FakeSingleUseTokenService>(
-                            services: null);
+                            services: null!);
                     });
                 }
 
@@ -683,7 +683,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
                         IdentityServices.AddTimedLockoutStore<FakeTimedLockoutStore>(
-                            services: null);
+                            services: null!);
                     });
                 }
 
@@ -712,7 +712,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        IdentityServices.AddUserClaims<User>(services: null);
+                        IdentityServices.AddUserClaims<User>(services: null!);
                     });
                 }
 
@@ -760,7 +760,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
                 {
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        IdentityServices.AddIdentityServices<User>(services: null);
+                        IdentityServices.AddIdentityServices<User>(services: null!);
                     });
                 }
 

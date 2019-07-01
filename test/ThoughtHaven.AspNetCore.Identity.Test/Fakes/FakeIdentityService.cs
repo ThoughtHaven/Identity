@@ -25,15 +25,15 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             this.ClaimsConverter = claimsConverter;
         }
 
-        public UserKey Retrieve_InputKey;
-        public override Task<User> Retrieve(UserKey key)
+        public UserKey? Retrieve_InputKey;
+        public override Task<User?> Retrieve(UserKey key)
         {
             this.Retrieve_InputKey = key;
 
             return base.Retrieve(key);
         }
 
-        public User Create_InputUser;
+        public User? Create_InputUser;
         public override Task<User> Create(User user)
         {
             this.Create_InputUser = user;
@@ -41,7 +41,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return base.Create(user);
         }
 
-        public User Update_InputUser;
+        public User? Update_InputUser;
         public override Task<User> Update(User user)
         {
             this.Update_InputUser = user;
@@ -49,8 +49,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return base.Update(user);
         }
 
-        public User Login_InputUser;
-        public AuthenticationProperties Login_InputProperties;
+        public User? Login_InputUser;
+        public AuthenticationProperties? Login_InputProperties;
         public override Task Login(User user, AuthenticationProperties properties)
         {
             this.Login_InputUser = user;
@@ -60,13 +60,13 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
         }
 
         public bool Authenticate_Called;
-        public User Authenticate_OutputOverride;
-        public override Task<User> Authenticate()
+        public User? Authenticate_OutputOverride;
+        public override Task<User?> Authenticate()
         {
             this.Authenticate_Called = true;
 
             return this.Authenticate_OutputOverride == null ? base.Authenticate()
-                : Task.FromResult(this.Authenticate_OutputOverride);
+                : Task.FromResult<User?>(this.Authenticate_OutputOverride);
         }
 
         public bool Logout_Called;

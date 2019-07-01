@@ -33,7 +33,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
         protected override IRetrieveOperation<EmailAddress, TUser> UserEmailStore<TUser>() =>
             (IRetrieveOperation<EmailAddress, TUser>)FakeUserEmailStore;
 
-        public object AssignUserId_InputUser;
+        public object? AssignUserId_InputUser;
         public override Task AssignUserId<TUser>(TUser user)
         {
             this.AssignUserId_InputUser = user;
@@ -41,7 +41,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return base.AssignUserId(user);
         }
 
-        public object SetCreated_InputUser;
+        public object? SetCreated_InputUser;
         public override Task SetCreated<TUser>(TUser user)
         {
             this.SetCreated_InputUser = user;
@@ -49,8 +49,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return base.SetCreated(user);
         }
 
-        public object SetEmail_InputUser;
-        public EmailAddress SetEmail_InputEmail;
+        public object? SetEmail_InputUser;
+        public EmailAddress? SetEmail_InputEmail;
         public override Task SetEmail<TUser>(TUser user, EmailAddress email)
         {
             this.SetEmail_InputUser = user;
@@ -59,7 +59,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return base.SetEmail(user, email);
         }
 
-        public object ConfirmEmail_InputUser;
+        public object? ConfirmEmail_InputUser;
         public override Task ConfirmEmail<TUser>(TUser user)
         {
             this.ConfirmEmail_InputUser = user;
@@ -67,9 +67,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return base.ConfirmEmail(user);
         }
 
-        public object SetPasswordHash_InputUser;
-        public Password SetPasswordHash_InputPassword;
-        public UserMessage SetPasswordHash_OutputFailure;
+        public object? SetPasswordHash_InputUser;
+        public Password? SetPasswordHash_InputPassword;
+        public UserMessage? SetPasswordHash_OutputFailure;
         public override Task<Result<UserMessage>> SetPasswordHash<TUser>(TUser user,
             Password password)
         {
@@ -81,8 +81,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
                 : Task.FromResult<Result<UserMessage>>(this.SetPasswordHash_OutputFailure);
         }
 
-        public object ValidatePassword_InputUser;
-        public Password ValidatePassword_InputPassword;
+        public object? ValidatePassword_InputUser;
+        public Password? ValidatePassword_InputPassword;
         public PasswordValidateResult? ValidatePassword_OutputOverride;
         public override Task<PasswordValidateResult> ValidatePassword<TUser>(TUser user,
             Password password)
@@ -95,7 +95,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
                 : Task.FromResult(this.ValidatePassword_OutputOverride.Value);
         }
 
-        public string IsLockedOut_InputKey;
+        public string? IsLockedOut_InputKey;
         public bool? IsLockedOut_OutputOverride;
         public override Task<bool> IsLockedOut(string key)
         {
@@ -105,7 +105,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
                 : Task.FromResult(this.IsLockedOut_OutputOverride.Value);
         }
 
-        public string ResetLockedOut_InputKey;
+        public string? ResetLockedOut_InputKey;
         public override Task ResetLockedOut(string key)
         {
             this.ResetLockedOut_InputKey = key;
@@ -113,8 +113,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return base.ResetLockedOut(key);
         }
 
-        public UserKey CreatePasswordResetCode_InputUserKey;
-        public PasswordResetCode CreatePasswordResetCode_Output;
+        public UserKey? CreatePasswordResetCode_InputUserKey;
+        public PasswordResetCode? CreatePasswordResetCode_Output;
         public override async Task<PasswordResetCode> CreatePasswordResetCode(UserKey userKey)
         {
             this.CreatePasswordResetCode_InputUserKey = userKey;
@@ -123,8 +123,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return this.CreatePasswordResetCode_Output;
         }
 
-        public UserKey CreateEmailVerificationCode_InputUserKey;
-        public VerificationCode CreateEmailVerificationCode_Output;
+        public UserKey? CreateEmailVerificationCode_InputUserKey;
+        public VerificationCode? CreateEmailVerificationCode_Output;
         public override async Task<VerificationCode> CreateEmailVerificationCode(
             UserKey userKey)
         {
@@ -135,8 +135,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return this.CreateEmailVerificationCode_Output;
         }
 
-        public UserKey ValidateEmailVerificationCode_InputUserKey;
-        public VerificationCode ValidateEmailVerificationCode_InputCode;
+        public UserKey? ValidateEmailVerificationCode_InputUserKey;
+        public VerificationCode? ValidateEmailVerificationCode_InputCode;
         public bool? ValidateEmailVerificationCode_OutputOverride;
         public override Task<bool> ValidateEmailVerificationCode(UserKey userKey,
             VerificationCode code)
@@ -149,8 +149,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
                 : Task.FromResult(this.ValidateEmailVerificationCode_OutputOverride.Value);
         }
 
-        public UserKey ValidatePasswordResetCode_InputUserKey;
-        public PasswordResetCode ValidatePasswordResetCode_InputCode;
+        public UserKey? ValidatePasswordResetCode_InputUserKey;
+        public PasswordResetCode? ValidatePasswordResetCode_InputCode;
         public bool? ValidatePasswordResetCode_OutputOverride;
         public override Task<bool> ValidatePasswordResetCode(UserKey userKey,
             PasswordResetCode code)
@@ -163,7 +163,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
                 : Task.FromResult(this.ValidatePasswordResetCode_OutputOverride.Value);
         }
 
-        public object RefreshSecurityStamp_InputUser;
+        public object? RefreshSecurityStamp_InputUser;
         public override Task RefreshSecurityStamp<TUser>(TUser user)
         {
             this.RefreshSecurityStamp_InputUser = user;
@@ -171,7 +171,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             return base.RefreshSecurityStamp(user);
         }
 
-        public object SetLastLogin_InputUser;
+        public object? SetLastLogin_InputUser;
         public override Task SetLastLogin<TUser>(TUser user)
         {
             this.SetLastLogin_InputUser = user;

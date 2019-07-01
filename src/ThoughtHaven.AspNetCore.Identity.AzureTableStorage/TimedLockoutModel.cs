@@ -5,12 +5,13 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 {
     public class TimedLockoutModel
     {
-        public string Key { get; set; }
-        public DateTimeOffset LastModified { get; set; }
-        public int FailedAccessAttempts { get; set; }
+        public string? Key { get; set; }
+        public DateTimeOffset? LastModified { get; set; }
+        public int? FailedAccessAttempts { get; set; }
         public DateTimeOffset? Expiration { get; set; }
 
-        public TimedLockoutModel(TimedLockout lockout) : this()
+        public TimedLockoutModel(TimedLockout lockout)
+            : this()
         {
             Guard.Null(nameof(lockout), lockout);
 

@@ -24,7 +24,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             : base(entityStore, userKeyToEntityKeys, userToEntityKeys)
         { }
 
-        public virtual async Task<TUser> Retrieve(EmailAddress email)
+        public virtual async Task<TUser?> Retrieve(EmailAddress email)
         {
             Guard.Null(nameof(email), email);
 

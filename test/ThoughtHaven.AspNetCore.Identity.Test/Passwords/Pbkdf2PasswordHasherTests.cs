@@ -48,7 +48,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 {
                     Assert.Throws<ArgumentNullException>("password", () =>
                     {
-                        new FakePbkdf2PasswordHasher().Hash(password: null);
+                        new FakePbkdf2PasswordHasher().Hash(password: null!);
                     });
                 }
 
@@ -100,7 +100,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     Assert.Throws<ArgumentNullException>("hash", () =>
                     {
                         Hasher().Validate(
-                            hash: null,
+                            hash: null!,
                             password: "password");
                     });
                 }
@@ -134,7 +134,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     {
                         Hasher().Validate(
                             hash: "hash",
-                            password: null);
+                            password: null!);
                     });
                 }
 

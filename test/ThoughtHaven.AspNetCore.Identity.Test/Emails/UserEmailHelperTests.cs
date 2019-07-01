@@ -65,7 +65,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
 
                     await Assert.ThrowsAsync<ArgumentNullException>("email", async () =>
                     {
-                        await helper.Retrieve<User>(email: null);
+                        await helper.Retrieve<User>(email: null!);
                     });
                 }
 
@@ -114,7 +114,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await helper.SetEmail(
-                            user: (User)null,
+                            user: (User)null!,
                             email: "some@email.com");
                     });
                 }
@@ -128,7 +128,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     {
                         await helper.SetEmail(
                             user: new User(),
-                            email: null);
+                            email: null!);
                     });
                 }
 
@@ -166,7 +166,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await new FakeUserHelper1().ConfirmEmail(user: (User)null);
+                        await new FakeUserHelper1().ConfirmEmail(user: (User)null!);
                     });
                 }
 
@@ -254,7 +254,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("userKey", async () =>
                     {
-                        await new FakeUserHelper1().CreateEmailVerificationCode(userKey: null);
+                        await new FakeUserHelper1().CreateEmailVerificationCode(userKey: null!);
                     });
                 }
 
@@ -298,7 +298,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     var helper = new FakeUserHelper1();
                     var userKey = new UserKey("1");
 
-                    var code = await helper.CreateEmailVerificationCode(userKey);
+                    _ = await helper.CreateEmailVerificationCode(userKey);
 
                     Assert.Equal(helper.FakeClock.UtcNow.AddDays(7),
                         helper.FakeSingleUseTokenService.Create_InputExpiration);
@@ -318,7 +318,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     await Assert.ThrowsAsync<ArgumentNullException>("userKey", async () =>
                     {
                         await helper.ValidateEmailVerificationCode(
-                            userKey: null,
+                            userKey: null!,
                             code: 1234);
                     });
                 }
@@ -332,7 +332,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     {
                         await helper.ValidateEmailVerificationCode(
                             userKey: "1",
-                            code: null);
+                            code: null!);
                     });
                 }
 

@@ -14,7 +14,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 
         new public Task RefreshLogin(ClaimsPrincipal principal) => base.RefreshLogin(principal);
 
-        new public Task<ClaimsPrincipal> Authenticate(string authenticationScheme) =>
+        new public Task<ClaimsPrincipal?> Authenticate(string authenticationScheme) =>
             base.Authenticate(authenticationScheme);
 
         new public Task<AuthenticateResult> AuthenticateContext(string authenticationScheme) =>

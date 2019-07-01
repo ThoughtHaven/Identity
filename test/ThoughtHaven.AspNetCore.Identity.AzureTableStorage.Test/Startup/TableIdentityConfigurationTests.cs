@@ -38,7 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.TableRequest = null;
+                        options.TableRequest = null!;
                     });
                 }
 
@@ -99,7 +99,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.TableStore = null;
+                        options.TableStore = null!;
                     });
                 }
 
@@ -137,7 +137,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.SingleUseToken = null;
+                        options.SingleUseToken = null!;
                     });
                 }
 
@@ -164,7 +164,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     Assert.Throws<ArgumentNullException>("storageAccountConnectionString", () =>
                     {
                         new TableIdentityOptions(
-                            storageAccountConnectionString: null);
+                            storageAccountConnectionString: null!);
                     });
                 }
 
@@ -215,7 +215,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     Assert.Throws<ArgumentNullException>("tableStore", () =>
                     {
                         new TableIdentityOptions(
-                            tableStore: null,
+                            tableStore: null!,
                             singleUseToken: SingleUseToken());
                     });
                 }
@@ -227,7 +227,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     {
                         new TableIdentityOptions(
                             tableStore: TableStore(),
-                            singleUseToken: null);
+                            singleUseToken: null!);
                     });
                 }
 

@@ -24,7 +24,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Keys
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new UserKey(value: null);
+                        new UserKey(value: null!);
                     });
                 }
 

@@ -16,7 +16,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Keys
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await new FakeUserHelper1().AssignUserId<User>(user: null);
+                        await new FakeUserHelper1().AssignUserId<User>(user: null!);
                     });
                 }
 
@@ -27,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Keys
 
                     await new FakeUserHelper1().AssignUserId(user);
 
-                    Assert.True(Guid.TryParse(user.Id, out var guid));
+                    Assert.True(Guid.TryParse(user.Id, out _));
                     Assert.DoesNotContain("-", user.Id);
                 }
             }

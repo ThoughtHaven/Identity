@@ -17,11 +17,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     [Fact]
                     public void NullServices_Throws()
                     {
-                        IServiceCollection services = null;
+                        IServiceCollection? services = null;
 
                         Assert.Throws<ArgumentNullException>("services", () =>
                         {
-                            services.AddThoughtHavenIdentity<User>(
+                            services!.AddThoughtHavenIdentity<User>(
                                 options: Options());
                         });
                     }
@@ -31,7 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     {
                         Assert.Throws<ArgumentNullException>("options", () =>
                         {
-                            Services().AddThoughtHavenIdentity<User>(options: null);
+                            Services().AddThoughtHavenIdentity<User>(options: null!);
                         });
                     }
 

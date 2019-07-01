@@ -27,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                 Assert.Throws<ArgumentNullException>("userStore", () =>
                 {
                     new FakeIdentityServiceBase(
-                        userStore: null,
+                        userStore: null!,
                         userValidators: new FakeUserValidators(),
                         claimsAuthenticationService: new FakeClaimsAuthenticationService1(),
                         claimsConverter: new FakeClaimsConverter());
@@ -41,7 +41,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                 {
                     new FakeIdentityServiceBase(
                         userStore: new FakeUserStore(),
-                        userValidators: null,
+                        userValidators: null!,
                         claimsAuthenticationService: new FakeClaimsAuthenticationService1(),
                         claimsConverter: new FakeClaimsConverter());
                 });
@@ -55,7 +55,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                     new FakeIdentityServiceBase(
                         userStore: new FakeUserStore(),
                         userValidators: new FakeUserValidators(),
-                        claimsAuthenticationService: null,
+                        claimsAuthenticationService: null!,
                         claimsConverter: new FakeClaimsConverter());
                 });
             }
@@ -69,7 +69,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                         userStore: new FakeUserStore(),
                         userValidators: new FakeUserValidators(),
                         claimsAuthenticationService: new FakeClaimsAuthenticationService1(),
-                        claimsConverter: null);
+                        claimsConverter: null!);
                 });
             }
         }
@@ -83,7 +83,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("key", async () =>
                     {
-                        await Identity().Retrieve(key: null);
+                        await Identity().Retrieve(key: null!);
                     });
                 }
 
@@ -92,7 +92,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                 {
                     var identity = Identity();
 
-                    var user = await identity.Retrieve("key");
+                    _ = await identity.Retrieve("key");
 
                     Assert.Equal("key", identity.UserStore.Retrieve_ByKey_InputUserKey);
                 }
@@ -118,7 +118,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await Identity().Create(user: null);
+                        await Identity().Create(user: null!);
                     });
                 }
 
@@ -184,7 +184,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await Identity().Update(user: null);
+                        await Identity().Update(user: null!);
                     });
                 }
 
@@ -250,7 +250,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("key", async () =>
                     {
-                        await Identity().Delete(key: null);
+                        await Identity().Delete(key: null!);
                     });
                 }
 
@@ -276,7 +276,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await Identity().Login(
-                            user: null,
+                            user: null!,
                             properties: new AuthenticationProperties());
                     });
                 }
@@ -288,7 +288,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                     {
                         await Identity().Login(
                             user: new User(),
-                            properties: null);
+                            properties: null!);
                     });
                 }
 
@@ -415,10 +415,10 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
         private static FakeClaimsAuthenticationService1 ClaimsAuthenticationService() =>
             new FakeClaimsAuthenticationService1();
         private static FakeClaimsConverter ClaimsConverter() => new FakeClaimsConverter();
-        private static FakeIdentityServiceBase Identity(FakeUserStore userStore = null,
-            FakeUserValidators userValidators = null,
-            FakeClaimsAuthenticationService1 claimsAuthenticationService = null,
-            FakeClaimsConverter claimsConverter = null) =>
+        private static FakeIdentityServiceBase Identity(FakeUserStore? userStore = null,
+            FakeUserValidators? userValidators = null,
+            FakeClaimsAuthenticationService1? claimsAuthenticationService = null,
+            FakeClaimsConverter? claimsConverter = null) =>
             new FakeIdentityServiceBase(userStore ?? UserStore(),
                 userValidators ?? UserValidators(),
                 claimsAuthenticationService ?? ClaimsAuthenticationService(),

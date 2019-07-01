@@ -15,14 +15,15 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("lockout", () =>
                     {
-                        new TimedLockoutModel(lockout: null);
+                        new TimedLockoutModel(lockout: null!);
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsKey()
                 {
-                    var lockout = new TimedLockout("key", lastModified: DateTimeOffset.UtcNow);
+                    var lockout = new TimedLockout("key",
+                        lastModified: DateTimeOffset.UtcNow);
 
                     var model = new TimedLockoutModel(lockout);
 

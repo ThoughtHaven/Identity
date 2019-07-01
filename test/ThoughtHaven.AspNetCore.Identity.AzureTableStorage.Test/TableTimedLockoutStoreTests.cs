@@ -17,7 +17,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("options", () =>
                     {
-                        new TableTimedLockoutStore(options: null);
+                        new TableTimedLockoutStore(options: null!);
                     });
                 }
             }
@@ -32,7 +32,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("key", async () =>
                     {
-                        await Store().Retrieve(key: null);
+                        await Store().Retrieve(key: null!);
                     });
                 }
 
@@ -82,7 +82,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     var result = await store.Retrieve("key");
 
-                    Assert.Equal(store.ModelStore.Retrieve_Output.Key, result.Key);
+                    Assert.Equal(store.ModelStore.Retrieve_Output!.Key, result!.Key);
                     Assert.Equal(store.ModelStore.Retrieve_Output.LastModified,
                         result.LastModified);
                     Assert.Equal(store.ModelStore.Retrieve_Output.FailedAccessAttempts,
@@ -102,7 +102,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("lockout", async () =>
                     {
-                        await Store().Create(lockout: null);
+                        await Store().Create(lockout: null!);
                     });
                 }
 
@@ -114,7 +114,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     await store.Create(lockout);
 
-                    Assert.Equal(lockout.Key, store.ModelStore.Create_InputModel.Key);
+                    Assert.Equal(lockout.Key, store.ModelStore.Create_InputModel!.Key);
                     Assert.Equal(lockout.LastModified,
                         store.ModelStore.Create_InputModel.LastModified);
                     Assert.Equal(lockout.FailedAccessAttempts,
@@ -145,7 +145,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("lockout", async () =>
                     {
-                        await Store().Update(lockout: null);
+                        await Store().Update(lockout: null!);
                     });
                 }
 
@@ -157,7 +157,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     await store.Update(lockout);
 
-                    Assert.Equal(lockout.Key, store.ModelStore.Update_InputModel.Key);
+                    Assert.Equal(lockout.Key, store.ModelStore.Update_InputModel!.Key);
                     Assert.Equal(lockout.LastModified,
                         store.ModelStore.Update_InputModel.LastModified);
                     Assert.Equal(lockout.FailedAccessAttempts,
@@ -188,7 +188,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("key", async () =>
                     {
-                        await Store().Delete(key: null);
+                        await Store().Delete(key: null!);
                     });
                 }
 
@@ -231,7 +231,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("key", () =>
                     {
-                        FakeTableTimedLockoutStore.CreateEntityKeys(key: null);
+                        FakeTableTimedLockoutStore.CreateEntityKeys(key: null!);
                     });
                 }
 

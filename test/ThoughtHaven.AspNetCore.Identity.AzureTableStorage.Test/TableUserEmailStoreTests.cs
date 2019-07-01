@@ -16,7 +16,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("options", () =>
                     {
-                        new TableUserEmailStore<User>(options: null);
+                        new TableUserEmailStore<User>(options: null!);
                     });
                 }
             }
@@ -31,7 +31,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("email", async () =>
                     {
-                        await Store().Retrieve(email: null);
+                        await Store().Retrieve(email: null!);
                     });
                 }
 
@@ -55,7 +55,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     Assert.Equal("Email eq 'some@email.com'",
                         store.EntityStore.Table
-                            .ExecuteQuerySegmentedAsync_InputQuery.FilterString);
+                            .ExecuteQuerySegmentedAsync_InputQuery!.FilterString);
                     Assert.NotNull(store.EntityStore.Table
                         .ExecuteQuerySegmentedAsync_InputToken);
                     Assert.Equal(store.EntityStore.Options,
@@ -107,7 +107,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     var result = await store.Retrieve(email: "some@email.com");
 
-                    Assert.Equal("some@email.com", result.Email);
+                    Assert.Equal("some@email.com", result!.Email);
                 }
             }
         }

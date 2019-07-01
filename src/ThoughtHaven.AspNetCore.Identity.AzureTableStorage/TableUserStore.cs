@@ -15,7 +15,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
         protected TableUserStore(TableEntityStore entityStore)
             : this(entityStore,
                   userKeyToEntityKeys: key => CreateEntityKeys(key),
-                  userToEntityKeys: user => CreateEntityKeys(user.Key()))
+                  userToEntityKeys: user => CreateEntityKeys(user.Key()!))
         { }
 
         protected TableUserStore(TableEntityStore entityStore,

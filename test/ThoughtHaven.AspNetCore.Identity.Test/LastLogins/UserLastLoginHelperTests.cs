@@ -16,7 +16,7 @@ namespace ThoughtHaven.AspNetCore.Identity.LastLogins
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await new FakeUserHelper1().SetLastLogin<User>(user: null);
+                        await new FakeUserHelper1().SetLastLogin<User>(user: null!);
                     });
                 }
 

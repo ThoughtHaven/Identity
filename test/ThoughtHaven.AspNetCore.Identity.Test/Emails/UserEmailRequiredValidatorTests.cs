@@ -34,7 +34,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await new UserEmailRequiredValidator<User>().Validate(user: null);
+                        await new UserEmailRequiredValidator<User>().Validate(user: null!);
                     });
                 }
 

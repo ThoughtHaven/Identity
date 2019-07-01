@@ -14,11 +14,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 [Fact]
                 public async Task NullIdentity_Throws()
                 {
-                    FakeIdentityService identity = null;
+                    FakeIdentityService? identity = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await identity.Retrieve(email: "some@email.com");
+                        await identity!.Retrieve(email: "some@email.com");
                     });
                 }
 
@@ -27,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("email", async () =>
                     {
-                        await Identity().Retrieve(email: null);
+                        await Identity().Retrieve(email: null!);
                     });
                 }
 
@@ -61,11 +61,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 [Fact]
                 public async Task NullIdentity_Throws()
                 {
-                    FakeIdentityService identity = null;
+                    FakeIdentityService? identity = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await identity.UpdateEmail(
+                        await identity!.UpdateEmail(
                             user: User(),
                             email: "some@email.com");
                     });
@@ -77,7 +77,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await Identity().UpdateEmail(
-                            user: null,
+                            user: null!,
                             email: "some@email.com");
                     });
                 }
@@ -89,7 +89,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     {
                         await Identity().UpdateEmail(
                             user: User(),
-                            email: null);
+                            email: null!);
                     });
                 }
 
@@ -109,10 +109,10 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 {
                     var user = User();
                     var identity = Identity();
-                    identity.Helper.FakeUserEmailStore.Retrieve_Output.Id = user.Id;
-                    identity.Helper.FakeUserEmailStore.Retrieve_Output.Email = user.Email;
+                    identity.Helper.FakeUserEmailStore.Retrieve_Output!.Id = user.Id;
+                    identity.Helper.FakeUserEmailStore.Retrieve_Output!.Email = user.Email;
 
-                    var result = await identity.UpdateEmail(User(), user.Email);
+                    var result = await identity.UpdateEmail(User(), user.Email!);
 
                     Assert.Equal(identity.Helper.UserAlreadyOwnsEmail, result.Failure);
                 }
@@ -122,10 +122,10 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 {
                     var user = User();
                     var identity = Identity();
-                    identity.Helper.FakeUserEmailStore.Retrieve_Output.Id = "other-id";
+                    identity.Helper.FakeUserEmailStore.Retrieve_Output!.Id = "other-id";
                     identity.Helper.FakeUserEmailStore.Retrieve_Output.Email = user.Email;
 
-                    var result = await identity.UpdateEmail(User(), user.Email);
+                    var result = await identity.UpdateEmail(User(), user.Email!);
 
                     Assert.Equal(identity.Helper.EmailNotAvailable, result.Failure);
                 }
@@ -164,7 +164,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
 
                     await identity.UpdateEmail(user, "some@email.com");
 
-                    Assert.Equal(user.Id,
+                    Assert.Equal(user.Id!,
                         identity.Helper.CreateEmailVerificationCode_InputUserKey);
                 }
 
@@ -190,11 +190,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 [Fact]
                 public async Task NullIdentity_Throws()
                 {
-                    FakeIdentityService identity = null;
+                    FakeIdentityService? identity = null;
 
                     await Assert.ThrowsAsync<ArgumentNullException>("identity", async () =>
                     {
-                        await identity.ConfirmEmail(
+                        await identity!.ConfirmEmail(
                             user: User(),
                             code: 1234);
                     });
@@ -206,7 +206,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
                         await Identity().ConfirmEmail(
-                            user: null,
+                            user: null!,
                             code: 1234);
                     });
                 }
@@ -218,7 +218,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     {
                         await Identity().ConfirmEmail(
                             user: User(),
-                            code: null);
+                            code: null!);
                     });
                 }
 
@@ -241,7 +241,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
 
                     await identity.ConfirmEmail(user, 1234);
 
-                    Assert.Equal(user.Id,
+                    Assert.Equal(user.Id!,
                         identity.Helper.ValidateEmailVerificationCode_InputUserKey);
                     Assert.Equal(1234,
                         identity.Helper.ValidateEmailVerificationCode_InputCode);

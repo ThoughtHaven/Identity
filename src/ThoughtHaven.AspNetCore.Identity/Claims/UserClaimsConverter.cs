@@ -36,7 +36,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             Guard.Null(nameof(user), user);
 
             var key = user.Key();
-            if (key == null)
+            if (key is null)
             {
                 throw new ArgumentException(
                     paramName: nameof(user),
@@ -64,13 +64,13 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             return Task.FromResult<IEnumerable<Claim>>(claims);
         }
 
-        public virtual Task<UserKey> Convert(ClaimsPrincipal principal)
+        public virtual Task<UserKey?> Convert(ClaimsPrincipal principal)
         {
             Guard.Null(nameof(principal), principal);
 
-            UserKey result = null;
+            UserKey? result = null;
 
-            foreach (var id in principal?.Identities)
+            foreach (var id in principal?.Identities ?? new ClaimsIdentity[0])
             {
                 if (id.AuthenticationType != this._options.AuthenticationScheme) { continue; }
 

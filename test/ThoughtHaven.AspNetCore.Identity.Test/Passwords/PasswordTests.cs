@@ -23,7 +23,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new Password(value: null);
+                        new Password(value: null!);
                     });
                 }
 

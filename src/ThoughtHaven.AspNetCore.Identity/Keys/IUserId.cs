@@ -2,6 +2,6 @@
 {
     public interface IUserId
     {
-        string Id { get; set; }
+        string? Id { get; set; }
     }
 }

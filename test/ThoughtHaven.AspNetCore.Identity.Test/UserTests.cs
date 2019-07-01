@@ -12,7 +12,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                 [Fact]
                 public void NoId_ReturnsNull()
                 {
-                    var user = new User() { Id = null };
+                    var user = new User() { Id = null! };
 
                     Assert.Null(user.Key());
                 }
@@ -177,7 +177,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                 {
                     var user = new User();
 
-                    Assert.NotEqual(default(DateTimeOffset), user.Created);
+                    Assert.NotEqual(default, user.Created);
                 }
 
                 [Fact]

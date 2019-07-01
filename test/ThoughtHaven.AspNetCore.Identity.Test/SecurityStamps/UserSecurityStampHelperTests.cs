@@ -18,7 +18,7 @@ namespace ThoughtHaven.AspNetCore.Identity.SecurityStamps
 
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await helper.RefreshSecurityStamp<User>(user: null);
+                        await helper.RefreshSecurityStamp<User>(user: null!);
                     });
                 }
 
@@ -31,7 +31,7 @@ namespace ThoughtHaven.AspNetCore.Identity.SecurityStamps
                     await helper.RefreshSecurityStamp(user);
 
                     Assert.NotNull(user.SecurityStamp);
-                    Assert.Equal(20, user.SecurityStamp.Length);
+                    Assert.Equal(20, user.SecurityStamp!.Length);
                 }
             }
         }

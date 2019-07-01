@@ -6,6 +6,7 @@ namespace ThoughtHaven.AspNetCore.Identity
     public static class AuthenticationServiceExtensions
     {
         public static Task Login<T>(this IAuthenticationService<T> authentication, T login)
+            where T : class
         {
             Guard.Null(nameof(authentication), authentication);
             Guard.Null(nameof(login), login);
@@ -15,6 +16,7 @@ namespace ThoughtHaven.AspNetCore.Identity
 
         public static Task Login<T>(this IAuthenticationService<T> authentication, T login,
             bool persistent)
+            where T : class
         {
             Guard.Null(nameof(authentication), authentication);
             Guard.Null(nameof(login), login);

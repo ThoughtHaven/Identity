@@ -36,7 +36,7 @@ namespace ThoughtHaven.AspNetCore.Identity.SecurityStamps
 
                     await Assert.ThrowsAsync<ArgumentNullException>("user", async () =>
                     {
-                        await validator.Validate(user: null);
+                        await validator.Validate(user: null!);
                     });
                 }
 

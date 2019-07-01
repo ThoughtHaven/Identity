@@ -10,7 +10,7 @@ namespace ThoughtHaven.AspNetCore.Identity
     {
         public static async Task<Result<TUser, UserMessage>> Create<TUser>(
             this IIdentityService<TUser> identity, EmailAddress email, Password password)
-            where TUser : IUserEmail, IUserPasswordHash, new()
+            where TUser : class, IUserEmail, IUserPasswordHash, new()
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(email), email);
@@ -27,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             var result = await identity.Helper.SetPasswordHash(user, password)
                 .ConfigureAwait(false);
 
-            if (!result.Success) { return result.Failure; }
+            if (!result.Success) { return result.Failure!; }
 
             await identity.Create(user).ConfigureAwait(false);
 
@@ -37,7 +37,7 @@ namespace ThoughtHaven.AspNetCore.Identity
         public static async Task<Result<TUser, UserMessage>> Login<TUser>(
             this IIdentityService<TUser> identity, EmailAddress email, Password password,
             AuthenticationProperties properties)
-            where TUser : IUserEmail, IUserPasswordHash, new()
+            where TUser : class, IUserEmail, IUserPasswordHash, new()
         {
             Guard.Null(nameof(identity), identity);
             Guard.Null(nameof(email), email);
@@ -73,7 +73,7 @@ namespace ThoughtHaven.AspNetCore.Identity
         public static Task<Result<TUser, UserMessage>> Login<TUser>(
             this IIdentityService<TUser> identity, EmailAddress email, Password password,
             bool persistent = false)
-            where TUser : IUserEmail, IUserPasswordHash, new() =>
+            where TUser : class, IUserEmail, IUserPasswordHash, new() =>
             identity.Login(email, password, new AuthenticationProperties()
             {
                 IsPersistent = persistent

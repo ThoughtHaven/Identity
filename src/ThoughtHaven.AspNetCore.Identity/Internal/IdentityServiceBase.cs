@@ -27,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
             this._claimsConverter = Guard.Null(nameof(claimsConverter), claimsConverter);
         }
 
-        public virtual Task<TUser> Retrieve(UserKey key)
+        public virtual Task<TUser?> Retrieve(UserKey key)
         {
             Guard.Null(nameof(key), key);
 
@@ -70,7 +70,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
                 .ConfigureAwait(false);
         }
 
-        public virtual async Task<TUser> Authenticate()
+        public virtual async Task<TUser?> Authenticate()
         {
             var principal = await this._claimsAuthenticationService.Authenticate()
                 .ConfigureAwait(false);
@@ -79,7 +79,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Internal
 
             var key = await this._claimsConverter.Convert(principal);
 
-            if (key == null) { return null; }
+            if (key is null) { return null; }
 
             return await this.Retrieve(key).ConfigureAwait(false);
         }

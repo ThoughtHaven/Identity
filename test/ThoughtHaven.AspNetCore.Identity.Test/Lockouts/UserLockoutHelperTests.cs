@@ -33,7 +33,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
 
                     await Assert.ThrowsAsync<ArgumentNullException>("key", async () =>
                     {
-                        await helper.IsLockedOut(key: null);
+                        await helper.IsLockedOut(key: null!);
                     });
                 }
 
@@ -64,7 +64,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 {
                     var helper = new FakeUserHelper1();
 
-                    var result = await helper.IsLockedOut("key");
+                    _ = await helper.IsLockedOut("key");
 
                     Assert.Equal("key", helper.FakeTimedLockoutStore.Retrieve_KeyInput);
                 }
@@ -86,11 +86,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     var helper = new FakeUserHelper1();
                     helper.FakeTimedLockoutStore.Retrieve_Output = null;
 
-                    var result = await helper.IsLockedOut("key");
+                    _ = await helper.IsLockedOut("key");
 
                     var created = helper.FakeTimedLockoutStore.Create_InputData;
 
-                    Assert.Equal("key", created.Key);
+                    Assert.Equal("key", created!.Key);
                     Assert.Equal(helper.FakeClock.UtcNow, created.LastModified);
                     Assert.Equal(1, created.FailedAccessAttempts);
                     Assert.Null(created.Expiration);
@@ -127,11 +127,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     helper.FakeTimedLockoutStore.Retrieve_Output = lockout;
 
                     // Act
-                    var result = await helper.IsLockedOut("key");
+                    _ = await helper.IsLockedOut("key");
 
                     var updated = helper.FakeTimedLockoutStore.Update_InputData;
 
-                    Assert.Equal("key", updated.Key);
+                    Assert.Equal("key", updated!.Key);
                     Assert.Equal(helper.FakeClock.UtcNow, updated.LastModified);
                     Assert.Equal(2, updated.FailedAccessAttempts);
                     Assert.Null(updated.Expiration);
@@ -168,15 +168,15 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     helper.FakeTimedLockoutStore.Retrieve_Output = lockout;
 
                     // Act
-                    var result = await helper.IsLockedOut("key");
+                    _ = await helper.IsLockedOut("key");
 
                     var updated = helper.FakeTimedLockoutStore.Update_InputData;
 
-                    Assert.Equal("key", updated.Key);
+                    Assert.Equal("key", updated!.Key);
                     Assert.Equal(helper.FakeClock.UtcNow, updated.LastModified);
                     Assert.Equal(5, updated.FailedAccessAttempts);
                     Assert.Equal(helper.FakeClock.UtcNow.Add(TimeSpan.FromMinutes(10)),
-                        updated.Expiration.Value);
+                        updated.Expiration!.Value);
                 }
 
                 [Fact]
@@ -212,11 +212,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     helper.FakeTimedLockoutStore.Retrieve_Output = lockout;
 
                     // Act
-                    var result = await helper.IsLockedOut("key");
+                    _ = await helper.IsLockedOut("key");
 
                     var updated = helper.FakeTimedLockoutStore.Update_InputData;
 
-                    Assert.Equal("key", updated.Key);
+                    Assert.Equal("key", updated!.Key);
                     Assert.Equal(helper.FakeClock.UtcNow, updated.LastModified);
                     Assert.Equal(1, updated.FailedAccessAttempts);
                     Assert.Null(updated.Expiration);
@@ -271,11 +271,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     helper.FakeTimedLockoutStore.Retrieve_Output = lockout;
 
                     // Act
-                    var result = await helper.IsLockedOut("key");
+                    _ = await helper.IsLockedOut("key");
 
                     var updated = helper.FakeTimedLockoutStore.Update_InputData;
 
-                    Assert.Equal("key", updated.Key);
+                    Assert.Equal("key", updated!.Key);
                     Assert.Equal(helper.FakeClock.UtcNow, updated.LastModified);
                     Assert.Equal(1, updated.FailedAccessAttempts);
                     Assert.Null(updated.Expiration);
@@ -292,7 +292,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("key", async () =>
                     {
-                        await new FakeUserHelper1().ResetLockedOut(key: null);
+                        await new FakeUserHelper1().ResetLockedOut(key: null!);
                     });
                 }
 

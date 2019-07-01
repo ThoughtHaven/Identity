@@ -7,8 +7,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
     public class FakeClaimsAuthenticationService1 : IAuthenticationService<ClaimsPrincipal>
     {
         public bool Login_Called = false;
-        public ClaimsPrincipal Login_InputPrincipal;
-        public AuthenticationProperties Login_InputProperties;
+        public ClaimsPrincipal? Login_InputPrincipal;
+        public AuthenticationProperties? Login_InputProperties;
         public Task Login(ClaimsPrincipal principal, AuthenticationProperties properties)
         {
             this.Login_Called = true;
@@ -19,8 +19,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
         }
 
         public bool Authenticate_Called = false;
-        public ClaimsPrincipal Authenticate_OutputPrincipal = new ClaimsPrincipal();
-        public Task<ClaimsPrincipal> Authenticate()
+        public ClaimsPrincipal? Authenticate_OutputPrincipal = new ClaimsPrincipal();
+        public Task<ClaimsPrincipal?> Authenticate()
         {
             this.Authenticate_Called = true;
 

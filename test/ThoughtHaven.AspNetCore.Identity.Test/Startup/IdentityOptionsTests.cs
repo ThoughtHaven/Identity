@@ -31,7 +31,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.AuthenticationScheme = null;
+                        options.AuthenticationScheme = null!;
                     });
                 }
 
@@ -103,7 +103,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.Claims = null;
+                        options.Claims = null!;
                     });
                 }
 
@@ -142,7 +142,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.User = null;
+                        options.User = null!;
                     });
                 }
 
@@ -238,7 +238,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
 
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        options.Cookie = null;
+                        options.Cookie = null!;
                     });
                 }
 

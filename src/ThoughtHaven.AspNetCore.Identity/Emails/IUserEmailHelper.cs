@@ -11,7 +11,7 @@ namespace ThoughtHaven.AspNetCore.Identity
         UserMessage UserAlreadyOwnsEmail { get; }
         UserMessage EmailNotAvailable { get; }
         UserMessage InvalidEmailVerificationCode { get; }
-        Task<TUser> Retrieve<TUser>(EmailAddress email) where TUser : IUserEmail;
+        Task<TUser?> Retrieve<TUser>(EmailAddress email) where TUser : class, IUserEmail;
         Task SetEmail<TUser>(TUser user, EmailAddress email) where TUser : IUserEmail;
         Task ConfirmEmail<TUser>(TUser user) where TUser : IUserEmail;
         Task<VerificationCode> CreateEmailVerificationCode(UserKey userKey);
