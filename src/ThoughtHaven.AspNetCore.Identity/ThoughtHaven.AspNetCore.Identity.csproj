@@ -8,7 +8,7 @@
     <Product>Thought Haven AspNetCore Identity</Product>
     <Description>An alternative identity framework for AspNetCore apps.</Description>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
-    <Version>0.110.1</Version>
+    <Version>0.110.2</Version>
     <LangVersion>8.0</LangVersion>
     <!--<Nullable>enable</Nullable>-->
     <NullableContextOptions>enable</NullableContextOptions>
@@ -20,7 +20,7 @@
     <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.102.1" />
     <PackageReference Include="ThoughtHaven.Reflection" Version="0.102.0" />
     <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.102.0" />
-    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.103.1" />
+    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.103.2" />
   </ItemGroup>
 
 </Project>
