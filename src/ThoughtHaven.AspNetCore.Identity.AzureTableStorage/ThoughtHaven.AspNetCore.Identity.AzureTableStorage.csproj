@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.AzureTableStorage" Version="0.109.0" />
+    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.AzureTableStorage" Version="0.200.0" />
   </ItemGroup>
 
   <ItemGroup>

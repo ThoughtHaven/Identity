@@ -17,10 +17,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="PwnedPasswords.Client" Version="1.2.0" />
-    <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.103.0" />
-    <PackageReference Include="ThoughtHaven.Reflection" Version="0.103.0" />
-    <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.103.0" />
-    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.104.0" />
+    <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.200.0" />
+    <PackageReference Include="ThoughtHaven.Reflection" Version="0.200.0" />
+    <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.200.0" />
+    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.200.0" />
   </ItemGroup>
 
 </Project>
