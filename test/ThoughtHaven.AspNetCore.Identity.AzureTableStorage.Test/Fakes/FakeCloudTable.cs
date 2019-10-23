@@ -109,7 +109,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
         public static TableQuerySegment CreateSegment(int results = 1)
         {
             var segment = (TableQuerySegment)Activator.CreateInstance(
-                typeof(TableQuerySegment), nonPublic: true);
+                typeof(TableQuerySegment), nonPublic: true)!;
 
             for (var i = 0; i < results; i++)
             {

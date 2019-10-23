@@ -261,7 +261,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
                     var code = await helper.CreatePasswordResetCode(userKey);
 
                     Assert.True(helper.FakeSingleUseTokenService.Create_Called);
-                    Assert.Equal(helper.FakeSingleUseTokenService.Create_InputToken.Value,
+                    Assert.Equal(helper.FakeSingleUseTokenService.Create_InputToken!.Value,
                         $"pw-key-{code.Value}");
                 }
 

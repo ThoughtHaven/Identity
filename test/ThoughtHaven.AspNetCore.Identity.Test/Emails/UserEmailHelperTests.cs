@@ -288,7 +288,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                     var token = await helper.CreateEmailVerificationCode(userKey);
 
                     Assert.True(helper.FakeSingleUseTokenService.Create_Called);
-                    Assert.Equal(helper.FakeSingleUseTokenService.Create_InputToken.Value,
+                    Assert.Equal(helper.FakeSingleUseTokenService.Create_InputToken!.Value,
                         $"em-1-{token.Value}");
                 }
 

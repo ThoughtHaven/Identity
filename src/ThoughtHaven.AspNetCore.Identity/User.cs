@@ -13,7 +13,7 @@ namespace ThoughtHaven.AspNetCore.Identity
         IUserLastLogin
     {
         public virtual UserKey? Key() =>
-            string.IsNullOrWhiteSpace(this.Id) ? default : new UserKey(this.Id);
+            string.IsNullOrWhiteSpace(this.Id) ? default : new UserKey(this.Id!);
 
         public virtual string? Id { get; set; }
         public string? Email { get; set; }

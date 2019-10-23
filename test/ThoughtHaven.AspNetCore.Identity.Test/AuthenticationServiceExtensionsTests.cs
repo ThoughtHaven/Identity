@@ -83,7 +83,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                     Assert.Equal(authentication.ClaimsConverter.Convert_FromUser_Output,
                         authentication.ClaimsAuthenticationService.Login_InputPrincipal);
                     Assert.False(authentication.ClaimsAuthenticationService
-                        .Login_InputProperties.IsPersistent);
+                        .Login_InputProperties!.IsPersistent);
                 }
 
                 [Fact]
@@ -99,7 +99,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                     Assert.Equal(authentication.ClaimsConverter.Convert_FromUser_Output,
                         authentication.ClaimsAuthenticationService.Login_InputPrincipal);
                     Assert.True(authentication.ClaimsAuthenticationService
-                        .Login_InputProperties.IsPersistent);
+                        .Login_InputProperties!.IsPersistent);
                 }
             }
         }

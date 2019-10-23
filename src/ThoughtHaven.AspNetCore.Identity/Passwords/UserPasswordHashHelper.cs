@@ -55,7 +55,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                     message: $"The {nameof(user)} argument's {nameof(user.PasswordHash)} property cannot be null or white space.");
             }
 
-            return Task.FromResult(this.PasswordHasher.Validate(user.PasswordHash, password));
+            return Task.FromResult(this.PasswordHasher.Validate(user.PasswordHash!, password));
         }
 
         public virtual async Task<PasswordResetCode> CreatePasswordResetCode(UserKey userKey)
