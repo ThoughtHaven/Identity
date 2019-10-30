@@ -9,7 +9,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
         private static readonly int SaltSize = 128 / 8;
         protected int Iterations { get; }
 
-        public Pbkdf2PasswordHasher(int iterations = 25_000)
+        public Pbkdf2PasswordHasher() : this(iterations: 25000) { }
+
+        protected Pbkdf2PasswordHasher(int iterations)
         {
             Guard.LessThan(nameof(iterations), iterations, minimum: 1);
 

@@ -10,31 +10,14 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
     {
         public class Constructor
         {
-            public class IterationsOverload
+            public class EmptyOverload
             {
                 [Fact]
-                public void IterationsBelow1_Throws()
-                {
-                    Assert.Throws<ArgumentOutOfRangeException>("iterations", () =>
-                    {
-                        new FakePbkdf2PasswordHasher(iterations: 0);
-                    });
-                }
-
-                [Fact]
-                public void DefaultIterations_SetsIterationsTo25000()
+                public void WhenCalled_SetsIterationsTo25000()
                 {
                     var hasher = new FakePbkdf2PasswordHasher();
 
                     Assert.Equal(25_000, hasher.Iterations);
-                }
-
-                [Fact]
-                public void WhenCalled_SetsIterations()
-                {
-                    var hasher = new FakePbkdf2PasswordHasher(iterations: 1);
-
-                    Assert.Equal(1, hasher.Iterations);
                 }
             }
         }
@@ -261,14 +244,13 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
         }
         private static string Hash(Password password, byte[] salt, int iterations)
         {
-            using (var cipher = new Rfc2898DeriveBytes(password.Value, salt, iterations))
-            {
-                var hash = cipher.GetBytes(32);
+            using var cipher = new Rfc2898DeriveBytes(password.Value, salt, iterations);
 
-                var concat = salt.Concat(hash).ToArray();
+            var hash = cipher.GetBytes(32);
 
-                return $"{iterations}.{Convert.ToBase64String(concat)}";
-            }
+            var concat = salt.Concat(hash).ToArray();
+
+            return $"{iterations}.{Convert.ToBase64String(concat)}";
         }
     }
 }

@@ -6,8 +6,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
     {
         new public int Iterations => base.Iterations;
 
-        public FakePbkdf2PasswordHasher(int iterations) : base(iterations) { }
-
         public FakePbkdf2PasswordHasher() : base() { }
+
+        public FakePbkdf2PasswordHasher(int iterations) : base(iterations) { }
     }
 }
