@@ -273,7 +273,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Passwords
 
                     _ = await helper.CreatePasswordResetCode(userKey);
 
-                    Assert.Equal(helper.FakeClock.UtcNow.AddDays(1),
+                    Assert.Equal(helper.FakeClock.UtcNow.ToOffset().AddDays(1),
                         helper.FakeSingleUseTokenService.Create_InputExpiration);
                 }
             }

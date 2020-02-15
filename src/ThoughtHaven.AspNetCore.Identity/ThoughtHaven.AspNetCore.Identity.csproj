@@ -8,7 +8,7 @@
     <Product>Thought Haven AspNetCore Identity</Product>
     <Description>An alternative identity framework for AspNetCore apps.</Description>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
-    <Version>0.200.1</Version>
+    <Version>0.700.0</Version>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
@@ -17,10 +17,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="PwnedPasswords.Client" Version="1.2.0" />
-    <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.200.0" />
-    <PackageReference Include="ThoughtHaven.Reflection" Version="0.200.0" />
-    <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.200.0" />
-    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.200.0" />
+    <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.700.0" />
+    <PackageReference Include="ThoughtHaven.Reflection" Version="0.700.0" />
+    <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.700.0" />
+    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.700.0" />
   </ItemGroup>
 
 </Project>

@@ -31,10 +31,12 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
             if (model == null) { return null; }
 
-            return new TimedLockout(model.Key!, model.LastModified!.Value)
+            return new TimedLockout(model.Key!, new UtcDateTime(model.LastModified!.Value))
             {
                 FailedAccessAttempts = model.FailedAccessAttempts!.Value,
-                Expiration = model.Expiration,
+                Expiration = model.Expiration.HasValue
+                    ? new UtcDateTime(model.Expiration.Value)
+                    : null,
             };
         }
 

@@ -203,7 +203,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     Assert.True(identity.HasClaim(
                         options.ClaimTypes.SecurityStampValidated,
-                        clock.UtcNow.UtcTicks.ToString()));
+                        clock.UtcNow.Ticks.ToString()));
                 }
 
                 [Fact]

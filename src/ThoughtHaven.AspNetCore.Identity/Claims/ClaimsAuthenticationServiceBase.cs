@@ -49,7 +49,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 return null;
             }
 
-            var timeSinceCheck = this._clock.UtcNow - claims.SecurityStampValidated;
+            var timeSinceCheck = this._clock.UtcNow.ToOffset() -
+                claims.SecurityStampValidated!.ToOffset();
 
             if (timeSinceCheck < this._options.ValidateSecurityStampInterval)
             { return principal; }
@@ -91,7 +92,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     id.RemoveClaim(claim);
                     id.AddClaim(new Claim(this._options.ClaimTypes.SecurityStampValidated,
-                        this._clock.UtcNow.UtcTicks.ToString()));
+                        this._clock.UtcNow.Ticks.ToString()));
                 }
 
                 identities.Add(id);
@@ -105,10 +106,10 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             public bool IsValid =>
                 !(this.UserKey is null)
                 && !string.IsNullOrWhiteSpace(this.SecurityStamp)
-                && this.SecurityStampValidated.HasValue;
+                && !(this.SecurityStampValidated is null);
             public UserKey? UserKey { get; }
             public string? SecurityStamp { get; }
-            public DateTimeOffset? SecurityStampValidated { get; }
+            public UtcDateTime? SecurityStampValidated { get; }
 
             public UserClaims(ClaimsIdentity identity, ClaimOptions.ClaimTypeOptions options)
             {
@@ -119,9 +120,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 this.UserKey = keyClaim != null ? new UserKey(keyClaim.Value) : null;
                 this.SecurityStamp = stampClaim?.Value;
                 this.SecurityStampValidated = stampValidatedClaim != null
-                    ? (DateTimeOffset?)new DateTimeOffset(
-                        ticks: long.Parse(stampValidatedClaim.Value),
-                        offset: TimeSpan.Zero)
+                    ? new UtcDateTime(long.Parse(stampValidatedClaim.Value))
                     : null;
             }
         }

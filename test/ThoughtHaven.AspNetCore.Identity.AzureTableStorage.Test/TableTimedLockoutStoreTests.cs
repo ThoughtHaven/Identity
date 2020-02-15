@@ -84,11 +84,11 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
 
                     Assert.Equal(store.ModelStore.Retrieve_Output!.Key, result!.Key);
                     Assert.Equal(store.ModelStore.Retrieve_Output.LastModified,
-                        result.LastModified);
+                        result.LastModified.ToOffset());
                     Assert.Equal(store.ModelStore.Retrieve_Output.FailedAccessAttempts,
                         result.FailedAccessAttempts);
                     Assert.Equal(store.ModelStore.Retrieve_Output.Expiration,
-                        result.Expiration);
+                        result.Expiration!.ToOffset());
                 }
             }
         }
@@ -115,11 +115,11 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                     await store.Create(lockout);
 
                     Assert.Equal(lockout.Key, store.ModelStore.Create_InputModel!.Key);
-                    Assert.Equal(lockout.LastModified,
+                    Assert.Equal(lockout.LastModified.ToOffset(),
                         store.ModelStore.Create_InputModel.LastModified);
                     Assert.Equal(lockout.FailedAccessAttempts,
                         store.ModelStore.Create_InputModel.FailedAccessAttempts);
-                    Assert.Equal(lockout.Expiration,
+                    Assert.Equal(lockout.Expiration!.ToOffset(),
                         store.ModelStore.Create_InputModel.Expiration);
                 }
 
@@ -158,11 +158,11 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                     await store.Update(lockout);
 
                     Assert.Equal(lockout.Key, store.ModelStore.Update_InputModel!.Key);
-                    Assert.Equal(lockout.LastModified,
+                    Assert.Equal(lockout.LastModified.ToOffset(),
                         store.ModelStore.Update_InputModel.LastModified);
                     Assert.Equal(lockout.FailedAccessAttempts,
                         store.ModelStore.Update_InputModel.FailedAccessAttempts);
-                    Assert.Equal(lockout.Expiration,
+                    Assert.Equal(lockout.Expiration!.ToOffset(),
                         store.ModelStore.Update_InputModel.Expiration);
                 }
 
@@ -251,10 +251,10 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
         private static FakeTableTimedLockoutStore Store() =>
             new FakeTableTimedLockoutStore(new FakeTimedLockoutCrudStore());
         private static TimedLockout Lockout() =>
-            new TimedLockout("key", DateTimeOffset.UtcNow)
+            new TimedLockout("key", new UtcDateTime(DateTimeOffset.UtcNow))
             {
                 FailedAccessAttempts = 5,
-                Expiration = DateTimeOffset.UtcNow.AddDays(1),
+                Expiration = new UtcDateTime(DateTimeOffset.UtcNow.AddDays(1)),
             };
     }
 }

@@ -32,9 +32,9 @@ namespace ThoughtHaven.AspNetCore.Identity
 
                 await this.TimedLockoutStore.Create(lockout).ConfigureAwait(false);
             }
-            else if (!lockout.Expiration.HasValue)
+            else if (lockout.Expiration is null)
             {
-                if (lockout.LastModified <= now.Subtract(lockoutLength))
+                if (lockout.LastModified.ToOffset() <= now.ToOffset().Subtract(lockoutLength))
                 {
                     lockout = new TimedLockout(key, lastModified: now);
 
@@ -47,7 +47,8 @@ namespace ThoughtHaven.AspNetCore.Identity
 
                     if (lockout.FailedAccessAttempts >= maxFailedAccessAttempts)
                     {
-                        lockout.Expiration = now.Add(lockoutLength);
+                        lockout.Expiration = new UtcDateTime(
+                            now.ToOffset().Add(lockoutLength));
                     }
 
                     await this.TimedLockoutStore.Update(lockout).ConfigureAwait(false);
@@ -60,7 +61,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                 await this.TimedLockoutStore.Update(lockout).ConfigureAwait(false);
             }
 
-            return lockout.Expiration.HasValue && lockout.Expiration > now;
+            return !(lockout.Expiration is null) && lockout.Expiration > now;
         }
 
         public virtual Task ResetLockedOut(string key) =>

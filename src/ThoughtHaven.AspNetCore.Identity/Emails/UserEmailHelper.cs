@@ -63,7 +63,7 @@ namespace ThoughtHaven.AspNetCore.Identity
 
             await this.SingleUseTokenService.Create(
                 CreateSingleUseToken("em", userKey, code),
-                expiration: this.Clock.UtcNow.AddDays(7))
+                expiration: new UtcDateTime(this.Clock.UtcNow.ToOffset().AddDays(7)))
                 .ConfigureAwait(false);
             
             return code;

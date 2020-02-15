@@ -16,9 +16,13 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             Guard.Null(nameof(lockout), lockout);
 
             this.Key = lockout.Key;
-            this.LastModified = lockout.LastModified;
+            this.LastModified = lockout.LastModified.ToOffset();
             this.FailedAccessAttempts = lockout.FailedAccessAttempts;
-            this.Expiration = lockout.Expiration;
+
+            if (!(lockout.Expiration is null))
+            {
+                this.Expiration = lockout.Expiration.ToOffset();
+            }
         }
 
         public TimedLockoutModel() { }

@@ -30,7 +30,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Created
 
                     await helper.SetCreated(user);
 
-                    Assert.Equal(helper.FakeClock.UtcNow, user.Created);
+                    Assert.Equal(helper.FakeClock.UtcNow.ToOffset(), user.Created);
                 }
             }
         }

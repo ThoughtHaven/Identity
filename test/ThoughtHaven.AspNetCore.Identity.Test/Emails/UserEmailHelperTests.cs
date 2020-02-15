@@ -300,7 +300,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
 
                     _ = await helper.CreateEmailVerificationCode(userKey);
 
-                    Assert.Equal(helper.FakeClock.UtcNow.AddDays(7),
+                    Assert.Equal(helper.FakeClock.UtcNow.ToOffset().AddDays(7),
                         helper.FakeSingleUseTokenService.Create_InputExpiration);
                 }
             }

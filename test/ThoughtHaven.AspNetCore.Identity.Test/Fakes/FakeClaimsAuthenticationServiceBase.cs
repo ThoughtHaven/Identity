@@ -50,7 +50,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
             if (hasSecurityStampValidated)
             {
                 claims.Add(new Claim(options.ClaimTypes.SecurityStampValidated,
-                    clock.UtcNow.UtcTicks.ToString()));
+                    clock.UtcNow.Ticks.ToString()));
             }
 
             return new ClaimsPrincipal(

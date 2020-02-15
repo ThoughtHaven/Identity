@@ -9,10 +9,10 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
         public bool Create_Called => !(this.Create_InputToken is null);
         public SingleUseToken? Create_InputToken;
         public DateTimeOffset? Create_InputExpiration;
-        public Task Create(SingleUseToken token, DateTimeOffset expiration)
+        public Task Create(SingleUseToken token, UtcDateTime expiration)
         {
             this.Create_InputToken = token;
-            this.Create_InputExpiration = expiration;
+            this.Create_InputExpiration = expiration.ToOffset();
 
             return Task.CompletedTask;
         }

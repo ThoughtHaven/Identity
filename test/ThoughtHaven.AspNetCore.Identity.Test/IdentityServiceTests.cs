@@ -241,7 +241,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                     await identity.Create(user);
 
                     Assert.NotEqual(DateTimeOffset.MinValue, user.Created);
-                    Assert.Equal(identity.Helper.FakeClock.UtcNow, user.Created);
+                    Assert.Equal(identity.Helper.FakeClock.UtcNow.ToOffset(), user.Created);
                     Assert.Equal(user, identity.Helper.SetCreated_InputUser);
                 }
 

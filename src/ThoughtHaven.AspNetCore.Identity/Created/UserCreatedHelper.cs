@@ -9,7 +9,7 @@ namespace ThoughtHaven.AspNetCore.Identity
         {
             Guard.Null(nameof(user), user);
 
-            user.Created = this.Clock.UtcNow;
+            user.Created = this.Clock.UtcNow.ToOffset();
 
             return Task.CompletedTask;
         }

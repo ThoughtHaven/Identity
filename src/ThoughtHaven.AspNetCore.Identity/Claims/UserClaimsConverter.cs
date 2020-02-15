@@ -57,7 +57,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                 new Claim(this._options.ClaimTypes.SecurityStamp, user.SecurityStamp,
                     ClaimValueTypes.String, this._options.Issuer),
                 new Claim(this._options.ClaimTypes.SecurityStampValidated,
-                    this._clock.UtcNow.UtcTicks.ToString(), ClaimValueTypes.String,
+                    this._clock.UtcNow.Ticks.ToString(), ClaimValueTypes.String,
                     this._options.Issuer)
             };
 

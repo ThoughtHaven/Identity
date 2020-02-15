@@ -16,7 +16,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     {
                         new TimedLockout(
                             key: null!,
-                            lastModified: DateTimeOffset.UtcNow);
+                            lastModified: new UtcDateTime(DateTimeOffset.UtcNow));
                     });
                 }
 
@@ -27,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     {
                         new TimedLockout(
                             key: string.Empty,
-                            lastModified: DateTimeOffset.UtcNow);
+                            lastModified: new UtcDateTime(DateTimeOffset.UtcNow));
                     });
                 }
 
@@ -38,7 +38,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     {
                         new TimedLockout(
                             key: " ",
-                            lastModified: DateTimeOffset.UtcNow);
+                            lastModified: new UtcDateTime(DateTimeOffset.UtcNow));
                     });
                 }
 
@@ -48,10 +48,10 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     var key = "key";
                     var lastModified = DateTimeOffset.UtcNow;
 
-                    var data = new TimedLockout(key, lastModified);
+                    var data = new TimedLockout(key, new UtcDateTime(lastModified));
 
                     Assert.Equal(key, data.Key);
-                    Assert.Equal(lastModified, data.LastModified);
+                    Assert.Equal(lastModified, data.LastModified.ToOffset());
                 }
             }
         }
@@ -63,12 +63,13 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var data = new TimedLockout("key", DateTimeOffset.UtcNow);
+                    var data = new TimedLockout("key",
+                        new UtcDateTime(DateTimeOffset.UtcNow));
                     var lastModified = DateTimeOffset.UtcNow.AddDays(1);
 
-                    data.LastModified = lastModified;
+                    data.LastModified = new UtcDateTime(lastModified);
 
-                    Assert.Equal(lastModified, data.LastModified);
+                    Assert.Equal(lastModified, data.LastModified.ToOffset());
                 }
             }
         }
@@ -80,7 +81,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 [Fact]
                 public void DefaultValue_Equals1()
                 {
-                    var data = new TimedLockout("key", DateTimeOffset.UtcNow);
+                    var data = new TimedLockout("key", new UtcDateTime(DateTimeOffset.UtcNow));
 
                     Assert.Equal(1, data.FailedAccessAttempts);
                 }
@@ -91,7 +92,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var data = new TimedLockout("key", DateTimeOffset.UtcNow);
+                    var data = new TimedLockout("key", new UtcDateTime(DateTimeOffset.UtcNow));
                     byte failedAttempts = 5;
 
                     data.FailedAccessAttempts = failedAttempts;
@@ -108,7 +109,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 [Fact]
                 public void DefaultValue_ReturnsNull()
                 {
-                    var data = new TimedLockout("key", DateTimeOffset.UtcNow);
+                    var data = new TimedLockout("key", new UtcDateTime(DateTimeOffset.UtcNow));
 
                     Assert.Null(data.Expiration);
                 }
@@ -119,12 +120,12 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var data = new TimedLockout("key", DateTimeOffset.UtcNow);
+                    var data = new TimedLockout("key", new UtcDateTime(DateTimeOffset.UtcNow));
                     var expiration = DateTimeOffset.UtcNow.AddDays(1);
 
-                    data.Expiration = expiration;
+                    data.Expiration = new UtcDateTime(expiration);
 
-                    Assert.Equal(expiration, data.Expiration);
+                    Assert.Equal(expiration, data.Expiration.ToOffset());
                 }
             }
         }

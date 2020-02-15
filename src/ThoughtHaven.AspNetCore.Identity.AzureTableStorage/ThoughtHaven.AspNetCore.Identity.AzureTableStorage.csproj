@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ThoughtHaven.AspNetCore.Identity.AzureTableStorage</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.200.1</Version>
+    <Version>0.700.0</Version>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven AspNetCore Identity Azure Table Storage</Product>
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.AzureTableStorage" Version="0.200.0" />
+    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.AzureTableStorage" Version="0.700.0" />
   </ItemGroup>
 
   <ItemGroup>

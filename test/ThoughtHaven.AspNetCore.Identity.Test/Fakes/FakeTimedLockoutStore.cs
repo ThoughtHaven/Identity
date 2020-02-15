@@ -8,7 +8,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
     public class FakeTimedLockoutStore : ICrudStore<string, TimedLockout>
     {
         public string? Retrieve_KeyInput;
-        public TimedLockout? Retrieve_Output = new TimedLockout("key", DateTimeOffset.UtcNow);
+        public TimedLockout? Retrieve_Output = new TimedLockout("key",
+            new UtcDateTime(DateTimeOffset.UtcNow));
         public Task<TimedLockout?> Retrieve(string key)
         {
             this.Retrieve_KeyInput = key;

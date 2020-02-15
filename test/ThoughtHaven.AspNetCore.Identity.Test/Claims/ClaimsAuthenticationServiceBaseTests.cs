@@ -180,7 +180,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var clock = Clock();
                     var authentication = Authentication(store, clock: clock);
                     authentication.Authenticate_Output = Principal(
-                        clock: Clock(clock.UtcNow.AddDays(-1)));
+                        clock: Clock(clock.UtcNow.ToOffset().AddDays(-1)));
 
                     await authentication.Authenticate();
 
@@ -196,7 +196,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var clock = Clock();
                     var authentication = Authentication(store, clock: clock);
                     authentication.Authenticate_Output = Principal(
-                        clock: Clock(clock.UtcNow.AddDays(-1)));
+                        clock: Clock(clock.UtcNow.ToOffset().AddDays(-1)));
 
                     await authentication.Authenticate();
 
@@ -211,7 +211,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var clock = Clock();
                     var authentication = Authentication(store, clock: clock);
                     authentication.Authenticate_Output = Principal(
-                        clock: Clock(clock.UtcNow.AddDays(-1)));
+                        clock: Clock(clock.UtcNow.ToOffset().AddDays(-1)));
 
                     var result = await authentication.Authenticate();
 
@@ -226,7 +226,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var clock = Clock();
                     var authentication = Authentication(store, clock: clock);
                     authentication.Authenticate_Output = Principal(
-                        clock: Clock(clock.UtcNow.AddDays(-1)));
+                        clock: Clock(clock.UtcNow.ToOffset().AddDays(-1)));
 
                     await authentication.Authenticate();
 
@@ -241,7 +241,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var clock = Clock();
                     var authentication = Authentication(store, clock: clock);
                     authentication.Authenticate_Output = Principal(
-                        clock: Clock(clock.UtcNow.AddDays(-1)));
+                        clock: Clock(clock.UtcNow.ToOffset().AddDays(-1)));
 
                     var result = await authentication.Authenticate();
 
@@ -255,7 +255,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var clock = Clock();
                     var authentication = Authentication(options: options, clock: clock);
                     authentication.Authenticate_Output = Principal(
-                        clock: Clock(clock.UtcNow.AddDays(-1)));
+                        clock: Clock(clock.UtcNow.ToOffset().AddDays(-1)));
 
                     await authentication.Authenticate();
 
@@ -266,7 +266,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                             options.ClaimTypes.SecurityStampValidated).Value),
                         offset: TimeSpan.Zero);
 
-                    Assert.Equal(clock.UtcNow, stampValidated);
+                    Assert.Equal(clock.UtcNow.ToOffset(), stampValidated);
                 }
 
                 [Fact]
@@ -276,7 +276,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     var clock = Clock();
                     var authentication = Authentication(options: options, clock: clock);
                     authentication.Authenticate_Output = Principal(
-                        clock: Clock(clock.UtcNow.AddDays(-1)));
+                        clock: Clock(clock.UtcNow.ToOffset().AddDays(-1)));
 
                     var result = await authentication.Authenticate();
 

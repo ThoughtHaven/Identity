@@ -175,8 +175,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                     Assert.Equal("key", updated!.Key);
                     Assert.Equal(helper.FakeClock.UtcNow, updated.LastModified);
                     Assert.Equal(5, updated.FailedAccessAttempts);
-                    Assert.Equal(helper.FakeClock.UtcNow.Add(TimeSpan.FromMinutes(10)),
-                        updated.Expiration!.Value);
+                    Assert.Equal(helper.FakeClock.UtcNow.ToOffset().Add(
+                        TimeSpan.FromMinutes(10)), updated.Expiration!.ToOffset());
                 }
 
                 [Fact]
@@ -184,7 +184,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 {
                     var helper = new FakeUserHelper1();
 
-                    var lockout = new TimedLockout("key", helper.FakeClock.UtcNow.AddDays(-1))
+                    var lockout = new TimedLockout("key",
+                        new UtcDateTime(helper.FakeClock.UtcNow.ToOffset().AddDays(-1)))
                     {
                         Expiration = null,
                         FailedAccessAttempts = 5,
@@ -203,7 +204,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 {
                     var helper = new FakeUserHelper1();
 
-                    var lockout = new TimedLockout("key", helper.FakeClock.UtcNow.AddDays(-1))
+                    var lockout = new TimedLockout("key",
+                        new UtcDateTime(helper.FakeClock.UtcNow.ToOffset().AddDays(-1)))
                     {
                         Expiration = null,
                         FailedAccessAttempts = 5,
@@ -226,7 +228,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 public async Task OpenExpiration_ReturnsTrue()
                 {
                     var helper = new FakeUserHelper1();
-                    var expiration = helper.FakeClock.UtcNow.AddDays(1);
+                    var expiration = new UtcDateTime(
+                        helper.FakeClock.UtcNow.ToOffset().AddDays(1));
                     var lockout = new TimedLockout("key", helper.FakeClock.UtcNow)
                     {
                         Expiration = expiration
@@ -244,7 +247,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 public async Task StaleExpiration_ReturnsFalse()
                 {
                     var helper = new FakeUserHelper1();
-                    var expiration = helper.FakeClock.UtcNow.AddDays(-1);
+                    var expiration = new UtcDateTime(
+                        helper.FakeClock.UtcNow.ToOffset().AddDays(-1));
                     var lockout = new TimedLockout("key", helper.FakeClock.UtcNow)
                     {
                         Expiration = expiration,
@@ -262,7 +266,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Lockouts
                 public async Task StaleExpiration_ResetsData()
                 {
                     var helper = new FakeUserHelper1();
-                    var expiration = helper.FakeClock.UtcNow.AddDays(-1);
+                    var expiration = new UtcDateTime(
+                        helper.FakeClock.UtcNow.ToOffset().AddDays(-1));
                     var lockout = new TimedLockout("key", helper.FakeClock.UtcNow)
                     {
                         Expiration = expiration,

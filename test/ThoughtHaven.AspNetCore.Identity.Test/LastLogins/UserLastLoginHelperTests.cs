@@ -28,7 +28,7 @@ namespace ThoughtHaven.AspNetCore.Identity.LastLogins
 
                     await helper.SetLastLogin(user);
 
-                    Assert.Equal(helper.FakeClock.UtcNow, user.LastLogin);
+                    Assert.Equal(helper.FakeClock.UtcNow.ToOffset(), user.LastLogin);
                 }
             }
         }

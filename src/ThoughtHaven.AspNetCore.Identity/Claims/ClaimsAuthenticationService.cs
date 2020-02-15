@@ -36,7 +36,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
             if (properties.AllowRefresh == null) { properties.AllowRefresh = true; }
 
-            if (properties.IssuedUtc == null) { properties.IssuedUtc = this._clock.UtcNow; }
+            if (properties.IssuedUtc == null)
+            { properties.IssuedUtc = this._clock.UtcNow.ToOffset(); }
 
             return this._httpContextAccessor.HttpContext.SignInAsync(
                 this._options.AuthenticationScheme, principal, properties);

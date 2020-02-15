@@ -155,7 +155,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
                     await Authentication(context, options: options, clock: clock)
                         .Login(principal, properties);
                     
-                    Assert.Equal(clock.UtcNow,
+                    Assert.Equal(clock.UtcNow.ToOffset(),
                         context.Authentication.SignInAsync_InputProperties!.IssuedUtc);
                 }
             }

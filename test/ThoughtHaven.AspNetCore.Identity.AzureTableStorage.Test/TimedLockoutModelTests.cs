@@ -23,7 +23,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 public void WhenCalled_SetsKey()
                 {
                     var lockout = new TimedLockout("key",
-                        lastModified: DateTimeOffset.UtcNow);
+                        lastModified: new UtcDateTime(DateTimeOffset.UtcNow));
 
                     var model = new TimedLockoutModel(lockout);
 
@@ -33,17 +33,19 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 [Fact]
                 public void WhenCalled_SetsLastModified()
                 {
-                    var lockout = new TimedLockout("key", lastModified: DateTimeOffset.UtcNow);
+                    var lockout = new TimedLockout("key",
+                        lastModified: new UtcDateTime(DateTimeOffset.UtcNow));
 
                     var model = new TimedLockoutModel(lockout);
 
-                    Assert.Equal(lockout.LastModified, model.LastModified);
+                    Assert.Equal(lockout.LastModified.ToOffset(), model.LastModified);
                 }
 
                 [Fact]
                 public void WhenCalled_SetsFailedAccessAttempts()
                 {
-                    var lockout = new TimedLockout("key", lastModified: DateTimeOffset.UtcNow)
+                    var lockout = new TimedLockout("key",
+                        lastModified: new UtcDateTime(DateTimeOffset.UtcNow))
                     {
                         FailedAccessAttempts = 5
                     };
@@ -56,14 +58,15 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 [Fact]
                 public void WhenCalled_SetsExpiration()
                 {
-                    var lockout = new TimedLockout("key", lastModified: DateTimeOffset.UtcNow)
+                    var lockout = new TimedLockout("key",
+                        lastModified: new UtcDateTime(DateTimeOffset.UtcNow))
                     {
-                        Expiration = DateTimeOffset.UtcNow
+                        Expiration = new UtcDateTime(DateTimeOffset.UtcNow)
                     };
 
                     var model = new TimedLockoutModel(lockout);
 
-                    Assert.Equal(lockout.Expiration, model.Expiration);
+                    Assert.Equal(lockout.Expiration.ToOffset(), model.Expiration);
                 }
             }
         }
