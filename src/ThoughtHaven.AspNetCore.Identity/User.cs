@@ -22,5 +22,20 @@ namespace ThoughtHaven.AspNetCore.Identity
         public virtual string? SecurityStamp { get; set; }
         public DateTimeOffset Created { get; set; } = DateTimeOffset.UtcNow;
         public DateTimeOffset? LastLogin { get; set; }
+
+        public User() { }
+
+        public User(User user)
+        {
+            Guard.Null(nameof(user), user);
+
+            this.Id = user.Id;
+            this.Email = user.Email;
+            this.EmailConfirmed = user.EmailConfirmed;
+            this.PasswordHash = user.PasswordHash;
+            this.SecurityStamp = user.SecurityStamp;
+            this.Created = user.Created;
+            this.LastLogin = user.LastLogin;
+        }
     }
 }

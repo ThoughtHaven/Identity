@@ -230,5 +230,108 @@ namespace ThoughtHaven.AspNetCore.Identity
                 }
             }
         }
+
+        public class Constructor
+        {
+            public class UserOverload
+            {
+                [Fact]
+                public void NullUser_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("user", () =>
+                    {
+                        new User(user: null!);
+                    });
+                }
+
+                [Theory]
+                [InlineData("id1")]
+                [InlineData("id2")]
+                public void WhenCalled_SetsId(string value)
+                {
+                    var user = User(id: value);
+
+                    Assert.Equal(value, user.Id);
+                }
+
+                [Theory]
+                [InlineData("email1@email.com")]
+                [InlineData("email2@email.com")]
+                public void WhenCalled_SetsEmail(string value)
+                {
+                    var user = User(email: value);
+
+                    Assert.Equal(value, user.Email);
+                }
+
+                [Theory]
+                [InlineData(true)]
+                [InlineData(false)]
+                public void WhenCalled_SetsEmailConfirmed(bool value)
+                {
+                    var user = User(emailConfirmed: value);
+
+                    Assert.Equal(value, user.EmailConfirmed);
+                }
+
+                [Theory]
+                [InlineData("hash1")]
+                [InlineData("hash2")]
+                public void WhenCalled_SetsPasswordHash(string value)
+                {
+                    var user = User(passwordHash: value);
+
+                    Assert.Equal(value, user.PasswordHash);
+                }
+
+                [Theory]
+                [InlineData("stamp1")]
+                [InlineData("stamp2")]
+                public void WhenCalled_SetsSecurityStamp(string value)
+                {
+                    var user = User(securityStamp: value);
+
+                    Assert.Equal(value, user.SecurityStamp);
+                }
+
+                [Theory]
+                [InlineData(1000000)]
+                [InlineData(2000000)]
+                public void WhenCalled_SetsCreated(long value)
+                {
+                    var offset = new DateTimeOffset(ticks: value, TimeSpan.Zero);
+
+                    var user = User(created: offset);
+
+                    Assert.Equal(offset, user.Created);
+                }
+
+                [Theory]
+                [InlineData(1000000)]
+                [InlineData(2000000)]
+                public void WhenCalled_SetsLastLogin(long value)
+                {
+                    var offset = new DateTimeOffset(ticks: value, TimeSpan.Zero);
+
+                    var user = User(lastLogin: offset);
+
+                    Assert.Equal(offset, user.LastLogin);
+                }
+            }
+        }
+
+        private static User User(string id = "id", string email = "some@email.com", bool emailConfirmed = false,
+            string passwordHash = "hash", string securityStamp = "stamp", DateTimeOffset? created = null,
+            DateTimeOffset? lastLogin = null) =>
+            new User()
+            {
+                Id = id,
+                Email = email,
+                EmailConfirmed = emailConfirmed,
+                PasswordHash = passwordHash,
+                SecurityStamp = securityStamp,
+                Created = created ?? DateTimeOffset.UtcNow,
+                LastLogin = lastLogin,
+            };
     }
 }
