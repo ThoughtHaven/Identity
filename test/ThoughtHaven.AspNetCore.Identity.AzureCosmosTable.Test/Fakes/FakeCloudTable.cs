@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.Azure.Cosmos.Table;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Fakes
 {
     public class FakeCloudTable : CloudTable
     {
@@ -16,8 +17,8 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
         public TableContinuationToken? ExecuteQuerySegmentedAsync_InputToken;
         public TableRequestOptions? ExecuteQuerySegmentedAsync_InputRequestOptions;
         public OperationContext? ExecuteQuerySegmentedAsync_InputOperationContext;
-        public TableQuerySegment? ExecuteQuerySegmentedAsync_Output = CreateSegment();
-        public override Task<TableQuerySegment> ExecuteQuerySegmentedAsync(TableQuery query,
+        public TableQuerySegment<DynamicTableEntity>? ExecuteQuerySegmentedAsync_Output = CreateSegment();
+        public override Task<TableQuerySegment<DynamicTableEntity>> ExecuteQuerySegmentedAsync(TableQuery query,
             TableContinuationToken token, TableRequestOptions requestOptions,
             OperationContext operationContext)
         {
@@ -26,8 +27,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
             this.ExecuteQuerySegmentedAsync_InputRequestOptions = requestOptions;
             this.ExecuteQuerySegmentedAsync_InputOperationContext = operationContext;
 
-            return Task.FromResult<TableQuerySegment>(
-                this.ExecuteQuerySegmentedAsync_Output!);
+            return Task.FromResult(this.ExecuteQuerySegmentedAsync_Output!);
         }
 
         public TableRequestOptions? CreateAsync_InputRequestOptions;
@@ -93,9 +93,9 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
         public TableBatchOperation? ExecuteBatchAsync_InputBatch;
         public TableRequestOptions? ExecuteBatchAsync_InputRequestOptions;
         public OperationContext? ExecuteBatchAsync_InputOperationContext;
-        public IList<TableResult> ExecuteBatchAsync_Output = new List<TableResult>()
+        public TableBatchResult ExecuteBatchAsync_Output = new TableBatchResult()
         { new TableResult() { HttpStatusCode = 200 } };
-        public override Task<IList<TableResult>> ExecuteBatchAsync(TableBatchOperation batch,
+        public override Task<TableBatchResult> ExecuteBatchAsync(TableBatchOperation batch,
             TableRequestOptions requestOptions, OperationContext operationContext)
         {
             this.ExecuteBatchAsync_InputBatch = batch;
@@ -106,10 +106,13 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
             return Task.FromResult(this.ExecuteBatchAsync_Output);
         }
 
-        public static TableQuerySegment CreateSegment(int results = 1)
+        public static TableQuerySegment<DynamicTableEntity> CreateSegment(int results = 1)
         {
-            var segment = (TableQuerySegment)Activator.CreateInstance(
-                typeof(TableQuerySegment), nonPublic: true)!;
+            var ctor = typeof(TableQuerySegment<DynamicTableEntity>)
+                .GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic)
+                .FirstOrDefault(c => c.GetParameters().Length == 1)!;
+
+            var segment = (ctor.Invoke(new object[] { new List<DynamicTableEntity>() }) as TableQuerySegment<DynamicTableEntity>)!;
 
             for (var i = 0; i < results; i++)
             {

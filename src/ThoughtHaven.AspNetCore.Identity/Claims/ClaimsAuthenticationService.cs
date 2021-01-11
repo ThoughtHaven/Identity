@@ -39,7 +39,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             if (properties.IssuedUtc == null)
             { properties.IssuedUtc = this._clock.UtcNow.ToOffset(); }
 
-            return this._httpContextAccessor.HttpContext.SignInAsync(
+            return this._httpContextAccessor.HttpContext!.SignInAsync(
                 this._options.AuthenticationScheme, principal, properties);
         }
 
@@ -53,7 +53,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             if (!result.Succeeded)
             { throw new InvalidOperationException($"No authenticated principal for the following authentication scheme: {this._options.AuthenticationScheme}"); }
 
-            await this.Login(principal, result.Properties).ConfigureAwait(false);
+            await this.Login(principal, result.Properties ?? new AuthenticationProperties())
+                .ConfigureAwait(false);
         }
 
         protected override async Task<ClaimsPrincipal?> Authenticate(
@@ -72,11 +73,11 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
         {
             Guard.NullOrWhiteSpace(nameof(authenticationScheme), authenticationScheme);
 
-            return this._httpContextAccessor.HttpContext.AuthenticateAsync(authenticationScheme);
+            return this._httpContextAccessor.HttpContext!.AuthenticateAsync(authenticationScheme);
         }
 
         public override Task Logout() =>
-            this._httpContextAccessor.HttpContext.SignOutAsync(
+            this._httpContextAccessor.HttpContext!.SignOutAsync(
                 this._options.AuthenticationScheme);
     }
 }

@@ -8,23 +8,23 @@ namespace ThoughtHaven.AspNetCore.Identity
 {
     public abstract partial class UserHelper
     {
-        public virtual UserMessage InvalidPassword { get; } = "That password wasn't right.";
+        public virtual UiMessage InvalidPassword { get; } = "That password wasn't right.";
 
-        public virtual UserMessage InvalidPasswordResetCode { get; }
+        public virtual UiMessage InvalidPasswordResetCode { get; }
             = "That password reset code wasn't right. It may have expired.";
 
         protected abstract IEnumerable<IPasswordStrengthValidator> PasswordStrengthValidators { get; }
 
         protected abstract IPasswordHasher PasswordHasher { get; }
 
-        public virtual async Task<Result<UserMessage>> SetPasswordHash<TUser>(TUser user,
+        public virtual async Task<Result<UiMessage>> SetPasswordHash<TUser>(TUser user,
             Password password)
             where TUser : IUserPasswordHash
         {
             Guard.Null(nameof(user), user);
             Guard.Null(nameof(password), password);
 
-            Result<UserMessage> result = new Result<UserMessage>();
+            Result<UiMessage> result = new Result<UiMessage>();
 
             foreach (var validator in this.PasswordStrengthValidators)
             {

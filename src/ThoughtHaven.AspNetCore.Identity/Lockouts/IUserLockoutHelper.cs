@@ -4,7 +4,7 @@ namespace ThoughtHaven.AspNetCore.Identity
 {
     public partial interface IUserHelper
     {
-        UserMessage LockedOut { get; }
+        UiMessage LockedOut { get; }
         Task<bool> IsLockedOut(string key);
         Task ResetLockedOut(string key);
     }

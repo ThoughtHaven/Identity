@@ -187,7 +187,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     var identity = GetIdentity(principal);
 
-                    Assert.True(identity.HasClaim(options.ClaimTypes.UserKey, user.Id));
+                    Assert.True(identity.HasClaim(options.ClaimTypes.UserKey, user.Id!));
                 }
 
                 [Fact]
@@ -218,7 +218,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     Assert.True(identity.HasClaim(
                         options.ClaimTypes.SecurityStamp,
-                        user.SecurityStamp));
+                        user.SecurityStamp!));
                 }
             }
 

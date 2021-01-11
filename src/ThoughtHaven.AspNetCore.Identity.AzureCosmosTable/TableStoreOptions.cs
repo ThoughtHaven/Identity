@@ -1,6 +1,6 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
+﻿using Microsoft.Azure.Cosmos.Table;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TableStoreOptions
     {

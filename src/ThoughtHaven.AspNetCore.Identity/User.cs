@@ -8,7 +8,7 @@ using ThoughtHaven.AspNetCore.Identity.SecurityStamps;
 
 namespace ThoughtHaven.AspNetCore.Identity
 {
-    public class User
+    public record User
         : IUserKey, IUserId, IUserEmail, IUserPasswordHash, IUserSecurityStamp, IUserCreated,
         IUserLastLogin
     {

@@ -58,9 +58,9 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
         }
         public string? Authenticate_InputAuthenticationScheme;
         public UserKey? Authenticate_OutputUserKey =>
-            this.Authenticate_Output?.FindFirst(new ClaimOptions().ClaimTypes.UserKey).Value!;
+            this.Authenticate_Output?.FindFirst(new ClaimOptions().ClaimTypes.UserKey)!.Value!;
         public UserKey? Authenticate_OutputSecurityStamp =>
-            this.Authenticate_Output?.FindFirst(new ClaimOptions().ClaimTypes.SecurityStamp).Value!;
+            this.Authenticate_Output?.FindFirst(new ClaimOptions().ClaimTypes.SecurityStamp)!.Value!;
         public ClaimsPrincipal? Authenticate_Output = Principal();
         protected override Task<ClaimsPrincipal?> Authenticate(string authenticationScheme)
         {

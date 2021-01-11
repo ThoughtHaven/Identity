@@ -13,7 +13,7 @@ using static ThoughtHaven.AspNetCore.Identity.Startup.IdentityServices;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class IdentityServiceCollectionExtensions
+    public static class ThoughtHavenIdentityServiceCollectionExtensions
     {
         public static IServiceCollection AddThoughtHavenIdentity<TUser, TUserStore, TSingleUseTokenService, TTimedLockoutStore>(
             this IServiceCollection services, IdentityOptions options)

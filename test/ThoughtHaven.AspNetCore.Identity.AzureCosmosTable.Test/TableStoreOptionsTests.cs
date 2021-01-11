@@ -1,8 +1,8 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
+﻿using Microsoft.Azure.Cosmos.Table;
 using System;
 using Xunit;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TableStoreOptionsTests
     {

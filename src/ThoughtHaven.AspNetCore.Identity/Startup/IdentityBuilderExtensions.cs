@@ -13,7 +13,7 @@ namespace Microsoft.AspNetCore.Builder
             var options = app.ApplicationServices.GetService<IdentityOptions>();
             if (options == null)
             {
-                throw new InvalidOperationException($"Unable to find {nameof(IdentityOptions)} registered in the application services. Please add all the required services by calling '{nameof(IServiceCollection)}.{nameof(IdentityServiceCollectionExtensions.AddThoughtHavenIdentity)}' inside the call to 'ConfigureServices(...)' in the application startup code.");
+                throw new InvalidOperationException($"Unable to find {nameof(IdentityOptions)} registered in the application services. Please add all the required services by calling '{nameof(IServiceCollection)}.{nameof(ThoughtHavenIdentityServiceCollectionExtensions.AddThoughtHavenIdentity)}' inside the call to 'ConfigureServices(...)' in the application startup code.");
             }
 
             return app.UseAuthentication();

@@ -1,4 +1,4 @@
-﻿namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
+﻿namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Fakes
 {
     public class FakeTableUserEmailStore : TableUserEmailStore<User>
     {

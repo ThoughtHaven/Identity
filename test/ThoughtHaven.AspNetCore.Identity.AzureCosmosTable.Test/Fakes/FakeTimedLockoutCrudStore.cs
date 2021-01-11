@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage.Table;
-using ThoughtHaven.Azure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
+using ThoughtHaven.Azure.Cosmos.Table;
 using ThoughtHaven.Data;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Fakes
 {
     public class FakeTimedLockoutCrudStore : TableCrudStore<string, TimedLockoutModel>
     {

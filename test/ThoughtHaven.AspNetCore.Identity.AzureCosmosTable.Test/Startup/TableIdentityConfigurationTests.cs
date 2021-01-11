@@ -1,7 +1,7 @@
 ﻿using System;
-using Microsoft.WindowsAzure.Storage.Table;
-using ThoughtHaven.AspNetCore.Identity.AzureTableStorage;
-using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
+using Microsoft.Azure.Cosmos.Table;
+using ThoughtHaven.AspNetCore.Identity.AzureCosmosTable;
+using ThoughtHaven.Security.SingleUseTokens.AzureCosmosTable;
 using Xunit;
 
 namespace Microsoft.Extensions.DependencyInjection

@@ -9,8 +9,8 @@ namespace ThoughtHaven.AspNetCore.Identity
     {
         protected abstract ICrudStore<string, TimedLockout> TimedLockoutStore { get; }
 
-        public virtual UserMessage LockedOut { get; }
-            = new UserMessage("This account has been locked to protect it from possible hacking. Wait a few minutes to try again.");
+        public virtual UiMessage LockedOut { get; }
+            = new UiMessage("This account has been locked to protect it from possible hacking. Wait a few minutes to try again.");
 
         public virtual Task<bool> IsLockedOut(string key) =>
             this.IsLockedOut(key, TimeSpan.FromMinutes(10), maxFailedAccessAttempts: 5);

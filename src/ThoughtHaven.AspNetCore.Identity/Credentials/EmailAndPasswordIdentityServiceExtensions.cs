@@ -8,7 +8,7 @@ namespace ThoughtHaven.AspNetCore.Identity
 {
     public static partial class IdentityServiceExtensions
     {
-        public static async Task<Result<TUser, UserMessage>> Create<TUser>(
+        public static async Task<Result<TUser, UiMessage>> Create<TUser>(
             this IIdentityService<TUser> identity, EmailAddress email, Password password)
             where TUser : class, IUserEmail, IUserPasswordHash, new()
         {
@@ -34,7 +34,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             return user;
         }
 
-        public static async Task<Result<TUser, UserMessage>> Login<TUser>(
+        public static async Task<Result<TUser, UiMessage>> Login<TUser>(
             this IIdentityService<TUser> identity, EmailAddress email, Password password,
             AuthenticationProperties properties)
             where TUser : class, IUserEmail, IUserPasswordHash, new()
@@ -70,7 +70,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             return user;
         }
 
-        public static Task<Result<TUser, UserMessage>> Login<TUser>(
+        public static Task<Result<TUser, UiMessage>> Login<TUser>(
             this IIdentityService<TUser> identity, EmailAddress email, Password password,
             bool persistent = false)
             where TUser : class, IUserEmail, IUserPasswordHash, new() =>

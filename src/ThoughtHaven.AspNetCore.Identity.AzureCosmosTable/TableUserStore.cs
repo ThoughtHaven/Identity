@@ -1,10 +1,10 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using Microsoft.Azure.Cosmos.Table;
 using System;
 using ThoughtHaven.AspNetCore.Identity.Keys;
-using ThoughtHaven.Azure.Storage.Table;
+using ThoughtHaven.Azure.Cosmos.Table;
 using ThoughtHaven.Data;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TableUserStore<TUser> : TableCrudStore<UserKey, TUser>
         where TUser : class, IUserKey, new()

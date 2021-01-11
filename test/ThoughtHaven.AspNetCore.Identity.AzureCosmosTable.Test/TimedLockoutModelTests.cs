@@ -2,7 +2,7 @@
 using ThoughtHaven.AspNetCore.Identity.Lockouts;
 using Xunit;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TimedLockoutModelTests
     {

@@ -2,6 +2,6 @@
 {
     public partial interface IUserHelper
     {
-        UserMessage InvalidCredentials { get; }
+        UiMessage InvalidCredentials { get; }
     }
 }

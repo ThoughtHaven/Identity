@@ -69,8 +69,8 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 
         public object? SetPasswordHash_InputUser;
         public Password? SetPasswordHash_InputPassword;
-        public UserMessage? SetPasswordHash_OutputFailure;
-        public override Task<Result<UserMessage>> SetPasswordHash<TUser>(TUser user,
+        public UiMessage? SetPasswordHash_OutputFailure;
+        public override Task<Result<UiMessage>> SetPasswordHash<TUser>(TUser user,
             Password password)
         {
             this.SetPasswordHash_InputUser = user;
@@ -78,7 +78,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
 
             return this.SetPasswordHash_OutputFailure == null
                 ? base.SetPasswordHash(user, password)
-                : Task.FromResult<Result<UserMessage>>(this.SetPasswordHash_OutputFailure);
+                : Task.FromResult<Result<UiMessage>>(this.SetPasswordHash_OutputFailure);
         }
 
         public object? ValidatePassword_InputUser;

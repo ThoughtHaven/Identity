@@ -263,7 +263,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
 
                     var stampValidated = new DateTimeOffset(
                         ticks: long.Parse(authentication.RefreshLogin_InputPrincipal!.FindFirst(
-                            options.ClaimTypes.SecurityStampValidated).Value),
+                            options.ClaimTypes.SecurityStampValidated)!.Value),
                         offset: TimeSpan.Zero);
 
                     Assert.Equal(clock.UtcNow.ToOffset(), stampValidated);
@@ -299,6 +299,5 @@ namespace ThoughtHaven.AspNetCore.Identity.Claims
             FakeSystemClock? clock = null) =>
             new FakeClaimsAuthenticationServiceBase(userStore ?? UserStore(),
                 options ?? Options(), clock ?? Clock());
-        private static User User() => new User() { Id = "id", SecurityStamp = "stamp", };
     }
 }

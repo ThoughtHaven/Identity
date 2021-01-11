@@ -1,10 +1,10 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using Microsoft.Azure.Cosmos.Table;
 using System.Threading.Tasks;
 using ThoughtHaven.AspNetCore.Identity.Lockouts;
-using ThoughtHaven.Azure.Storage.Table;
+using ThoughtHaven.Azure.Cosmos.Table;
 using ThoughtHaven.Data;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TableTimedLockoutStore : ICrudStore<string, TimedLockout>
     {

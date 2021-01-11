@@ -10,11 +10,11 @@ namespace ThoughtHaven.AspNetCore.Identity
 {
     public abstract partial class UserHelper
     {
-        public virtual UserMessage UserAlreadyOwnsEmail { get; } = "This email is already associated with this account.";
+        public virtual UiMessage UserAlreadyOwnsEmail { get; } = "This email is already associated with this account.";
 
-        public virtual UserMessage EmailNotAvailable { get; } = "This email is not available. Is there a different one you can use?";
+        public virtual UiMessage EmailNotAvailable { get; } = "This email is not available. Is there a different one you can use?";
 
-        public virtual UserMessage InvalidEmailVerificationCode { get; } = "We couldn't confirm your email. The link we sent you may have expired. You'll need to try confirming your email again.";
+        public virtual UiMessage InvalidEmailVerificationCode { get; } = "We couldn't confirm your email. The link we sent you may have expired. You'll need to try confirming your email again.";
 
         protected abstract IRetrieveOperation<EmailAddress, TUser> UserEmailStore<TUser>()
             where TUser : class;
@@ -33,7 +33,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             Guard.Null(nameof(user), user);
             Guard.Null(nameof(email), email);
 
-            user.Email = email.Value.Trim().ToLower();
+            user.Email = email.Value.Trim().ToUpperInvariant();
             user.EmailConfirmed = false;
 
             return Task.CompletedTask;

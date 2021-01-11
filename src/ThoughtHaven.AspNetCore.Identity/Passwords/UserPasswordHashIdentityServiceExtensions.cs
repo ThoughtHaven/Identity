@@ -8,7 +8,7 @@ namespace ThoughtHaven.AspNetCore.Identity
 {
     public static partial class IdentityHelperServiceExtensions
     {
-        public static async Task<Result<UserMessage>> ValidatePassword<TUser>(
+        public static async Task<Result<UiMessage>> ValidatePassword<TUser>(
             this IIdentityService<TUser> identity, TUser user, Password password)
             where TUser : class, IUserPasswordHash
         {
@@ -35,7 +35,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                 await identity.Update(user).ConfigureAwait(false);
             }
 
-            return new Result<UserMessage>();
+            return new Result<UiMessage>();
         }
 
         public static Task<PasswordResetCode> ForgotPassword<TUser>(
@@ -56,7 +56,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             return identity.Helper.CreatePasswordResetCode(key);
         }
 
-        public static async Task<Result<UserMessage>> UpdatePassword<TUser>(
+        public static async Task<Result<UiMessage>> UpdatePassword<TUser>(
             this IIdentityService<TUser> identity, TUser user, Password current,
             Password updated)
             where TUser : class, IUserPasswordHash, IUserSecurityStamp
@@ -91,7 +91,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             return result;
         }
 
-        public static async Task<Result<UserMessage>> UpdatePassword<TUser>(
+        public static async Task<Result<UiMessage>> UpdatePassword<TUser>(
             this IIdentityService<TUser> identity, TUser user, PasswordResetCode code,
             Password password)
             where TUser : class, IUserKey, IUserPasswordHash, IUserSecurityStamp

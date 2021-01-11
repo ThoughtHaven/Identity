@@ -19,7 +19,7 @@ namespace ThoughtHaven.AspNetCore.Identity
             return identity.Helper.Retrieve<TUser>(email);
         }
 
-        public static async Task<Result<VerificationCode, UserMessage>> UpdateEmail<TUser>(
+        public static async Task<Result<VerificationCode, UiMessage>> UpdateEmail<TUser>(
             this IIdentityService<TUser> identity, TUser user, EmailAddress email)
             where TUser : class, IUserKey, IUserEmail
         {
@@ -52,7 +52,7 @@ namespace ThoughtHaven.AspNetCore.Identity
                 .ConfigureAwait(false);
         }
 
-        public static async Task<Result<UserMessage>> ConfirmEmail<TUser>(
+        public static async Task<Result<UiMessage>> ConfirmEmail<TUser>(
             this IIdentityService<TUser> identity, TUser user, VerificationCode code)
             where TUser : class, IUserKey, IUserEmail
         {
@@ -77,7 +77,7 @@ namespace ThoughtHaven.AspNetCore.Identity
 
             await identity.Update(user).ConfigureAwait(false);
 
-            return new Result<UserMessage>();
+            return new Result<UiMessage>();
         }
     }
 }

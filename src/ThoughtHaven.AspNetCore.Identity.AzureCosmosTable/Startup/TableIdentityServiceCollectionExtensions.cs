@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using ThoughtHaven;
-using ThoughtHaven.AspNetCore.Identity.AzureTableStorage;
+using ThoughtHaven.AspNetCore.Identity.AzureCosmosTable;
 using ThoughtHaven.AspNetCore.Identity.Created;
 using ThoughtHaven.AspNetCore.Identity.Emails;
 using ThoughtHaven.AspNetCore.Identity.Keys;
 using ThoughtHaven.AspNetCore.Identity.LastLogins;
 using ThoughtHaven.AspNetCore.Identity.SecurityStamps;
-using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
+using ThoughtHaven.Security.SingleUseTokens.AzureCosmosTable;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

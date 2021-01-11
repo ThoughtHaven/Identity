@@ -4,6 +4,6 @@ using ThoughtHaven.Data;
 namespace ThoughtHaven.AspNetCore.Identity.Passwords
 {
     public interface IPasswordStrengthValidator
-        : IValidator<Password, Task<Result<UserMessage>>>
+        : IValidator<Password, Task<Result<UiMessage>>>
     { }
 }

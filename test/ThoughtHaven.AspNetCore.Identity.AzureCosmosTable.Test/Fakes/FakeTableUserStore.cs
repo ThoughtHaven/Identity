@@ -1,7 +1,7 @@
 ﻿using ThoughtHaven.AspNetCore.Identity.Keys;
 using ThoughtHaven.Data;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Fakes
 {
     public class FakeTableUserStore : TableUserStore<User>
     {

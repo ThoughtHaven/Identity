@@ -1,8 +1,8 @@
 ﻿using System;
-using ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes;
+using ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Fakes;
 using Xunit;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TableUserStoreTests
     {
@@ -44,8 +44,5 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
                 }
             }
         }
-        
-        private static TableStoreOptions StoreOptions() =>
-            new TableStoreOptions("UseDevelopmentStorage=true;");
     }
 }

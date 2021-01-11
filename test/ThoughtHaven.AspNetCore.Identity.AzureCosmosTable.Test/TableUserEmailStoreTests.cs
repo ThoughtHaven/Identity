@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Fakes;
+using ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Fakes;
 using Xunit;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TableUserEmailStoreTests
     {
@@ -112,8 +112,6 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
             }
         }
         
-        private static TableStoreOptions Options() =>
-            new TableStoreOptions("UseDevelopmentStorage=true;");
         private static FakeTableUserEmailStore Store() =>
             new FakeTableUserEmailStore(new FakeTableEntityStore());
     }

@@ -6,9 +6,9 @@ namespace ThoughtHaven.AspNetCore.Identity
 {
     public partial interface IUserHelper
     {
-        UserMessage InvalidPassword { get; }
-        UserMessage InvalidPasswordResetCode { get; }
-        Task<Result<UserMessage>> SetPasswordHash<TUser>(TUser user, Password password)
+        UiMessage InvalidPassword { get; }
+        UiMessage InvalidPasswordResetCode { get; }
+        Task<Result<UiMessage>> SetPasswordHash<TUser>(TUser user, Password password)
             where TUser : IUserPasswordHash;
         Task<PasswordValidateResult> ValidatePassword<TUser>(TUser user, Password password)
             where TUser : IUserPasswordHash;

@@ -133,13 +133,13 @@ namespace ThoughtHaven.AspNetCore.Identity.Emails
                 }
 
                 [Fact]
-                public async Task ValidEmail_SetsEmail()
+                public async Task ValidEmail_SetsEmailToUppercaseInvariant()
                 {
                     var user = new User();
 
                     await new FakeUserHelper1().SetEmail(user, "some@email.com");
 
-                    Assert.Equal("some@email.com", user.Email);
+                    Assert.Equal("SOME@EMAIL.COM", user.Email);
                 }
 
                 [Fact]

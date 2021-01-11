@@ -8,9 +8,9 @@ namespace ThoughtHaven.AspNetCore.Identity
 {
     public partial interface IUserHelper
     {
-        UserMessage UserAlreadyOwnsEmail { get; }
-        UserMessage EmailNotAvailable { get; }
-        UserMessage InvalidEmailVerificationCode { get; }
+        UiMessage UserAlreadyOwnsEmail { get; }
+        UiMessage EmailNotAvailable { get; }
+        UiMessage InvalidEmailVerificationCode { get; }
         Task<TUser?> Retrieve<TUser>(EmailAddress email) where TUser : class, IUserEmail;
         Task SetEmail<TUser>(TUser user, EmailAddress email) where TUser : IUserEmail;
         Task ConfirmEmail<TUser>(TUser user) where TUser : IUserEmail;

@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 using ThoughtHaven.AspNetCore.Identity.Emails;
 using ThoughtHaven.AspNetCore.Identity.Keys;
-using ThoughtHaven.Azure.Storage.Table;
+using ThoughtHaven.Azure.Cosmos.Table;
 using ThoughtHaven.Data;
 using System.Linq;
 using ThoughtHaven.Contacts;
 using System;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TableUserEmailStore<TUser>
         : TableUserStore<TUser>, IRetrieveOperation<EmailAddress, TUser>

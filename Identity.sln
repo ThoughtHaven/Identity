@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9582D6D8-E0C7-47B9-B528-CF54B6977918}"
 EndProject
@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Ide
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Identity.Test", "test\ThoughtHaven.AspNetCore.Identity.Test\ThoughtHaven.AspNetCore.Identity.Test.csproj", "{08FDD143-E32E-487D-BF02-46300035D348}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.AspNetCore.Identity.AzureTableStorage", "src\ThoughtHaven.AspNetCore.Identity.AzureTableStorage\ThoughtHaven.AspNetCore.Identity.AzureTableStorage.csproj", "{2CEE214A-230E-418B-A153-3E8B6ABCF489}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.AspNetCore.Identity.AzureCosmosTable", "src\ThoughtHaven.AspNetCore.Identity.AzureCosmosTable\ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.csproj", "{327BE774-4644-4347-ACC6-303F9C6E6756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Test", "test\ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Test\ThoughtHaven.AspNetCore.Identity.AzureTableStorage.Test.csproj", "{42D88E33-DA95-4351-99C3-A51524999E00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Test", "test\ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Test\ThoughtHaven.AspNetCore.Identity.AzureCosmosTable.Test.csproj", "{2770714D-C99B-4C06-974E-E84F9377E337}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,14 +29,14 @@ Global
 		{08FDD143-E32E-487D-BF02-46300035D348}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08FDD143-E32E-487D-BF02-46300035D348}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08FDD143-E32E-487D-BF02-46300035D348}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2CEE214A-230E-418B-A153-3E8B6ABCF489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CEE214A-230E-418B-A153-3E8B6ABCF489}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CEE214A-230E-418B-A153-3E8B6ABCF489}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CEE214A-230E-418B-A153-3E8B6ABCF489}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42D88E33-DA95-4351-99C3-A51524999E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42D88E33-DA95-4351-99C3-A51524999E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42D88E33-DA95-4351-99C3-A51524999E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42D88E33-DA95-4351-99C3-A51524999E00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{327BE774-4644-4347-ACC6-303F9C6E6756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{327BE774-4644-4347-ACC6-303F9C6E6756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{327BE774-4644-4347-ACC6-303F9C6E6756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{327BE774-4644-4347-ACC6-303F9C6E6756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2770714D-C99B-4C06-974E-E84F9377E337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2770714D-C99B-4C06-974E-E84F9377E337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2770714D-C99B-4C06-974E-E84F9377E337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2770714D-C99B-4C06-974E-E84F9377E337}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,8 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3CA62F56-A491-4375-BB16-18853FE50EA4} = {9582D6D8-E0C7-47B9-B528-CF54B6977918}
 		{08FDD143-E32E-487D-BF02-46300035D348} = {D0D92DB9-D548-4066-B575-D75F22A50674}
-		{2CEE214A-230E-418B-A153-3E8B6ABCF489} = {9582D6D8-E0C7-47B9-B528-CF54B6977918}
-		{42D88E33-DA95-4351-99C3-A51524999E00} = {D0D92DB9-D548-4066-B575-D75F22A50674}
+		{327BE774-4644-4347-ACC6-303F9C6E6756} = {9582D6D8-E0C7-47B9-B528-CF54B6977918}
+		{2770714D-C99B-4C06-974E-E84F9377E337} = {D0D92DB9-D548-4066-B575-D75F22A50674}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D650E481-5AD4-407C-B331-2940D2FF9BE8}

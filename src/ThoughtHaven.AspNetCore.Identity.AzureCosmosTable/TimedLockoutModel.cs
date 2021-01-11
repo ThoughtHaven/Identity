@@ -1,7 +1,7 @@
 ﻿using System;
 using ThoughtHaven.AspNetCore.Identity.Lockouts;
 
-namespace ThoughtHaven.AspNetCore.Identity.AzureTableStorage
+namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 {
     public class TimedLockoutModel
     {

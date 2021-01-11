@@ -1,6 +1,6 @@
 ﻿using System;
 using ThoughtHaven.AspNetCore.Identity;
-using ThoughtHaven.AspNetCore.Identity.AzureTableStorage;
+using ThoughtHaven.AspNetCore.Identity.AzureCosmosTable;
 using ThoughtHaven.Security.SingleUseTokens;
 using Xunit;
 

@@ -22,7 +22,7 @@ using ThoughtHaven.AspNetCore.Identity.Passwords;
 
 namespace ThoughtHaven.AspNetCore.Identity.Startup
 {
-    public class IdentityServiceCollectionExtensionsTests
+    public class ThoughtHavenIdentityServiceCollectionExtensionsTests
     {
         public class AddThoughtHavenIdentityMethod
         {
@@ -121,7 +121,7 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
 
                     var validators = provider.GetRequiredService<IEnumerable<IUserValidator<User>>>();
 
-                    Assert.True(validators.Count() > 0);
+                    Assert.True(validators.Any());
                 }
 
                 [Fact]
@@ -264,15 +264,15 @@ namespace ThoughtHaven.AspNetCore.Identity.Startup
 
                         if (expected == null && actual != null) continue;
 
-                        if (expected is string)
+                        if (expected is string @string)
                         {
-                            if (string.IsNullOrEmpty((string)expected) &&
+                            if (string.IsNullOrEmpty(@string) &&
                                 !string.IsNullOrEmpty((string)actual!)) continue;
                         }
 
-                        if (expected is PathString)
+                        if (expected is PathString path)
                         {
-                            if (string.IsNullOrEmpty((PathString)expected) &&
+                            if (string.IsNullOrEmpty(path) &&
                                 !string.IsNullOrEmpty((PathString)actual!)) continue;
                         }
 

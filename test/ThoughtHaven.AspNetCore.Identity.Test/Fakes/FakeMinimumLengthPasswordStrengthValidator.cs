@@ -6,6 +6,6 @@ namespace ThoughtHaven.AspNetCore.Identity.Fakes
         : MinimumLengthPasswordStrengthValidator
     {
         new public byte MinimumLength => base.MinimumLength;
-        new public UserMessage InvalidPasswordStrength => base.InvalidPasswordStrength;
+        new public UiMessage InvalidPasswordStrength => base.InvalidPasswordStrength;
     }
 }
