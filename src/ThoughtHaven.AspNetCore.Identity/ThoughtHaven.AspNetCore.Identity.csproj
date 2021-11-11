@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven AspNetCore Identity</Product>
     <Description>An alternative identity framework for AspNetCore apps.</Description>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
-    <Version>0.1000.1</Version>
+    <Version>0.2000.0</Version>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
   </PropertyGroup>
@@ -19,10 +19,10 @@
 
   <ItemGroup>
     <PackageReference Include="PwnedPasswords.Client" Version="1.2.0" />
-    <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.1000.0" />
-    <PackageReference Include="ThoughtHaven.Reflection" Version="0.1000.0" />
-    <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.1000.0" />
-    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.1000.0" />
+    <PackageReference Include="ThoughtHaven.Data.Abstractions" Version="0.2000.0" />
+    <PackageReference Include="ThoughtHaven.Reflection" Version="0.2000.0" />
+    <PackageReference Include="ThoughtHaven.Security.Cryptography.Random" Version="0.2000.0" />
+    <PackageReference Include="ThoughtHaven.Security.SingleUseTokens.Abstractions" Version="0.2000.0" />
   </ItemGroup>
 
 </Project>
