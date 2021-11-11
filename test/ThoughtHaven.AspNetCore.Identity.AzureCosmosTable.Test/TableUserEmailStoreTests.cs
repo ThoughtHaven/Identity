@@ -53,7 +53,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
 
                     await store.Retrieve(email: "some@email.com");
 
-                    Assert.Equal("Email eq 'some@email.com'",
+                    Assert.Equal("Email eq 'SOME@EMAIL.COM'",
                         store.EntityStore.Table
                             .ExecuteQuerySegmentedAsync_InputQuery!.FilterString);
                     Assert.NotNull(store.EntityStore.Table
@@ -112,7 +112,6 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
             }
         }
         
-        private static FakeTableUserEmailStore Store() =>
-            new FakeTableUserEmailStore(new FakeTableEntityStore());
+        private static FakeTableUserEmailStore Store() => new(new FakeTableEntityStore());
     }
 }

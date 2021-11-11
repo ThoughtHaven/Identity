@@ -32,7 +32,7 @@ namespace ThoughtHaven.AspNetCore.Identity.AzureCosmosTable
                 .ConfigureAwait(false);
 
             var query = new TableQuery().Where(TableQuery.GenerateFilterCondition(
-                nameof(IUserEmail.Email), QueryComparisons.Equal, email.Value));
+                nameof(IUserEmail.Email), QueryComparisons.Equal, email.Value.ToUpperInvariant()));
 
             var segment = await this.EntityStore.Table.ExecuteQuerySegmentedAsync(query,
                 new TableContinuationToken(), this.EntityStore.Options, operationContext: null);
